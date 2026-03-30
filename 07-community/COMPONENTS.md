@@ -201,7 +201,7 @@ Individual user review with rating and helpful voting.
 
 ```
 ┌──────────────────────────────────────────────────┐
-│  [av] Tahsan Ahmed · 🟢 Contributor · ⭐ 12 reviews│
+│  [av] Tahsan Islam · 🟢 Contributor · ⭐ 12 reviews│
 │  ★★★★★  "Amazing atmosphere and coffee"         │
 │  Feb 15, 2026                                    │
 │                                                   │

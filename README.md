@@ -2,7 +2,7 @@
 
 Eight production-grade, fully interactive websites built with **vanilla HTML, CSS, and JavaScript** — no frameworks, no build tools, no dependencies beyond a few CDN libraries. Each site is self-contained, frontend-only, and designed to showcase a different domain of web development.
 
-> **Author:** Tahsan Ahmed  
+> **Author:** Tahsan Islam  
 > **Stack:** HTML5 · CSS3 · Vanilla JS (ES6+)  
 > **State Management:** localStorage (all "backend" features are simulated client-side)  
 > **Theme:** Every site supports dark/light mode
@@ -49,7 +49,7 @@ Eight production-grade, fully interactive websites built with **vanilla HTML, CS
 
 ---
 
-### 04 · Tahsan Ahmed — Portfolio
+### 04 · Tahsan Islam — Portfolio
 
 > Multi-mode creative portfolio with cinematic scroll, custom cursor, and page transitions.
 

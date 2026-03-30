@@ -15,7 +15,7 @@
 │  │       (gradient mesh / grain bg)                  │    │
 │  │                                                   │    │
 │  │          Hey, I'm                                 │    │
-│  │     Tahsan Ahmed                                  │    │
+│  │     Tahsan Islam                                  │    │
 │  │       (96px, bold, Space Grotesk)                 │    │
 │  │                                                   │    │
 │  │     I'm a Full Stack Developer|                   │    │

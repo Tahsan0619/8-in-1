@@ -1,5 +1,5 @@
 const PORTFOLIO = {
-  name: 'Tahsan Ahmed',
+  name: 'Tahsan Islam',
   title: 'Creative Developer & Designer',
   roles: ['Full Stack Developer', 'UI/UX Designer', 'Creative Thinker', 'Problem Solver'],
   intro: 'I craft digital experiences that blend thoughtful design with solid engineering. Passionate about building things that look great and work even better.',

@@ -248,7 +248,7 @@
 │  │  [     Cover Photo Background (200px)          ] │    │
 │  │                                                   │    │
 │  │  ┌────┐                                           │    │
-│  │  │ AV │  Tahsan Ahmed                             │    │
+│  │  │ AV │  Tahsan Islam                             │    │
 │  │  └────┘  @tahsan · 🟣 Master (3,400 rep)         │    │
 │  │  Full-stack developer · Dhaka, BD                 │    │
 │  │  Joined Dec 2024 · 234 followers · 89 following   │    │

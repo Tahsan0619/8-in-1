@@ -381,7 +381,7 @@ const DATA = {
   ],
 
   testimonials: [
-    { name: 'Tahsan Ahmed', role: 'Frontend Developer', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', text: 'LearnHub transformed my career. I went from knowing basic HTML to landing a React developer job in just 6 months. The course quality is incredible.', rating: 5 },
+    { name: 'Tahsan Islam', role: 'Frontend Developer', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', text: 'LearnHub transformed my career. I went from knowing basic HTML to landing a React developer job in just 6 months. The course quality is incredible.', rating: 5 },
     { name: 'Maria Santos', role: 'UX Designer', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face', text: 'The design courses are top-notch. I learned Figma from scratch and now I am leading design projects at my company. The instructors are world-class.', rating: 5 },
     { name: 'Alex Turner', role: 'Data Scientist', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face', text: 'The Python ML course was exactly what I needed to transition into data science. The hands-on projects helped me build a strong portfolio.', rating: 5 }
   ],
@@ -395,8 +395,8 @@ const DATA = {
   ],
 
   certificates: [
-    { courseId: 'ui-design', courseName: 'UI/UX Design Masterclass', studentName: 'Tahsan Ahmed', completedDate: 'October 15, 2025', certId: 'LH-CERT-2025-UI-4829' },
-    { courseId: 'js-fundamentals', courseName: 'JavaScript: The Complete Guide', studentName: 'Tahsan Ahmed', completedDate: 'August 10, 2025', certId: 'LH-CERT-2025-JS-3721' }
+    { courseId: 'ui-design', courseName: 'UI/UX Design Masterclass', studentName: 'Tahsan Islam', completedDate: 'October 15, 2025', certId: 'LH-CERT-2025-UI-4829' },
+    { courseId: 'js-fundamentals', courseName: 'JavaScript: The Complete Guide', studentName: 'Tahsan Islam', completedDate: 'August 10, 2025', certId: 'LH-CERT-2025-JS-3721' }
   ],
 
   quizResults: [
@@ -450,7 +450,7 @@ const DATA = {
       values: [320, 450, 380, 520, 480, 620, 780, 710, 850, 920, 780, 1050]
     },
     recentStudents: [
-      { name: 'Tahsan Ahmed', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face', course: 'React Developer Course', progress: 65, date: 'Jan 15, 2026' },
+      { name: 'Tahsan Islam', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face', course: 'React Developer Course', progress: 65, date: 'Jan 15, 2026' },
       { name: 'Sarah Chen', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&crop=face', course: 'React Developer Course', progress: 88, date: 'Jan 12, 2026' },
       { name: 'Michael Park', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face', course: 'JavaScript Guide', progress: 42, date: 'Jan 10, 2026' },
       { name: 'Emily Rodriguez', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face', course: 'React Developer Course', progress: 100, date: 'Jan 8, 2026' },

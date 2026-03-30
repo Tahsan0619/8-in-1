@@ -1,7 +1,7 @@
 /* ── 08-dashboard Mock Data Store ── */
 const DashboardData = {
   currentUser: {
-    id: 'u1', name: 'Tahsan Ahmed', email: 'tahsan@nexgen.io', role: 'Owner',
+    id: 'u1', name: 'Tahsan Islam', email: 'tahsan@nexgen.io', role: 'Owner',
     avatar: 'TA', org: 'NexGen Labs', timezone: 'UTC+6'
   },
 
@@ -230,7 +230,7 @@ const DashboardData = {
 
   /* ── TEAM ── */
   team: [
-    { id: 't1', name: 'Tahsan Ahmed', email: 'tahsan@nexgen.io', role: 'owner', status: 'active', lastActive: 'Now', avatar: 'TA', department: 'Executive' },
+    { id: 't1', name: 'Tahsan Islam', email: 'tahsan@nexgen.io', role: 'owner', status: 'active', lastActive: 'Now', avatar: 'TA', department: 'Executive' },
     { id: 't2', name: 'Sarah Johnson', email: 'sarah@nexgen.io', role: 'admin', status: 'active', lastActive: '5 min ago', avatar: 'SJ', department: 'Engineering' },
     { id: 't3', name: 'Mike Chen', email: 'mike@nexgen.io', role: 'member', status: 'active', lastActive: '1 hour ago', avatar: 'MC', department: 'Engineering' },
     { id: 't4', name: 'Emily Davis', email: 'emily@nexgen.io', role: 'member', status: 'active', lastActive: '30 min ago', avatar: 'ED', department: 'Design' },

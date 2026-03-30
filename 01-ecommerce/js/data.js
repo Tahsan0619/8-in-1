@@ -312,8 +312,8 @@ const STORE = {
   ],
 
   addresses: [
-    { id: 1, label: "Home", name: "Tahsan Ahmed", phone: "+880 1712-345678", address: "House 12, Road 5, Dhanmondi R/A, Dhaka 1205" },
-    { id: 2, label: "Office", name: "Tahsan Ahmed", phone: "+880 1812-456789", address: "Level 8, Tower B, Navana Heights, Gulshan-2, Dhaka 1212" },
+    { id: 1, label: "Home", name: "Tahsan Islam", phone: "+880 1712-345678", address: "House 12, Road 5, Dhanmondi R/A, Dhaka 1205" },
+    { id: 2, label: "Office", name: "Tahsan Islam", phone: "+880 1812-456789", address: "Level 8, Tower B, Navana Heights, Gulshan-2, Dhaka 1212" },
   ],
 
   reviews: [

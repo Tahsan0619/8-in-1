@@ -7,7 +7,7 @@ const CommunityData = {
   // Current logged-in user
   currentUser: {
     id: 'u1',
-    name: 'Tahsan Ahmed',
+    name: 'Tahsan Islam',
     username: 'tahsan',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=tahsan',
     bio: 'Full-stack developer & community builder. Turning ideas into pixels.',
@@ -24,7 +24,7 @@ const CommunityData = {
   },
 
   users: [
-    { id: 'u1', name: 'Tahsan Ahmed', username: 'tahsan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=tahsan', reputation: 2450, level: 'Master', online: true },
+    { id: 'u1', name: 'Tahsan Islam', username: 'tahsan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=tahsan', reputation: 2450, level: 'Master', online: true },
     { id: 'u2', name: 'Sarah Chen', username: 'sarahc', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=sarah', reputation: 5200, level: 'Legend', online: true },
     { id: 'u3', name: 'Alex Rivera', username: 'arivera', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=alex', reputation: 980, level: 'Expert', online: false },
     { id: 'u4', name: 'Priya Sharma', username: 'priyas', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=priya', reputation: 340, level: 'Contributor', online: true },

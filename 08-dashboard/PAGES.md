@@ -225,7 +225,7 @@
 │          │  │  ○ Integrations  │  │ AV │ Upload photo   ││
 │          │  │  ○ API           │  └────┘               ││
 │          │  │  ○ Appearance    │                        ││
-│          │  │  ○ Notifications │  Name: [Tahsan Ahmed ] ││
+│          │  │  ○ Notifications │  Name: [Tahsan Islam ] ││
 │          │  │                  │  Email: [tahsan@...   ] ││
 │          │  │                  │  Timezone: [UTC+6 ▼   ] ││
 │          │  │                  │                        ││
