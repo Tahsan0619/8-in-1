@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — The Inkwell</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="reading-progress" id="readingProgress"></div>
+  <button class="reading-mode-exit" onclick="toggleReadingMode()">✕ Exit Reading Mode</button>
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">The Ink<span>well</span></a>
+      <nav class="header-nav"><a href="index.html">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></nav>
+      <div class="header-actions">
+        <button class="btn btn--ghost btn--sm" onclick="toggleReadingMode()" title="Reading Mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></button>
+        <button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">The Ink<span>well</span></span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></nav></aside>
+
+  <!-- Article Header -->
+  <div id="articleHeader"></div>
+
+  <!-- Article Layout: TOC | Body | Share -->
+  <div class="article-layout" id="articleLayout" style="display:none">
+    <div class="toc" id="tocSidebar"></div>
+    <article class="article-body" id="articleBody"></article>
+    <div class="share-float" id="shareFloat">
+      <a href="#" onclick="event.preventDefault();Toast.show('Shared to Twitter!','info')" title="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+      <a href="#" onclick="event.preventDefault();Toast.show('Shared to LinkedIn!','info')" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="#" onclick="event.preventDefault();Toast.show('Link copied!','success')" title="Copy Link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Reactions -->
+  <div class="container" id="reactionsWrap" style="display:none">
+    <div class="reactions" id="reactions">
+      <button class="reaction-btn" data-reaction="clap"><span class="emoji">👏</span><span class="count">42</span></button>
+      <button class="reaction-btn" data-reaction="love"><span class="emoji">❤️</span><span class="count">18</span></button>
+      <button class="reaction-btn" data-reaction="fire"><span class="emoji">🔥</span><span class="count">7</span></button>
+      <button class="reaction-btn" data-reaction="insight"><span class="emoji">💡</span><span class="count">12</span></button>
+    </div>
+  </div>
+
+  <!-- Author Bio -->
+  <div class="container" id="authorBioWrap" style="display:none"><div id="authorBio"></div></div>
+
+  <!-- Comments -->
+  <div class="comments-section" id="commentsSection" style="display:none">
+    <div class="comments-header"><h3>Comments (<span id="commentCount">0</span>)</h3><select onchange="Toast.show('Sort updated','info')"><option>Newest</option><option>Top</option></select></div>
+    <div class="comment-form">
+      <textarea placeholder="Share your thoughts..."></textarea>
+      <div class="comment-form-row"><input type="text" placeholder="Your name"><button class="btn btn--primary btn--sm" onclick="Toast.show('Comment posted!','success')">Post Comment</button></div>
+    </div>
+    <div id="commentsContainer"></div>
+  </div>
+
+  <!-- Related -->
+  <div class="container" id="relatedWrap" style="display:none">
+    <div class="related-posts"><h2>Related Articles</h2><div class="related-grid" id="relatedGrid"></div></div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="header-logo" style="color:#fff">The Ink<span>well</span></a><p>Thoughtful writing about technology, design, culture, and the human experience.</p></div>
+        <div class="footer-col"><h4>Categories</h4><a href="category.html?cat=technology">Technology</a><a href="category.html?cat=design">Design</a><a href="category.html?cat=culture">Culture</a></div>
+        <div class="footer-col"><h4>Pages</h4><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">RSS</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 The Inkwell. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+      const post = BLOG.posts.find(p => p.id === postId);
+
+      if (!post) {
+        document.getElementById('articleHeader').innerHTML = `<div class="article-header"><h1>Post Not Found</h1><p style="color:var(--color-text-secondary)">The article you're looking for doesn't exist.</p><a href="index.html" class="btn btn--primary" style="margin-top:16px">Back to Home</a></div>`;
+        return;
+      }
+
+      const author = getAuthor(post.author);
+      document.title = `${post.title} — The Inkwell`;
+
+      // Article Header
+      document.getElementById('articleHeader').innerHTML = `
+        <div class="article-header">
+          <span class="cat-badge ${getCatClass(post.category)}">${getCatName(post.category)}</span>
+          <h1>${post.title}</h1>
+          <p class="excerpt">${post.excerpt}</p>
+          <div class="author-bar">
+            <img src="${author.avatar}" alt="${author.name}">
+            <div class="author-bar-info"><strong>${author.name}</strong><span>${post.date} · ${post.readTime}</span></div>
+            <button class="follow-btn" onclick="this.textContent=this.textContent==='Follow'?'Following':'Follow'">Follow</button>
+          </div>
+        </div>
+        <figure class="featured-image"><img src="${post.image}" alt="${post.title}"><figcaption>Photo credit: Unsplash</figcaption></figure>
+      `;
+
+      // TOC
+      if (post.headings?.length) {
+        document.getElementById('tocSidebar').innerHTML = `<h4>Contents</h4><div class="toc-list">${post.headings.map(h => `<a href="#${h.id}" class="${h.level > 2 ? 'indent' : ''}">${h.text}</a>`).join('')}</div>`;
+      }
+
+      // Body
+      document.getElementById('articleLayout').style.display = 'grid';
+      document.getElementById('articleBody').innerHTML = post.content;
+
+      // Show sections
+      document.getElementById('reactionsWrap').style.display = 'block';
+      document.getElementById('authorBioWrap').style.display = 'block';
+      document.getElementById('commentsSection').style.display = 'block';
+      document.getElementById('relatedWrap').style.display = 'block';
+
+      // Author Bio
+      document.getElementById('authorBio').innerHTML = `
+        <div class="author-card">
+          <img src="${author.avatar}" alt="${author.name}">
+          <div class="author-card-info">
+            <strong><a href="author.html?id=${author.id}">${author.name}</a></strong>
+            <div class="role">${author.role}</div>
+            <p>${author.bio}</p>
+            <div class="social-links">
+              ${author.socials.twitter ? `<a href="${author.socials.twitter}" title="Twitter">𝕏</a>` : ''}
+              ${author.socials.linkedin ? `<a href="${author.socials.linkedin}" title="LinkedIn">in</a>` : ''}
+              ${author.socials.dribbble ? `<a href="${author.socials.dribbble}" title="Dribbble">Dr</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Related
+      const related = BLOG.posts.filter(p => p.category === post.category && p.id !== post.id).slice(0, 3);
+      document.getElementById('relatedGrid').innerHTML = related.map(p => postCardHTML(p)).join('');
+
+      initReadingProgress();
+      initTOC();
+      initReactions(postId);
+      renderComments(postId);
+    });
+  </script>
+</body>
+</html>

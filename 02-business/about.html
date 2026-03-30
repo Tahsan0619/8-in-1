@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — NexGen</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="page-loader"><div class="page-loader-bar"></div></div>
+  <header class="header header--solid">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">Nex<span>Gen</span></a>
+      <nav class="header-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html" class="active">About</a><a href="work.html">Work</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><a href="contact.html" class="btn btn--primary btn--sm header-cta">Get a Quote</a></div>
+    </div>
+  </header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Nex<span>Gen</span></span><button class="mobile-menu-close" onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="work.html">Work</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></nav></aside>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="overline" style="display:block;margin-bottom:12px">About Us</span>
+      <h1>Building Digital Excellence Since 2012</h1>
+      <p>We're a team of designers, developers, and strategists passionate about creating impactful digital experiences.</p>
+    </div>
+  </section>
+
+  <!-- Mission / Vision / Values -->
+  <section class="section">
+    <div class="container">
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🎯</div>
+          <h3>Our Mission</h3>
+          <p>To empower businesses through thoughtful technology solutions that create measurable impact and lasting value.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🔭</div>
+          <h3>Our Vision</h3>
+          <p>To be the most trusted digital partner for ambitious companies ready to transform their industries.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">💡</div>
+          <h3>Our Values</h3>
+          <p>Transparency, craftsmanship, and genuine partnership. We succeed when our clients succeed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Our Journey</span>
+        <h2>Company Timeline</h2>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid" id="aboutStats"></div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Our Team</span>
+        <h2>The People Behind NexGen</h2>
+        <p>A diverse team of experts united by a passion for building great digital products.</p>
+      </div>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Want to Join Our Team?</h2>
+        <p>We're always looking for talented people who share our passion for digital excellence.</p>
+        <a href="contact.html" class="btn btn--white btn--lg">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="header-logo">Nex<span>Gen</span></a><p>Digital solutions that drive growth.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About</a><a href="work.html">Portfolio</a><a href="blog.html">Blog</a></div>
+        <div class="footer-col"><h4>Services</h4><a href="services.html">All Services</a><a href="pricing.html">Pricing</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="contact.html">Get in Touch</a><a href="#">hello@nexgen.co</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 NexGen. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Timeline
+      document.getElementById('timeline').innerHTML = SITE.timeline.map(t => `
+        <div class="timeline-entry reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">${t.year}</span>
+            <h3>${t.title}</h3>
+            <p>${t.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Stats
+      document.getElementById('aboutStats').innerHTML = SITE.stats.map(s => `
+        <div class="stat-block">
+          <div class="stat-number" data-count="${s.number}" data-suffix="${s.suffix}">0${s.suffix}</div>
+          <div class="stat-label">${s.label}</div>
+        </div>
+      `).join('');
+
+      // Team
+      document.getElementById('teamGrid').innerHTML = SITE.team.map((m, i) => `
+        <div class="team-card reveal reveal-delay-${(i % 4) + 1}">
+          <div class="team-photo">
+            <img src="${m.photo}" alt="${m.name}" loading="lazy">
+            <div class="team-overlay">
+              <a href="#" class="team-social">in</a>
+              <a href="#" class="team-social">𝕏</a>
+            </div>
+          </div>
+          <div class="name">${m.name}</div>
+          <div class="role">${m.role}</div>
+        </div>
+      `).join('');
+
+      initScrollReveal();
+      initStatsCounter();
+    });
+  </script>
+</body>
+</html>

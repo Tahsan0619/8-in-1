@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — NexGen</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="page-loader"><div class="page-loader-bar"></div></div>
+  <header class="header header--solid">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">Nex<span>Gen</span></a>
+      <nav class="header-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="work.html">Work</a><a href="blog.html" class="active">Blog</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><a href="contact.html" class="btn btn--primary btn--sm header-cta">Get a Quote</a></div>
+    </div>
+  </header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Nex<span>Gen</span></span><button class="mobile-menu-close" onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="work.html">Work</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></nav></aside>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="overline" style="display:block;margin-bottom:12px">Insights &amp; Ideas</span>
+      <h1>Our Blog</h1>
+      <p>Expert perspectives on technology, design, and digital strategy to help your business grow.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Search & Filter -->
+      <div class="blog-toolbar">
+        <div class="blog-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="blogSearchInput" placeholder="Search articles...">
+        </div>
+        <div class="filter-bar" id="blogFilterBar"></div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid" id="blogGrid"></div>
+      <p class="no-results" id="noResults" style="display:none;text-align:center;padding:60px 0;color:var(--color-text-secondary);font-size:18px">No articles found matching your search.</p>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest insights delivered straight to your inbox.</p>
+        <form class="newsletter-inline" onsubmit="event.preventDefault();Toast.show('Thank you for subscribing!','success');this.reset();">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn--white">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="header-logo">Nex<span>Gen</span></a><p>Digital solutions that drive growth.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="work.html">Work</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="contact.html">Get in Touch</a><a href="#">hello@nexgen.co</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 NexGen. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const categories = ['All', ...new Set(SITE.blogPosts.map(p => p.category))];
+      document.getElementById('blogFilterBar').innerHTML = categories.map((c, i) =>
+        `<button class="filter-pill ${i === 0 ? 'active' : ''}" data-filter="${c === 'All' ? 'all' : c}">${c}</button>`
+      ).join('');
+
+      renderBlog(SITE.blogPosts);
+      initBlogFilter();
+      initScrollReveal();
+    });
+
+    function renderBlog(posts) {
+      const grid = document.getElementById('blogGrid');
+      const noRes = document.getElementById('noResults');
+      if (posts.length === 0) { grid.innerHTML = ''; noRes.style.display = 'block'; return; }
+      noRes.style.display = 'none';
+      grid.innerHTML = posts.map(p => `
+        <article class="blog-card reveal" data-category="${p.category}">
+          <a href="blog-post.html?id=${p.id}" class="blog-card-image"><img src="${p.image}" alt="${p.title}" loading="lazy"></a>
+          <div class="blog-card-content">
+            <div class="blog-card-meta"><span class="tag tag--sm">${p.category}</span><span>${p.date}</span><span>${p.readTime}</span></div>
+            <h3><a href="blog-post.html?id=${p.id}">${p.title}</a></h3>
+            <p>${p.excerpt}</p>
+            <div class="blog-card-author"><img src="${p.authorImage}" alt="${p.author}" width="32" height="32"><span>${p.author}</span></div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function initBlogFilter() {
+      const pills = document.querySelectorAll('#blogFilterBar .filter-pill');
+      const searchInput = document.getElementById('blogSearchInput');
+      let currentCat = 'all';
+
+      function filterAndRender() {
+        const q = searchInput.value.toLowerCase().trim();
+        let filtered = SITE.blogPosts;
+        if (currentCat !== 'all') filtered = filtered.filter(p => p.category === currentCat);
+        if (q) filtered = filtered.filter(p => p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q));
+        renderBlog(filtered);
+      }
+
+      pills.forEach(pill => pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentCat = pill.dataset.filter;
+        filterAndRender();
+      }));
+      searchInput.addEventListener('input', filterAndRender);
+    }
+  </script>
+</body>
+</html>

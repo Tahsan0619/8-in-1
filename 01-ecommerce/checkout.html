@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — FLAVR</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER (Simplified) -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">FLAV<span>R</span></a>
+      <div style="flex:1"></div>
+      <button class="header-action-btn" onclick="Theme.toggle()"><span class="theme-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Checkout Stepper -->
+      <div class="checkout-stepper" id="stepper">
+        <div class="step active" data-step="1"><span class="step-num">1</span><span class="step-label">Address</span></div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2"><span class="step-num">2</span><span class="step-label">Payment</span></div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3"><span class="step-num">3</span><span class="step-label">Confirm</span></div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- Main Form Area -->
+        <div class="checkout-main" id="checkoutMain">
+          <!-- Step 1: Address -->
+          <div class="checkout-step active" id="step-1">
+            <h2>Shipping Address</h2>
+            <div class="address-list" id="addressList"></div>
+            <button class="btn btn--secondary btn--md" id="addAddressBtn" onclick="toggleAddressForm()">+ Add New Address</button>
+            <form class="address-form" id="addressForm" style="display:none">
+              <div class="form-row">
+                <div class="form-group"><label>Full Name</label><input type="text" id="addrName" required placeholder="Your Name"></div>
+                <div class="form-group"><label>Phone</label><input type="tel" id="addrPhone" required placeholder="+880 1XXX-XXXXXX"></div>
+              </div>
+              <div class="form-group"><label>Address</label><input type="text" id="addrLine" required placeholder="House #, Road #, Area"></div>
+              <div class="form-row">
+                <div class="form-group"><label>City</label><input type="text" id="addrCity" required placeholder="City"></div>
+                <div class="form-group"><label>Zip Code</label><input type="text" id="addrZip" required placeholder="1234"></div>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn--primary btn--md" type="submit">Save Address</button>
+                <button class="btn btn--ghost btn--md" type="button" onclick="toggleAddressForm()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <!-- Step 2: Payment -->
+          <div class="checkout-step" id="step-2">
+            <h2>Payment Method</h2>
+            <div class="payment-methods">
+              <label class="payment-option active" onclick="selectPayment('cod', this)">
+                <input type="radio" name="payment" value="cod" checked>
+                <span class="payment-icon">💵</span>
+                <div class="payment-details"><span class="payment-name">Cash on Delivery</span><span class="payment-desc">Pay when you receive your order</span></div>
+              </label>
+              <label class="payment-option" onclick="selectPayment('bkash', this)">
+                <input type="radio" name="payment" value="bkash">
+                <span class="payment-icon" style="font-size:1.5rem;font-weight:700;color:#E2136E">b</span>
+                <div class="payment-details"><span class="payment-name">bKash</span><span class="payment-desc">Mobile wallet payment</span></div>
+              </label>
+              <label class="payment-option" onclick="selectPayment('nagad', this)">
+                <input type="radio" name="payment" value="nagad">
+                <span class="payment-icon" style="font-size:1.5rem;font-weight:700;color:#F6921E">N</span>
+                <div class="payment-details"><span class="payment-name">Nagad</span><span class="payment-desc">Send money to merchant</span></div>
+              </label>
+            </div>
+            <div class="mobile-wallet-form" id="mobileWalletForm" style="display:none">
+              <div class="form-group"><label>Mobile Number</label><input type="tel" id="walletNumber" placeholder="+880 1XXX-XXXXXX"></div>
+              <div class="form-group"><label>Transaction ID</label><input type="text" id="walletTxn" placeholder="Enter transaction ID"></div>
+            </div>
+          </div>
+          <!-- Step 3: Confirm -->
+          <div class="checkout-step" id="step-3">
+            <h2>Review Your Order</h2>
+            <div class="confirm-items" id="confirmItems"></div>
+            <div class="confirm-address" id="confirmAddress"></div>
+            <div class="confirm-payment" id="confirmPayment"></div>
+          </div>
+          <!-- Navigation -->
+          <div class="checkout-nav">
+            <button class="btn btn--secondary btn--md" id="prevBtn" onclick="prevStep()" style="display:none">&larr; Back</button>
+            <div style="flex:1"></div>
+            <button class="btn btn--primary btn--lg" id="nextBtn" onclick="nextStep()">Continue</button>
+          </div>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <aside class="checkout-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-items" id="summaryItems"></div>
+          <div class="summary-row"><span>Subtotal</span><span id="sumSubtotal"></span></div>
+          <div class="summary-row" id="sumDiscountRow" style="display:none"><span>Discount</span><span id="sumDiscount"></span></div>
+          <div class="summary-row"><span>Shipping</span><span id="sumShipping">Free</span></div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total"><span>Total</span><span id="sumTotal"></span></div>
+          <div class="coupon-apply-row" style="margin-top:16px">
+            <input type="text" id="couponInput" placeholder="Coupon code">
+            <button class="btn btn--secondary btn--sm" onclick="applyCouponCheckout()">Apply</button>
+          </div>
+          <div id="couponMsg" style="font-size:.85rem;margin-top:6px"></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:60px">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2025 FLAVR. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    let currentStep = 1;
+    let chosenAddress = null;
+    let paymentMethod = 'cod';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartItems = State.get('cart') || [];
+      if (cartItems.length === 0) {
+        document.querySelector('.checkout-layout').innerHTML = '<div class="empty-state" style="grid-column:1/-1"><h3>Your cart is empty</h3><p>Add some products before checking out.</p><a href="shop.html" class="btn btn--primary btn--md">Go Shopping</a></div>';
+        document.querySelector('.checkout-stepper').style.display = 'none';
+        document.querySelector('.checkout-nav')?.remove();
+        return;
+      }
+      renderAddresses();
+      renderSummary();
+    });
+
+    // ADDRESS
+    function renderAddresses() {
+      const list = document.getElementById('addressList');
+      list.innerHTML = STORE.addresses.map((a, i) => `
+        <div class="address-card ${i === 0 ? 'selected' : ''}" data-idx="${i}" onclick="selectAddress(${i})">
+          <div class="address-card-check">${i === 0 ? '✓' : ''}</div>
+          <div><strong>${a.name}</strong></div>
+          <div>${a.address}</div>
+          <div>${a.city} - ${a.zip}</div>
+          <div>${a.phone}</div>
+          ${a.isDefault ? '<span class="address-default-badge">Default</span>' : ''}
+        </div>
+      `).join('');
+      chosenAddress = STORE.addresses[0];
+    }
+
+    function selectAddress(idx) {
+      document.querySelectorAll('.address-card').forEach((c, i) => {
+        c.classList.toggle('selected', i === idx);
+        c.querySelector('.address-card-check').textContent = i === idx ? '✓' : '';
+      });
+      chosenAddress = STORE.addresses[idx];
+    }
+
+    function toggleAddressForm() {
+      const form = document.getElementById('addressForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    document.addEventListener('submit', e => {
+      if (e.target.id === 'addressForm') {
+        e.preventDefault();
+        const name = document.getElementById('addrName').value.trim();
+        const phone = document.getElementById('addrPhone').value.trim();
+        const address = document.getElementById('addrLine').value.trim();
+        const city = document.getElementById('addrCity').value.trim();
+        const zip = document.getElementById('addrZip').value.trim();
+        if (!name || !phone || !address || !city || !zip) {
+          Toast.show('Please fill all fields', 'error');
+          return;
+        }
+        STORE.addresses.push({ name, phone, address, city, zip, isDefault: false });
+        renderAddresses();
+        selectAddress(STORE.addresses.length - 1);
+        toggleAddressForm();
+        Toast.show('Address added!', 'success');
+      }
+    });
+
+    // PAYMENT
+    function selectPayment(method, el) {
+      paymentMethod = method;
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('mobileWalletForm').style.display = (method === 'bkash' || method === 'nagad') ? 'block' : 'none';
+    }
+
+    // SUMMARY
+    function renderSummary() {
+      const cartItems = State.get('cart') || [];
+      const coupon = State.get('coupon');
+      let subtotal = 0;
+      const html = cartItems.map(item => {
+        const p = STORE.products.find(x => x.id === item.id);
+        if (!p) return '';
+        const lineTotal = p.price * item.qty;
+        subtotal += lineTotal;
+        return `<div class="summary-item"><img src="${p.images[0]}" alt="${p.name}"><div class="summary-item-info"><div class="summary-item-name">${p.name}</div><div class="summary-item-variant">${item.color || ''} ${item.size || ''} × ${item.qty}</div></div><div class="summary-item-price">${STORE.currency}${lineTotal.toLocaleString()}</div></div>`;
+      }).join('');
+
+      let discount = 0;
+      if (coupon) {
+        const c = STORE.coupons.find(x => x.code === coupon);
+        if (c) discount = c.type === 'percent' ? Math.round(subtotal * c.value / 100) : c.value;
+      }
+      const total = subtotal - discount;
+
+      document.getElementById('summaryItems').innerHTML = html;
+      document.getElementById('sumSubtotal').textContent = `${STORE.currency}${subtotal.toLocaleString()}`;
+      if (discount > 0) {
+        document.getElementById('sumDiscountRow').style.display = 'flex';
+        document.getElementById('sumDiscount').textContent = `-${STORE.currency}${discount.toLocaleString()}`;
+      }
+      document.getElementById('sumTotal').textContent = `${STORE.currency}${total.toLocaleString()}`;
+    }
+
+    function applyCouponCheckout() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      const msg = document.getElementById('couponMsg');
+      const found = STORE.coupons.find(c => c.code === code);
+      if (found) {
+        State.set('coupon', code);
+        toast('Coupon applied!', 'success');
+        msg.textContent = `✓ ${found.label}`;
+        msg.style.color = 'var(--color-success)';
+        renderSummary();
+      } else {
+        msg.textContent = '✗ Invalid coupon code';
+        msg.style.color = 'var(--color-danger)';
+      }
+    }
+
+    function toast(text, type) { Toast.show(text, type); }
+
+    // STEP NAVIGATION
+    function nextStep() {
+      if (currentStep === 1 && !chosenAddress) {
+        Toast.show('Please select a shipping address', 'error');
+        return;
+      }
+      if (currentStep === 2 && (paymentMethod === 'bkash' || paymentMethod === 'nagad')) {
+        const num = document.getElementById('walletNumber').value.trim();
+        const txn = document.getElementById('walletTxn').value.trim();
+        if (!num || !txn) {
+          Toast.show('Please enter mobile number and transaction ID', 'error');
+          return;
+        }
+      }
+      if (currentStep === 3) {
+        placeOrder();
+        return;
+      }
+      currentStep++;
+      updateSteps();
+      if (currentStep === 3) renderConfirmation();
+    }
+
+    function prevStep() {
+      if (currentStep > 1) { currentStep--; updateSteps(); }
+    }
+
+    function updateSteps() {
+      document.querySelectorAll('.checkout-step').forEach((s, i) => s.classList.toggle('active', i === currentStep - 1));
+      document.querySelectorAll('.step').forEach(s => {
+        const n = parseInt(s.dataset.step);
+        s.classList.toggle('active', n <= currentStep);
+        s.classList.toggle('completed', n < currentStep);
+      });
+      document.getElementById('prevBtn').style.display = currentStep > 1 ? 'inline-flex' : 'none';
+      document.getElementById('nextBtn').textContent = currentStep === 3 ? 'Place Order' : 'Continue';
+      if (currentStep === 3) document.getElementById('nextBtn').classList.replace('btn--primary', 'btn--accent') || document.getElementById('nextBtn').classList.add('btn--accent');
+      else document.getElementById('nextBtn').classList.replace('btn--accent', 'btn--primary');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderConfirmation() {
+      const cartItems = State.get('cart') || [];
+      document.getElementById('confirmItems').innerHTML = `<h3>Items (${cartItems.length})</h3>` + cartItems.map(item => {
+        const p = STORE.products.find(x => x.id === item.id);
+        if (!p) return '';
+        return `<div class="summary-item"><img src="${p.images[0]}" alt="${p.name}"><div class="summary-item-info"><div class="summary-item-name">${p.name}</div><div class="summary-item-variant">${item.color || ''} ${item.size || ''} × ${item.qty}</div></div><div class="summary-item-price">${STORE.currency}${(p.price * item.qty).toLocaleString()}</div></div>`;
+      }).join('');
+
+      document.getElementById('confirmAddress').innerHTML = `
+        <h3>Shipping To</h3>
+        <div class="confirm-block"><strong>${chosenAddress.name}</strong><br>${chosenAddress.address}<br>${chosenAddress.city} - ${chosenAddress.zip}<br>${chosenAddress.phone}</div>
+      `;
+      const methodNames = { cod: 'Cash on Delivery', bkash: 'bKash', nagad: 'Nagad' };
+      document.getElementById('confirmPayment').innerHTML = `<h3>Payment</h3><div class="confirm-block">${methodNames[paymentMethod]}</div>`;
+    }
+
+    function placeOrder() {
+      const orderId = 'FLV-' + Date.now().toString(36).toUpperCase();
+      State.set('cart', []);
+      State.remove('coupon');
+      window.location.href = `order-confirm.html?order=${orderId}`;
+    }
+  </script>
+</body>
+</html>

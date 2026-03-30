@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Dashboard — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+        LearnHub
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+        <a href="instructor.html" class="active">Teach</a>
+        <a href="school.html">School</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" aria-label="Search">🔍</button>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn-header primary">Get Started</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="dashboard.html">My Learning</a>
+      <a href="instructor.html" class="active">Teach</a>
+      <a href="school.html">School</a>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-modal-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Search courses, topics, instructors...">
+        <button class="close-search">ESC</button>
+      </div>
+      <div class="search-recent">
+        <h4>Recent Searches</h4>
+        <div class="search-recent-tags">
+          <span>React hooks</span>
+          <span>Python basics</span>
+          <span>UI Design</span>
+          <span>Machine Learning</span>
+        </div>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Instructor Layout -->
+  <section class="section">
+    <div class="container">
+      <div class="instructor-layout">
+        <!-- Sidebar -->
+        <aside class="instructor-sidebar">
+          <div class="instructor-profile" id="instructor-profile"></div>
+          <nav class="sidebar-links">
+            <button class="sidebar-link active" data-section="overview">📊 Overview</button>
+            <button class="sidebar-link" data-section="courses">📚 My Courses</button>
+            <button class="sidebar-link" data-section="analytics">📈 Analytics</button>
+            <button class="sidebar-link" data-section="students">👥 Students</button>
+          </nav>
+          <a href="create-course.html" class="btn btn-primary sidebar-cta">+ Create Course</a>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="instructor-main">
+          <!-- Overview Section -->
+          <div class="inst-section active" id="section-overview">
+            <h2>Dashboard Overview</h2>
+            <div class="kpi-grid" id="kpi-grid"></div>
+            <div class="chart-cards">
+              <div class="chart-card">
+                <h3>Revenue Overview</h3>
+                <canvas id="revenue-chart"></canvas>
+              </div>
+              <div class="chart-card">
+                <h3>Enrollment Trends</h3>
+                <canvas id="enrollment-chart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Courses Section -->
+          <div class="inst-section" id="section-courses">
+            <div class="inst-section-header">
+              <h2>My Courses</h2>
+              <a href="create-course.html" class="btn btn-sm">+ New Course</a>
+            </div>
+            <div class="inst-courses-table-wrap">
+              <table class="inst-table" id="inst-courses-table">
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Students</th>
+                    <th>Rating</th>
+                    <th>Revenue</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Analytics Section -->
+          <div class="inst-section" id="section-analytics">
+            <h2>Analytics</h2>
+            <div class="chart-cards">
+              <div class="chart-card full">
+                <h3>Monthly Revenue</h3>
+                <canvas id="revenue-chart-full"></canvas>
+              </div>
+              <div class="chart-card full">
+                <h3>Monthly Enrollments</h3>
+                <canvas id="enrollment-chart-full"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Students Section -->
+          <div class="inst-section" id="section-students">
+            <h2>Recent Students</h2>
+            <div class="inst-courses-table-wrap">
+              <table class="inst-table" id="inst-students-table">
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Progress</th>
+                    <th>Enrolled</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+            LearnHub
+          </a>
+          <p>Learn without limits. Access world-class education from anywhere, at any time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="courses.html">Browse Courses</a>
+          <a href="instructor.html">Become Instructor</a>
+          <a href="dashboard.html">Student Dashboard</a>
+          <a href="school.html">School Mode</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Blog</a>
+          <a href="#">Community</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LearnHub. All rights reserved.</span>
+        <span>Crafted by Tahsan Ahmed</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

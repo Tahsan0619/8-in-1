@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Courses — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+        LearnHub
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+        <a href="instructor.html">Teach</a>
+        <a href="school.html">School</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" aria-label="Search">🔍</button>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn-header primary">Get Started</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="dashboard.html">My Learning</a>
+      <a href="instructor.html">Teach</a>
+      <a href="school.html">School</a>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-modal-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Search courses, topics, instructors...">
+        <button class="close-search">ESC</button>
+      </div>
+      <div class="search-recent">
+        <h4>Recent Searches</h4>
+        <div class="search-recent-tags">
+          <span>React hooks</span>
+          <span>Python basics</span>
+          <span>UI Design</span>
+          <span>Machine Learning</span>
+        </div>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Explore <span class="text-accent">Courses</span></h1>
+      <p>Discover the perfect course to advance your skills and career</p>
+      <div class="category-pills" id="category-pills"></div>
+    </div>
+  </section>
+
+  <!-- Courses Layout -->
+  <section class="section">
+    <div class="container">
+      <div class="courses-layout">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+          <div class="filter-header">
+            <h3>Filters</h3>
+            <button class="filter-clear">Clear All</button>
+          </div>
+
+          <div class="filter-group">
+            <h4>Level</h4>
+            <label class="filter-check"><input type="checkbox" value="Beginner"> Beginner</label>
+            <label class="filter-check"><input type="checkbox" value="Intermediate"> Intermediate</label>
+            <label class="filter-check"><input type="checkbox" value="Advanced"> Advanced</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Rating</h4>
+            <label class="filter-check rating-filter" data-rating="4.5"><input type="radio" name="rating" value="4.5"> 4.5 & up ★★★★½</label>
+            <label class="filter-check rating-filter" data-rating="4.0"><input type="radio" name="rating" value="4.0"> 4.0 & up ★★★★</label>
+            <label class="filter-check rating-filter" data-rating="3.5"><input type="radio" name="rating" value="3.5"> 3.5 & up ★★★½</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label class="filter-check"><input type="checkbox" value="free" class="price-filter"> Free</label>
+            <label class="filter-check"><input type="checkbox" value="paid" class="price-filter"> Paid</label>
+            <div class="price-range">
+              <label>Max Price: $<span id="price-max-val">200</span></label>
+              <input type="range" min="0" max="200" value="200" id="price-range">
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Search</h4>
+            <input type="text" class="filter-search" placeholder="Search courses..." id="filter-search">
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="courses-main">
+          <div class="courses-toolbar">
+            <span class="result-count"></span>
+            <select class="sort-select" id="sort-select">
+              <option value="popular">Most Popular</option>
+              <option value="highest">Highest Rated</option>
+              <option value="newest">Newest</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+          </div>
+          <div class="courses-grid" id="courses-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+            LearnHub
+          </a>
+          <p>Learn without limits. Access world-class education from anywhere, at any time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="courses.html">Browse Courses</a>
+          <a href="instructor.html">Become Instructor</a>
+          <a href="dashboard.html">Student Dashboard</a>
+          <a href="school.html">School Mode</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Blog</a>
+          <a href="#">Community</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LearnHub. All rights reserved.</span>
+        <span>Crafted by Tahsan Ahmed</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

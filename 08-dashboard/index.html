@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dashboard — NexGen Labs</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">N</div><span>NexGen Labs</span></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section"><div class="sidebar-section-label">Main</div>
+        <a href="index.html" class="nav-item active"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+        <a href="tables.html" class="nav-item"><span class="nav-icon">📋</span><span>Data Tables</span></a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-label">CRM</div>
+        <a href="contacts.html" class="nav-item"><span class="nav-icon">👤</span><span>Contacts</span></a>
+        <a href="pipeline.html" class="nav-item"><span class="nav-icon">🔀</span><span>Pipeline</span></a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-label">Finance</div>
+        <a href="finance.html" class="nav-item"><span class="nav-icon">💰</span><span>Overview</span></a>
+        <a href="invoices.html" class="nav-item"><span class="nav-icon">🧾</span><span>Invoices</span></a>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-label">Analytics</div>
+        <a href="analytics.html" class="nav-item"><span class="nav-icon">📈</span><span>Analytics</span></a>
+      </div>
+      <div class="sidebar-section">
+        <a href="settings.html" class="nav-item"><span class="nav-icon">⚙️</span><span>Settings</span></a>
+        <a href="notifications.html" class="nav-item"><span class="nav-icon">🔔</span><span>Notifications</span><span class="nav-badge">3</span></a>
+        <a href="team.html" class="nav-item"><span class="nav-icon">👥</span><span>Team</span></a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user"><div class="user-av">TA</div><div class="user-info"><div class="user-name">Tahsan Ahmed</div><div class="user-org">NexGen Labs</div></div></div>
+      <button class="sidebar-collapse-btn"><span class="nav-icon">◀</span><span>Collapse</span></button>
+    </div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <div class="main-wrap">
+    <header class="header">
+      <button class="header-hamburger">☰</button>
+      <div class="breadcrumb"><a href="index.html">Dashboard</a><span class="sep">/</span><span class="current">Overview</span></div>
+      <div class="header-spacer"></div>
+      <div class="header-search"><span>🔍</span><span>Search...</span><kbd>Ctrl+K</kbd></div>
+      <div class="header-actions">
+        <button class="header-btn theme-toggle-btn">🌙</button>
+        <div class="header-notif-btn" style="position:relative">
+          <button class="header-btn">🔔<span class="badge"></span></button>
+          <div class="notif-mini-dropdown" style="position:absolute;right:0;top:100%;margin-top:8px;width:320px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);z-index:60;display:none;overflow:hidden">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-weight:600;font-size:13px">Notifications</div>
+            <div class="notif-mini-list" style="max-height:240px;overflow-y:auto"></div>
+            <a href="notifications.html" style="display:block;padding:10px;text-align:center;font-size:12px;color:var(--accent);border-top:1px solid var(--border)">View all</a>
+          </div>
+        </div>
+        <div class="header-user"><div class="av">TA</div></div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-header">
+        <h1>Dashboard Overview</h1>
+        <div class="page-header-actions">
+          <button class="btn btn-secondary" onclick="App.showToast('Report generated','success')">📄 Report</button>
+          <button class="btn btn-primary" onclick="location.href='invoices.html'">+ Create Invoice</button>
+        </div>
+      </div>
+
+      <!-- KPI CARDS -->
+      <div class="kpi-grid">
+        <div class="kpi-card" data-kpi="revenue" onclick="location.href='finance.html'">
+          <div class="kpi-label">💰 Total Revenue</div>
+          <div class="kpi-value">$0</div>
+          <div class="kpi-change up">▲ 12.5% <span class="text-muted text-sm">vs last month</span></div>
+          <div class="kpi-sparkline"><canvas></canvas></div>
+        </div>
+        <div class="kpi-card" data-kpi="users" onclick="location.href='analytics.html'">
+          <div class="kpi-label">👤 Active Users</div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-change up">▲ 8.1% <span class="text-muted text-sm">vs last month</span></div>
+          <div class="kpi-sparkline"><canvas></canvas></div>
+        </div>
+        <div class="kpi-card" data-kpi="conversion" onclick="location.href='analytics.html'">
+          <div class="kpi-label">📈 Conversion Rate</div>
+          <div class="kpi-value">0%</div>
+          <div class="kpi-change down">▼ 1.8% <span class="text-muted text-sm">vs last month</span></div>
+          <div class="kpi-sparkline"><canvas></canvas></div>
+        </div>
+        <div class="kpi-card" data-kpi="mrr" onclick="location.href='finance.html'">
+          <div class="kpi-label">📊 Monthly Recurring</div>
+          <div class="kpi-value">$0</div>
+          <div class="kpi-change up">▲ 15.3% <span class="text-muted text-sm">vs last month</span></div>
+          <div class="kpi-sparkline"><canvas></canvas></div>
+        </div>
+      </div>
+
+      <!-- CHARTS ROW -->
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-title">Revenue Overview</div>
+            <div class="time-range">
+              <button>7d</button><button class="active">30d</button><button>90d</button><button>12m</button>
+            </div>
+          </div>
+          <div class="chart-body"><canvas id="revenueChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Activity Distribution</div></div>
+          <div class="chart-body"><canvas id="activityDist"></canvas></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="chart-grid equal">
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Recent Activity</div><a href="notifications.html" class="btn btn-ghost btn-sm">View all</a></div>
+          <div id="activityFeed" class="activity-list"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Top Performers</div></div>
+          <div id="topPerformers"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmd-overlay">
+  <div class="cmd-modal">
+    <div class="cmd-input"><span>🔍</span><input type="text" placeholder="Type a command or search..."><kbd>ESC</kbd></div>
+    <div class="cmd-results"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<style>.notif-mini-dropdown.active{display:block!important}.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}.notif-mini-item.unread{background:var(--accent-muted)}.notif-mini-item .n-title{font-weight:500}.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}</style>
+</body>
+</html>

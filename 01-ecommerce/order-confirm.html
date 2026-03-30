@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — FLAVR</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">FLAV<span>R</span></a>
+      <div style="flex:1"></div>
+      <button class="header-action-btn" onclick="Theme.toggle()"><span class="theme-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="order-confirm-card" id="confirmCard">
+        <div class="confirm-icon">✓</div>
+        <h1>Order Placed Successfully!</h1>
+        <p class="order-id" id="orderId"></p>
+        <p class="confirm-msg">Thank you for shopping with FLAVR. You'll receive a confirmation email shortly.</p>
+
+        <div class="order-timeline">
+          <div class="timeline-step active">
+            <div class="timeline-dot"></div>
+            <div class="timeline-info"><span class="timeline-title">Order Placed</span><span class="timeline-date">Just now</span></div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-info"><span class="timeline-title">Processing</span><span class="timeline-date">Expected within 24h</span></div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-info"><span class="timeline-title">Shipped</span><span class="timeline-date">2-3 business days</span></div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-info"><span class="timeline-title">Delivered</span><span class="timeline-date">3-5 business days</span></div>
+          </div>
+        </div>
+
+        <div class="confirm-actions">
+          <a href="account.html" class="btn btn--secondary btn--md">Track Order</a>
+          <a href="shop.html" class="btn btn--primary btn--md">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2025 FLAVR. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get('order') || 'FLV-DEMO';
+      document.getElementById('orderId').textContent = `Order #${orderId}`;
+      if (typeof launchConfetti === 'function') launchConfetti();
+    });
+  </script>
+</body>
+</html>

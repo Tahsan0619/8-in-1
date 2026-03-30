@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+        LearnHub
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html" class="active">My Learning</a>
+        <a href="instructor.html">Teach</a>
+        <a href="school.html">School</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" aria-label="Search">🔍</button>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn-header primary">Get Started</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="dashboard.html" class="active">My Learning</a>
+      <a href="instructor.html">Teach</a>
+      <a href="school.html">School</a>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-modal-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Search courses, topics, instructors...">
+        <button class="close-search">ESC</button>
+      </div>
+      <div class="search-recent">
+        <h4>Recent Searches</h4>
+        <div class="search-recent-tags">
+          <span>React hooks</span>
+          <span>Python basics</span>
+          <span>UI Design</span>
+          <span>Machine Learning</span>
+        </div>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard Content -->
+  <section class="section dashboard-page">
+    <div class="container">
+      <!-- Welcome -->
+      <div class="dashboard-welcome">
+        <div>
+          <h1>Welcome back! 👋</h1>
+          <p>Keep up the great work. You're making excellent progress.</p>
+        </div>
+        <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+      </div>
+
+      <!-- Continue Learning -->
+      <div class="dashboard-section">
+        <h2>Continue Learning</h2>
+        <div class="continue-card" id="continue-card"></div>
+      </div>
+
+      <!-- My Courses -->
+      <div class="dashboard-section">
+        <h2>My Courses</h2>
+        <div class="dash-tabs">
+          <button class="dash-tab active" data-filter="all">All</button>
+          <button class="dash-tab" data-filter="in-progress">In Progress</button>
+          <button class="dash-tab" data-filter="completed">Completed</button>
+        </div>
+        <div class="enrolled-grid" id="enrolled-grid"></div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="dashboard-section">
+        <h2>🏆 Certificates</h2>
+        <div class="cert-grid" id="cert-grid"></div>
+      </div>
+
+      <!-- Quiz Results -->
+      <div class="dashboard-section">
+        <h2>📝 Quiz Results</h2>
+        <div class="quiz-results-table-wrap">
+          <table class="quiz-results-table" id="quiz-results-table">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Quiz</th>
+                <th>Score</th>
+                <th>Grade</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+            LearnHub
+          </a>
+          <p>Learn without limits. Access world-class education from anywhere, at any time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="courses.html">Browse Courses</a>
+          <a href="instructor.html">Become Instructor</a>
+          <a href="dashboard.html">Student Dashboard</a>
+          <a href="school.html">School Mode</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Blog</a>
+          <a href="#">Community</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LearnHub. All rights reserved.</span>
+        <span>Crafted by Tahsan Ahmed</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

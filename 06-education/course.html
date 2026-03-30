@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Detail — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+        LearnHub
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+        <a href="instructor.html">Teach</a>
+        <a href="school.html">School</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" aria-label="Search">🔍</button>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn-header primary">Get Started</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="dashboard.html">My Learning</a>
+      <a href="instructor.html">Teach</a>
+      <a href="school.html">School</a>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-modal-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Search courses, topics, instructors...">
+        <button class="close-search">ESC</button>
+      </div>
+      <div class="search-recent">
+        <h4>Recent Searches</h4>
+        <div class="search-recent-tags">
+          <span>React hooks</span>
+          <span>Python basics</span>
+          <span>UI Design</span>
+          <span>Machine Learning</span>
+        </div>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Course Hero -->
+  <section class="course-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> / <a href="courses.html">Courses</a> / <span id="breadcrumb-cat"></span>
+      </div>
+      <div class="course-hero-content">
+        <span class="course-badge" id="course-badge"></span>
+        <h1 id="course-title"></h1>
+        <p class="course-subtitle" id="course-subtitle"></p>
+        <div class="course-meta">
+          <span class="stars" id="course-stars"></span>
+          <span id="course-rating-text"></span>
+          <span id="course-students"></span>
+          <span id="course-duration"></span>
+          <span id="course-level"></span>
+          <span id="course-updated"></span>
+        </div>
+        <div class="course-instructor-mini" id="course-instructor-mini"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Detail Layout -->
+  <section class="section">
+    <div class="container">
+      <div class="course-detail-layout">
+        <!-- Main Content -->
+        <div class="course-main">
+
+          <!-- What You'll Learn -->
+          <div class="learn-box" id="learn-box">
+            <h2>What You'll Learn</h2>
+            <div class="learn-grid" id="learn-grid"></div>
+          </div>
+
+          <!-- Curriculum -->
+          <div class="curriculum-section" id="curriculum-section">
+            <div class="curriculum-header">
+              <h2>Course Curriculum</h2>
+              <span class="curriculum-meta" id="curriculum-meta"></span>
+            </div>
+            <div class="curriculum-sections" id="curriculum-sections"></div>
+          </div>
+
+          <!-- Instructor -->
+          <div class="instructor-section" id="instructor-section">
+            <h2>About the Instructor</h2>
+            <div class="instructor-detail-card" id="instructor-detail-card"></div>
+          </div>
+
+          <!-- Requirements -->
+          <div class="requirements-section" id="requirements-section">
+            <h2>Requirements</h2>
+            <ul class="requirements-list" id="requirements-list"></ul>
+          </div>
+
+          <!-- Reviews -->
+          <div class="reviews-section" id="reviews-section">
+            <h2>Student Reviews</h2>
+            <div class="reviews-overview" id="reviews-overview"></div>
+            <div class="reviews-list" id="reviews-list"></div>
+          </div>
+        </div>
+
+        <!-- Enroll Sidebar -->
+        <aside class="enroll-sidebar" id="enroll-sidebar">
+          <div class="enroll-preview" id="enroll-preview"></div>
+          <div class="enroll-body">
+            <div class="enroll-price" id="enroll-price"></div>
+            <button class="btn btn-primary enroll-btn" id="enroll-btn">Enroll Now</button>
+            <button class="btn btn-outline wishlist-btn" id="wishlist-btn">♡ Add to Wishlist</button>
+            <div class="enroll-includes" id="enroll-includes">
+              <h4>This course includes:</h4>
+              <ul id="enroll-includes-list"></ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="video-modal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="video-modal-close">✕</button>
+      <div class="video-placeholder">
+        <img id="video-modal-thumb" alt="Course preview">
+        <div class="play-icon">▶</div>
+        <p>Video preview not available in demo</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+            LearnHub
+          </a>
+          <p>Learn without limits. Access world-class education from anywhere, at any time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="courses.html">Browse Courses</a>
+          <a href="instructor.html">Become Instructor</a>
+          <a href="dashboard.html">Student Dashboard</a>
+          <a href="school.html">School Mode</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Blog</a>
+          <a href="#">Community</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LearnHub. All rights reserved.</span>
+        <span>Crafted by Tahsan Ahmed</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

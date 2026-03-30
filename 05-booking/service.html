@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Detail — BookIt</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">Book<span>It</span></a>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="clinic.html">Clinic</a>
+        <a href="dashboard.html">My Bookings</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-btn" aria-label="Toggle theme"></button>
+        <button class="menu-toggle" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay"></div>
+  <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <span class="header-logo">Book<span>It</span></span>
+      <button class="mobile-menu-close"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="restaurant.html">Restaurant</a>
+      <a href="clinic.html">Clinic</a>
+      <a href="dashboard.html">My Bookings</a>
+    </nav>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="section" style="padding-top:24px;padding-bottom:0">
+    <div class="container">
+      <div class="detail-gallery"></div>
+    </div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="detail-layout">
+        <div class="detail-main"></div>
+        <div class="provider-sidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="header-logo" style="margin-bottom:12px;display:inline-block;color:var(--color-accent)">Book<span style="color:#fff">It</span></a>
+          <p style="font-size:14px;margin-top:8px">Your one-stop platform for booking local services.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html?cat=spa">Spa & Wellness</a>
+          <a href="services.html?cat=fitness">Fitness</a>
+          <a href="services.html?cat=beauty">Beauty</a>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="restaurant.html">Restaurants</a>
+          <a href="clinic.html">Clinics</a>
+          <a href="provider.html">For Providers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 BookIt. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

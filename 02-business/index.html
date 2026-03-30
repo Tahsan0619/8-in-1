@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexGen — Digital Solutions That Drive Growth</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="page-loader"><div class="page-loader-bar"></div></div>
+
+  <!-- HEADER -->
+  <header class="header header--transparent">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">Nex<span>Gen</span></a>
+      <nav class="header-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <a href="contact.html" class="btn btn--primary btn--sm header-cta">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header"><span class="header-logo">Nex<span>Gen</span></span><button class="mobile-menu-close" onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+    <nav class="mobile-menu-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="work.html">Work</a>
+      <a href="blog.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="mobile-menu-footer">
+      <button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <a href="contact.html" class="btn btn--primary btn--md" style="flex:1">Get a Quote</a>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-glow hero-glow--1"></div>
+    <div class="hero-glow hero-glow--2"></div>
+    <div class="hero-content">
+      <span class="overline">· Digital Agency ·</span>
+      <h1>We Build Digital Products That Drive Growth</h1>
+      <p>From strategy to execution, we partner with ambitious companies to design and develop digital experiences that transform businesses and delight users.</p>
+      <div class="hero-btns">
+        <a href="contact.html" class="btn btn--primary btn--lg">Get Started</a>
+        <a href="work.html" class="btn btn--secondary btn--lg" style="border-color:rgba(255,255,255,.3);color:#fff">View Our Work</a>
+      </div>
+    </div>
+    <div class="scroll-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">What We Do</span>
+        <h2>Services That Deliver Results</h2>
+        <p>We combine strategy, design, and technology to build digital products that create real business impact.</p>
+      </div>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="about-preview">
+        <div class="about-text reveal">
+          <span class="overline">About Us</span>
+          <h2>We're a Team of Makers, Thinkers & Strategists</h2>
+          <p>Founded in 2012, NexGen has grown from a two-person studio into a full-service digital agency serving clients across 15 countries. We believe great digital products are born at the intersection of strategy, design, and technology.</p>
+          <p>Every project we take on is a partnership. We immerse ourselves in your business, understand your users, and deliver solutions that move the needle.</p>
+          <a href="about.html" class="about-link">About Us →</a>
+        </div>
+        <div class="about-image reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=500&fit=crop" alt="NexGen team at work" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CLIENT LOGOS -->
+  <section class="logos-section">
+    <div class="container">
+      <p class="logos-heading">Trusted by leading companies</p>
+      <div class="logos-row" id="logosRow"></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Testimonials</span>
+        <h2>What Our Clients Say</h2>
+      </div>
+      <div class="testimonials" id="testimonials"></div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Let's talk about your next big idea and how we can bring it to life.</p>
+        <a href="contact.html" class="btn btn--white btn--lg">Get a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG PREVIEW -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="overline">Our Blog</span>
+        <h2>Latest Insights</h2>
+        <p>Thoughts on technology, design, and building better digital products.</p>
+      </div>
+      <div class="blog-grid" id="blogPreview"></div>
+      <div class="text-center"><a href="blog.html" class="view-all">View All Posts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="m9 18 6-6-6-6"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo">Nex<span>Gen</span></a>
+          <p>We build digital products that drive growth. Strategy, design, and technology — under one roof.</p>
+        </div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="services.html">Services</a><a href="work.html">Portfolio</a><a href="blog.html">Blog</a></div>
+        <div class="footer-col"><h4>Services</h4><a href="services.html#web-development">Web Development</a><a href="services.html#ui-ux-design">UI/UX Design</a><a href="services.html#digital-strategy">Digital Strategy</a><a href="services.html#mobile-development">Mobile Apps</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="#">Dhaka, Bangladesh</a><a href="#">+880 1234-567890</a><a href="#">hello@nexgen.co</a></div>
+      </div>
+      <div class="footer-newsletter">
+        <p>Subscribe to our newsletter for the latest insights.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); Toast.show('Subscribed! (Demo)','success'); this.reset()">
+          <input type="email" placeholder="Your email address" required>
+          <button class="btn btn--primary btn--md" type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 NexGen. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Services
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = SITE.services.slice(0, 3).map((s, i) => `
+        <div class="service-card reveal reveal-delay-${i + 1}">
+          <div class="service-icon">${s.icon}</div>
+          <h3>${s.title}</h3>
+          <p>${s.short}</p>
+          <a href="services.html#${s.id}" class="learn-more">Learn more →</a>
+        </div>
+      `).join('');
+
+      // Stats
+      document.getElementById('statsGrid').innerHTML = SITE.stats.map(s => `
+        <div class="stat-block">
+          <div class="stat-number" data-count="${s.number}" data-suffix="${s.suffix}">0${s.suffix}</div>
+          <div class="stat-label">${s.label}</div>
+        </div>
+      `).join('');
+      initStatsCounter();
+
+      // Logos
+      document.getElementById('logosRow').innerHTML = SITE.clientLogos.map(l =>
+        `<span class="client-logo">${l}</span>`
+      ).join('');
+
+      // Testimonials
+      const tc = document.getElementById('testimonials');
+      tc.innerHTML = `
+        ${SITE.testimonials.map((t, i) => `
+          <div class="testimonial-card ${i === 0 ? 'active' : ''}">
+            <div class="testimonial-quote">${t.quote}</div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">${t.avatar}</div>
+              <div class="testimonial-meta"><div class="name">${t.name}</div><div class="role">${t.role}</div></div>
+            </div>
+          </div>
+        `).join('')}
+        <div class="testimonial-dots">${SITE.testimonials.map((_, i) => `<button class="testimonial-dot ${i === 0 ? 'active' : ''}"></button>`).join('')}</div>
+        <div class="testimonial-arrows">
+          <button class="testimonial-arrow testimonial-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button class="testimonial-arrow testimonial-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      `;
+      initTestimonials();
+
+      // Blog preview
+      document.getElementById('blogPreview').innerHTML = SITE.blogPosts.slice(0, 3).map((p, i) => `
+        <div class="blog-card reveal reveal-delay-${i + 1}" data-category="${p.category}">
+          <div class="blog-card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
+          <div class="blog-card-body">
+            <span class="blog-category">${p.category}</span>
+            <h3><a href="blog-post.html?id=${p.id}">${p.title}</a></h3>
+            <p class="blog-excerpt">${p.excerpt}</p>
+            <div class="blog-meta">
+              <span class="blog-author-avatar">${p.authorAvatar}</span>
+              <span>${p.author}</span>
+              <span>·</span>
+              <span>${p.date}</span>
+              <span>·</span>
+              <span>${p.readTime}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      initScrollReveal();
+    });
+  </script>
+</body>
+</html>

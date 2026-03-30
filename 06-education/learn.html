@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Player — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="player-page">
+
+  <!-- Player Header -->
+  <div class="player-header">
+    <div class="player-header-inner">
+      <a href="index.html" class="logo logo-sm">
+        <svg viewBox="0 0 32 32" fill="none" width="24" height="24"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+      </a>
+      <h3 class="player-course-title" id="player-course-title"></h3>
+      <div class="player-header-actions">
+        <div class="player-progress-bar">
+          <div class="player-progress-fill" id="player-progress-fill"></div>
+        </div>
+        <span class="player-progress-text" id="player-progress-text">0%</span>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn btn-sm btn-outline">✕ Close</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Player Layout -->
+  <div class="player-layout">
+    <!-- Main Player Area -->
+    <div class="player-main">
+      <!-- Video Container -->
+      <div class="video-container" id="video-container">
+        <div class="video-placeholder-player">
+          <img id="player-video-thumb" alt="Lesson video">
+          <div class="video-overlay-controls">
+            <button class="play-pause-btn" id="play-pause-btn">▶</button>
+          </div>
+        </div>
+        <div class="video-controls">
+          <div class="video-scrubber">
+            <div class="video-buffered" id="video-buffered"></div>
+            <div class="video-played" id="video-played"></div>
+            <input type="range" min="0" max="100" value="0" class="video-scrubber-input" id="video-scrubber">
+          </div>
+          <div class="video-controls-row">
+            <div class="video-controls-left">
+              <button class="vc-btn" id="vc-play">▶</button>
+              <span class="vc-time" id="vc-time">0:00 / 10:30</span>
+            </div>
+            <div class="video-controls-right">
+              <button class="vc-btn speed-btn" id="speed-btn">1x</button>
+              <button class="vc-btn" id="volume-btn">🔊</button>
+              <button class="vc-btn" id="fullscreen-btn">⛶</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="player-tabs">
+        <button class="player-tab active" data-tab="notes">📝 Notes</button>
+        <button class="player-tab" data-tab="qa">💬 Q&A</button>
+      </div>
+
+      <!-- Notes Tab -->
+      <div class="player-tab-content active" id="tab-notes">
+        <div class="notes-add">
+          <textarea placeholder="Add a note for this lesson..." id="note-input" rows="3"></textarea>
+          <button class="btn btn-sm" id="add-note-btn">Add Note</button>
+        </div>
+        <div class="notes-list" id="notes-list"></div>
+      </div>
+
+      <!-- Q&A Tab -->
+      <div class="player-tab-content" id="tab-qa">
+        <div class="qa-list" id="qa-list"></div>
+      </div>
+
+      <!-- Mark Complete -->
+      <div class="lesson-actions">
+        <button class="btn btn-primary" id="mark-complete-btn">✓ Mark as Complete</button>
+      </div>
+    </div>
+
+    <!-- Lesson Sidebar -->
+    <aside class="lesson-sidebar" id="lesson-sidebar">
+      <div class="lesson-sidebar-header">
+        <h3>Course Content</h3>
+        <button class="sidebar-toggle-btn" id="sidebar-toggle">◀</button>
+      </div>
+      <div class="lesson-sections" id="lesson-sections"></div>
+    </aside>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

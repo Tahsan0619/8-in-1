@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Inkwell Podcast</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="header"><div class="header-inner">
+    <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    <a href="index.html" class="header-logo">The Ink<span>well</span></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html" class="active">Podcast</a><a href="archive.html">Archive</a></nav>
+    <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  </div></header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">The Ink<span>well</span></span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html" class="active">Podcast</a><a href="archive.html">Archive</a></nav></aside>
+
+  <section class="podcast-hero">
+    <div class="container" style="display:flex;gap:40px;align-items:center;flex-wrap:wrap">
+      <img id="podCover" alt="Podcast Cover" style="width:200px;height:200px;border-radius:16px;object-fit:cover;box-shadow:0 8px 32px rgba(0,0,0,.15)">
+      <div style="flex:1;min-width:280px">
+        <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-accent)">Podcast</span>
+        <h1 id="podName" style="font-family:var(--font-display);font-size:42px;margin:8px 0 12px"></h1>
+        <p id="podDesc" style="color:var(--color-text-secondary);font-size:17px;line-height:1.6;margin-bottom:20px"></p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="#" class="subscribe-pill" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;background:var(--color-accent);color:#fff;font-size:13px;font-weight:600">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>Apple Podcasts</a>
+          <a href="#" class="subscribe-pill" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;background:#1DB954;color:#fff;font-size:13px;font-weight:600">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><circle cx="12" cy="12" r="10"/></svg>Spotify</a>
+          <a href="#" class="subscribe-pill" style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:100px;background:var(--color-bg-elevated);color:var(--color-text-body);border:1px solid var(--color-border-light);font-size:13px;font-weight:600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>RSS Feed</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container section">
+    <h2 style="font-family:var(--font-display);font-size:28px;margin-bottom:28px">All Episodes</h2>
+    <div class="episode-list" id="episodeList"></div>
+  </main>
+
+  <div class="audio-player" id="audioPlayer">
+    <div class="container" style="display:flex;align-items:center;gap:16px">
+      <button class="play-btn" onclick="AudioPlayer.toggle()" style="background:none;border:none;color:#fff;cursor:pointer">
+        <svg id="playerPlayIcon" viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div style="flex:1;min-width:0">
+        <div id="playerTitle" style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <span id="playerTime" style="font-size:11px;color:#aaa;min-width:36px">0:00</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,.2);border-radius:2px;cursor:pointer" onclick="AudioPlayer.seek(event)">
+            <div id="playerProgress" style="height:100%;background:var(--color-accent);border-radius:2px;width:0%;transition:width .3s"></div>
+          </div>
+          <span id="playerDuration" style="font-size:11px;color:#aaa;min-width:36px">0:00</span>
+        </div>
+      </div>
+      <button id="playerSpeed" onclick="AudioPlayer.cycleSpeed()" style="background:rgba(255,255,255,.15);border:none;color:#fff;padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer">1x</button>
+      <button onclick="AudioPlayer.close()" style="background:none;border:none;color:#aaa;cursor:pointer;padding:4px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="header-logo" style="color:#fff">The Ink<span>well</span></a><p>Thoughtful writing about technology, design, culture, and the human experience.</p></div><div class="footer-col"><h4>Pages</h4><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></div><div class="footer-col"><h4>Connect</h4><a href="#">Twitter</a><a href="#">RSS</a></div></div><div class="footer-bottom"><p>&copy; 2025 The Inkwell</p></div></div></footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pod = BLOG.podcast;
+      document.getElementById('podCover').src = pod.cover;
+      document.getElementById('podName').textContent = pod.name;
+      document.getElementById('podDesc').textContent = pod.description;
+
+      document.getElementById('episodeList').innerHTML = pod.episodes.map(ep => `
+        <div class="episode-item">
+          <div style="display:flex;align-items:flex-start;gap:16px">
+            <button class="ep-play" onclick="AudioPlayer.play('${ep.title.replace(/'/g,"\\'")}','${ep.duration}')" style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--color-accent);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><polygon points="8,5 19,12 8,19"/></svg>
+            </button>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+                <span style="font-size:12px;font-weight:700;color:var(--color-accent)">EP ${ep.number}</span>
+                <span style="font-size:12px;color:var(--color-text-muted)">${ep.date}</span>
+                <span style="font-size:12px;color:var(--color-text-muted)">${ep.duration}</span>
+              </div>
+              <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:6px">${ep.title}</h3>
+              <p style="font-size:14px;color:var(--color-text-secondary);line-height:1.6">${ep.description}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      initScrollTop();
+    });
+  </script>
+</body>
+</html>

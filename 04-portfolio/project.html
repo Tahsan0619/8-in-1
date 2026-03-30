@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Tahsan Ahmed</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <header class="header solid"><div class="header-inner">
+    <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    <a href="index.html" class="header-logo">Tahsan.</a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="work.html" class="active">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav>
+    <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  </div></header>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="MobileMenu.close()"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Tahsan.</span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav></aside>
+
+  <main class="container" style="padding-top:140px;padding-bottom:80px">
+    <div id="projectContent"></div>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="Lightbox.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button class="lightbox-nav lightbox-prev" onclick="Lightbox.prev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <img id="lightboxImg" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="Lightbox.next()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+
+  <footer class="footer"><div class="container"><p>&copy; 2025 Tahsan Ahmed · Built with ☕</p></div></footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const projects = PORTFOLIO.projects;
+      const idx = projects.findIndex(p => p.id === id);
+      const project = projects[idx];
+      if (!project) { document.getElementById('projectContent').innerHTML = '<p>Project not found.</p>'; return; }
+
+      document.title = `${project.title} — Tahsan Ahmed`;
+
+      const prevP = idx > 0 ? projects[idx - 1] : null;
+      const nextP = idx < projects.length - 1 ? projects[idx + 1] : null;
+      const tags = project.tech.map(t => `<span class="project-tag" style="font-size:13px;padding:6px 14px">${t}</span>`).join('');
+
+      let baHTML = '';
+      if (project.beforeAfter) {
+        baHTML = `<h3>Before & After</h3>
+          <div class="ba-slider">
+            <div class="ba-after"><img src="${project.beforeAfter.after}" alt="After"></div>
+            <div class="ba-before"><img src="${project.beforeAfter.before}" alt="Before"></div>
+            <div class="ba-handle"></div>
+            <span class="ba-label before">Before</span>
+            <span class="ba-label after">After</span>
+          </div>`;
+      }
+
+      const ssImgs = (project.screenshots || []);
+      const screenshotHTML = ssImgs.length ? `<h3>Screenshots</h3><div class="screenshot-grid">${ssImgs.map((s, i) => `<img src="${s}" alt="Screenshot ${i+1}" onclick="Lightbox.open([${ssImgs.map(x=>"'"+x+"'").join(',')}],${i})">`).join('')}</div>` : '';
+      const featuresHTML = (project.features || []).length ? `<h3>Key Features</h3><ul>${project.features.map(f=>`<li>${f}</li>`).join('')}</ul>` : '';
+
+      document.getElementById('projectContent').innerHTML = `
+        <img class="project-hero-img" src="${project.image}" alt="${project.title}">
+        <div class="project-content">
+          <h1 style="font-size:clamp(28px,5vw,48px);margin-top:32px;letter-spacing:-0.03em">${project.title}</h1>
+          <div class="project-meta">
+            <div class="project-meta-item"><strong>Client</strong>${project.client}</div>
+            <div class="project-meta-item"><strong>Year</strong>${project.year}</div>
+            <div class="project-meta-item"><strong>Role</strong>${project.role}</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">${tags}</div>
+          <div class="project-actions">
+            ${project.liveUrl ? `<a href="${project.liveUrl}" class="btn-primary" target="_blank">Live Demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : ''}
+            ${project.githubUrl ? `<a href="${project.githubUrl}" class="btn-outline" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>` : ''}
+          </div>
+          <h3>Overview</h3><p>${project.overview}</p>
+          <h3>The Challenge</h3><p>${project.challenge}</p>
+          <h3>The Approach</h3><p>${project.approach}</p>
+          ${screenshotHTML}
+          ${baHTML}
+          ${featuresHTML}
+          <nav class="project-nav">
+            ${prevP ? `<a href="project.html?id=${prevP.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="m15 18-6-6 6-6"/></svg><div><span>Previous</span><strong>${prevP.title}</strong></div></a>` : '<span></span>'}
+            ${nextP ? `<a href="project.html?id=${nextP.id}" style="text-align:right"><div><span>Next</span><strong>${nextP.title}</strong></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="m9 18 6-6-6-6"/></svg></a>` : ''}
+          </nav>
+        </div>`;
+
+      initBeforeAfter();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum & Q&A — CommunityHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">🔥 CommunityHub</a>
+      <nav class="nav">
+        <a href="index.html">Feed</a><a href="jobs.html">Jobs</a><a href="forum.html" class="active">Forum</a>
+        <a href="directory.html">Directory</a><a href="events.html">Events</a><a href="reviews.html">Reviews</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle">🌙</button>
+        <button onclick="document.querySelector('.search-overlay').classList.add('active')">🔍</button>
+        <div class="notif-btn" style="position:relative"><button>🔔</button><span class="notif-badge">3</span><div class="notif-dropdown"><div class="notif-dropdown-header"><span>Notifications</span></div><div class="notif-list"></div></div></div>
+        <div class="user-menu"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=tahsan" alt=""><span>Tahsan</span></div>
+      </div>
+      <button class="menu-toggle"><span></span></button>
+    </div>
+  </header>
+
+  <div class="search-overlay"><div class="search-modal"><div class="search-modal-input"><span>🔍</span><input type="text" placeholder="Search..."><button class="close-search">ESC</button></div><div class="search-results-body"></div></div></div>
+
+  <div class="page-layout-2col">
+    <aside class="left-sidebar">
+      <nav class="sidebar-nav">
+        <span class="section-label">Navigate</span>
+        <a href="index.html">🏠 Home Feed</a><a href="jobs.html">💼 Job Board</a>
+        <a href="forum.html" class="active">💬 Forum & Q&A</a><a href="directory.html">📍 Directory</a>
+        <a href="events.html">🎤 Events</a><a href="reviews.html">⭐ Reviews</a>
+        <div class="sep"></div>
+        <span class="section-label">Personal</span>
+        <a href="profile.html">👤 Profile</a><a href="settings.html">⚙️ Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title-section">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+          <div><h1>Forum & Q&A 💬</h1><p>Ask questions, share knowledge, help the community.</p></div>
+          <button class="btn btn-primary" onclick="App.showToast('Ask a question form coming soon!','info')">+ Ask Question</button>
+        </div>
+      </div>
+
+      <div class="feed-tabs">
+        <button class="feed-tab active" data-tab="All">All Topics</button>
+        <button class="feed-tab" data-tab="JavaScript">JavaScript</button>
+        <button class="feed-tab" data-tab="CSS">CSS</button>
+        <button class="feed-tab" data-tab="Performance">Performance</button>
+        <button class="feed-tab" data-tab="Architecture">Architecture</button>
+        <button class="feed-tab" data-tab="Security">Security</button>
+      </div>
+
+      <div id="forum-list" class="card" style="padding:0"></div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav"><div class="bottom-nav-inner">
+    <a href="index.html" class="bottom-nav-item"><span>🏠</span><span>Home</span></a>
+    <a href="jobs.html" class="bottom-nav-item"><span>💼</span><span>Jobs</span></a>
+    <a href="forum.html" class="bottom-nav-item active"><span>💬</span><span>Forum</span></a>
+    <a href="events.html" class="bottom-nav-item"><span>🎤</span><span>Events</span></a>
+    <a href="profile.html" class="bottom-nav-item"><span>👤</span><span>Me</span></a>
+  </div></nav>
+
+  <button class="scroll-top">↑</button>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

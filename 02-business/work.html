@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — NexGen</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="page-loader"><div class="page-loader-bar"></div></div>
+  <header class="header header--solid">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">Nex<span>Gen</span></a>
+      <nav class="header-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="work.html" class="active">Work</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><a href="contact.html" class="btn btn--primary btn--sm header-cta">Get a Quote</a></div>
+    </div>
+  </header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Nex<span>Gen</span></span><button class="mobile-menu-close" onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="work.html">Work</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></nav></aside>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="overline" style="display:block;margin-bottom:12px">Portfolio</span>
+      <h1>Our Work Speaks for Itself</h1>
+      <p>A curated selection of projects that showcase our approach to solving complex digital challenges.</p>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="filterBar"></div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Case Study Detail (shown when project clicked) -->
+  <section class="section section-alt" id="caseStudy" style="display:none">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="work.html">Work</a><span class="sep">/</span><span class="current" id="caseTitle"></span></nav>
+      <div id="caseContent"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Have a Project in Mind?</h2>
+        <p>Let's discuss how we can help bring your vision to life.</p>
+        <a href="contact.html" class="btn btn--white btn--lg">Start a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="header-logo">Nex<span>Gen</span></a><p>Digital solutions that drive growth.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="blog.html">Blog</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="contact.html">Get in Touch</a><a href="#">hello@nexgen.co</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 NexGen. All rights reserved.</p></div>
+    </div>
+  </footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const categories = ['All', ...new Set(SITE.projects.map(p => p.category))];
+      document.getElementById('filterBar').innerHTML = categories.map((c, i) =>
+        `<button class="filter-pill ${i === 0 ? 'active' : ''}" data-filter="${c === 'All' ? 'all' : c}">${c}</button>`
+      ).join('');
+
+      document.getElementById('projectsGrid').innerHTML = SITE.projects.map(p => `
+        <div class="project-card" data-category="${p.category}" onclick="showCase('${p.id}')">
+          <img src="${p.image}" alt="${p.title}" loading="lazy">
+          <div class="project-overlay">
+            <span class="tag">${p.category}</span>
+            <h3>${p.title}</h3>
+          </div>
+        </div>
+      `).join('');
+
+      initPortfolioFilter();
+      initScrollReveal();
+
+      // Check URL param
+      const params = new URLSearchParams(window.location.search);
+      const pid = params.get('project');
+      if (pid) showCase(pid);
+    });
+
+    function showCase(id) {
+      const p = SITE.projects.find(x => x.id === id);
+      if (!p) return;
+
+      document.getElementById('caseStudy').style.display = 'block';
+      document.getElementById('caseTitle').textContent = p.title;
+
+      const idx = SITE.projects.indexOf(p);
+      const prev = SITE.projects[idx - 1];
+      const next = SITE.projects[idx + 1];
+
+      document.getElementById('caseContent').innerHTML = `
+        <div class="case-hero"><img src="${p.image}" alt="${p.title}"></div>
+        <h1 style="margin-bottom:8px">${p.title}</h1>
+        <p style="color:var(--color-text-secondary);font-size:18px;margin-bottom:24px">Client: ${p.client}</p>
+
+        <div class="case-meta">
+          <div class="case-meta-item"><div class="label">Industry</div><div class="value">${p.industry}</div></div>
+          <div class="case-meta-item"><div class="label">Timeline</div><div class="value">${p.duration}</div></div>
+          <div class="case-meta-item"><div class="label">Services</div><div class="value">${p.category}</div></div>
+          <div class="case-meta-item"><div class="label">Team Size</div><div class="value">${p.teamSize} people</div></div>
+        </div>
+
+        <div class="case-section">
+          <h2>The Challenge</h2>
+          <p>${p.challenge}</p>
+        </div>
+        <div class="case-section">
+          <h2>Our Solution</h2>
+          <p>${p.solution}</p>
+        </div>
+
+        <h2 style="text-align:center;margin-bottom:24px">The Results</h2>
+        <div class="case-results">
+          ${p.results.map(r => `<div class="result-card"><div class="number">${r.number}</div><div class="label">${r.label}</div></div>`).join('')}
+        </div>
+
+        <div class="case-testimonial">
+          <blockquote>"${p.testimonial}"</blockquote>
+          <div class="cite">— ${p.testimonialAuthor}</div>
+        </div>
+
+        <div class="case-nav">
+          ${prev ? `<a href="#" onclick="event.preventDefault();showCase('${prev.id}')">← ${prev.title}</a>` : '<span></span>'}
+          ${next ? `<a href="#" onclick="event.preventDefault();showCase('${next.id}')">${next.title} →</a>` : '<span></span>'}
+        </div>
+      `;
+
+      document.getElementById('caseStudy').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+</body>
+</html>

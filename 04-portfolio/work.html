@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Tahsan Ahmed</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <header class="header solid"><div class="header-inner">
+    <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    <a href="index.html" class="header-logo">Tahsan.</a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="work.html" class="active">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav>
+    <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  </div></header>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="MobileMenu.close()"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Tahsan.</span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav></aside>
+
+  <div class="page-header">
+    <h1>Selected Work</h1>
+    <p>A curated collection of projects I've designed and built.</p>
+  </div>
+
+  <main class="container" style="padding-bottom:120px">
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="project-grid" id="projectGrid"></div>
+  </main>
+
+  <!-- FULL SCREEN SHOWCASE (desktop scroll-snap) -->
+  <section class="section" style="background:var(--color-surface-alt);display:none" id="showcaseSection">
+    <div class="container"><span class="section-label">Showcase</span><h2 class="section-title" style="margin-bottom:32px">Full-Screen Preview</h2></div>
+    <div class="showcase-snap" id="showcaseSnap" style="height:80vh;border-radius:var(--radius-lg);margin:0 32px;overflow:hidden"></div>
+  </section>
+
+  <footer class="footer"><div class="container"><p>&copy; 2025 Tahsan Ahmed · Built with ☕</p></div></footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projects = PORTFOLIO.projects;
+      const cats = ['all', ...new Set(projects.map(p => p.category))];
+      document.getElementById('filterBar').innerHTML = cats.map((c,i) => `<button class="filter-pill ${i===0?'active':''}" data-cat="${c}">${c.charAt(0).toUpperCase()+c.slice(1)}</button>`).join('');
+      document.getElementById('projectGrid').innerHTML = projects.map(p => projectCardHTML(p)).join('');
+      initProjectFilter();
+
+      // Showcase section (desktop only)
+      if (window.innerWidth >= 1024) {
+        const featured = projects.filter(p => p.featured);
+        if (featured.length) {
+          document.getElementById('showcaseSection').style.display = 'block';
+          document.getElementById('showcaseSnap').innerHTML = featured.map((p, i) => `
+            <div class="showcase-slide" style="background:var(--color-text-primary)">
+              <img src="${p.image}" alt="${p.title}">
+              <div class="showcase-info"><div class="showcase-counter">0${i+1} / 0${featured.length}</div><h2>${p.title}</h2><span>${p.category}</span></div>
+            </div>
+          `).join('');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

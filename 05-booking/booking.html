@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking — BookIt</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">Book<span>It</span></a>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="clinic.html">Clinic</a>
+        <a href="dashboard.html">My Bookings</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-btn" aria-label="Toggle theme"></button>
+        <button class="menu-toggle" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay"></div>
+  <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <span class="header-logo">Book<span>It</span></span>
+      <button class="mobile-menu-close"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="restaurant.html">Restaurant</a>
+      <a href="clinic.html">Clinic</a>
+      <a href="dashboard.html">My Bookings</a>
+    </nav>
+  </div>
+
+  <!-- BOOKING FLOW -->
+  <section class="section">
+    <div class="container booking-content">
+      <!-- STEPPER -->
+      <div class="stepper">
+        <div class="step-item active">
+          <div class="step-circle">1</div>
+          <span>Date & Time</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle">2</div>
+          <span>Details</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle">3</div>
+          <span>Payment</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+          <div class="step-circle">4</div>
+          <span>Confirmed</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start">
+        <!-- LEFT PANELS -->
+        <div>
+          <!-- STEP 1: Date & Time -->
+          <div class="booking-step" style="display:block">
+            <h2 style="margin-bottom:8px">Confirm Date & Time</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:24px">Review your selected date and time below.</p>
+            <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;margin-bottom:24px">
+              <div style="display:flex;gap:32px">
+                <div>
+                  <div style="font-size:13px;color:var(--color-text-muted);margin-bottom:4px">Selected Date</div>
+                  <div style="font-size:20px;font-weight:600" id="s1Date">—</div>
+                </div>
+                <div>
+                  <div style="font-size:13px;color:var(--color-text-muted);margin-bottom:4px">Selected Time</div>
+                  <div style="font-size:20px;font-weight:600" id="s1Time">—</div>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:24px">Want to change? <a href="javascript:history.back()" style="color:var(--color-accent)">Go back to service page</a></p>
+            <button class="btn-primary next-step">Continue to Details →</button>
+          </div>
+
+          <!-- STEP 2: Details -->
+          <div class="booking-step" style="display:none">
+            <h2 style="margin-bottom:8px">Your Details</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:24px">We'll send the confirmation to your email and phone.</p>
+            <div class="form-group">
+              <label for="bkName">Full Name *</label>
+              <input type="text" id="bkName" placeholder="Enter your full name">
+              <div class="form-error">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label for="bkEmail">Email Address *</label>
+              <input type="email" id="bkEmail" placeholder="your@email.com">
+              <div class="form-error">Please enter a valid email</div>
+            </div>
+            <div class="form-group">
+              <label for="bkPhone">Phone Number *</label>
+              <input type="tel" id="bkPhone" placeholder="+880 1XXX-XXXXXX">
+              <div class="form-error">Please enter your phone number</div>
+            </div>
+            <div class="form-group">
+              <label for="bkNotes">Special Requests (optional)</label>
+              <textarea id="bkNotes" placeholder="Any special requirements or notes..."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:8px">
+              <button class="btn-secondary prev-step">← Back</button>
+              <button class="btn-primary next-step">Continue to Payment →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Payment -->
+          <div class="booking-step" style="display:none">
+            <h2 style="margin-bottom:8px">Payment</h2>
+            <p style="color:var(--color-text-secondary);margin-bottom:24px">Select your preferred payment method.</p>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+              <label class="pricing-item selected" style="cursor:pointer">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <input type="radio" name="payment" value="cash" checked style="accent-color:var(--color-accent)">
+                  <div class="pricing-item-info"><h4>Pay at Venue</h4><span>Cash or card on arrival</span></div>
+                </div>
+                <span style="font-size:24px">💵</span>
+              </label>
+              <label class="pricing-item" style="cursor:pointer">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <input type="radio" name="payment" value="bkash" style="accent-color:var(--color-accent)">
+                  <div class="pricing-item-info"><h4>bKash</h4><span>Mobile banking payment</span></div>
+                </div>
+                <span style="font-size:24px">📱</span>
+              </label>
+              <label class="pricing-item" style="cursor:pointer">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <input type="radio" name="payment" value="card" style="accent-color:var(--color-accent)">
+                  <div class="pricing-item-info"><h4>Credit/Debit Card</h4><span>Visa, Mastercard, AMEX</span></div>
+                </div>
+                <span style="font-size:24px">💳</span>
+              </label>
+            </div>
+            <div style="display:flex;gap:12px">
+              <button class="btn-secondary prev-step">← Back</button>
+              <button class="btn-primary next-step">Confirm Booking →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Confirmation -->
+          <div class="booking-step" style="display:none">
+            <div class="confirm-box">
+              <div class="confirm-check">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h2>Booking Confirmed!</h2>
+              <div class="confirm-id"></div>
+              <p style="color:var(--color-text-secondary)">Your booking has been confirmed. You'll receive a confirmation via SMS.</p>
+              <div class="confirm-details"></div>
+              <div class="sms-mockup">
+                <div style="text-align:center;font-size:11px;color:var(--color-text-muted);margin-bottom:8px">SMS Preview</div>
+                <div class="sms-bubble"></div>
+              </div>
+              <div style="display:flex;gap:12px;justify-content:center;margin-top:24px">
+                <a href="dashboard.html" class="btn-primary">View My Bookings</a>
+                <a href="index.html" class="btn-secondary">Back to Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUMMARY SIDEBAR -->
+        <div class="booking-summary">
+          <img src="" alt="Service">
+          <h3></h3>
+          <div class="summary-provider"></div>
+          <div id="summaryRows"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">© 2025 BookIt. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

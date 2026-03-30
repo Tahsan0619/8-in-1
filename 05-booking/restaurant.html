@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant — BookIt</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">Book<span>It</span></a>
+      <nav class="header-nav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="restaurant.html" class="active">Restaurant</a>
+        <a href="clinic.html">Clinic</a>
+        <a href="dashboard.html">My Bookings</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-btn" aria-label="Toggle theme"></button>
+        <button class="menu-toggle" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay"></div>
+  <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <span class="header-logo">Book<span>It</span></span>
+      <button class="mobile-menu-close"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="restaurant.html" class="active">Restaurant</a>
+      <a href="clinic.html">Clinic</a>
+      <a href="dashboard.html">My Bookings</a>
+    </nav>
+  </div>
+
+  <!-- RESTAURANT HERO -->
+  <section style="position:relative;height:280px;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400&h=400&fit=crop" alt="Spice Garden" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);display:flex;align-items:flex-end;padding:32px">
+      <div class="container" style="color:#fff">
+        <h1 style="font-size:32px;color:#fff;margin-bottom:4px">Spice Garden</h1>
+        <p style="opacity:.9">Bengali & Indian Cuisine • Gulshan-1, Dhaka</p>
+        <div style="display:flex;gap:16px;margin-top:8px;font-size:14px">
+          <span class="stars" style="color:var(--color-star)">★★★★★</span>
+          <span>4.7 (342 reviews)</span>
+          <span>🛵 30-40 min</span>
+          <span>Min. ৳300</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <!-- Delivery / Dine-in Toggle -->
+      <div class="menu-toggle-bar">
+        <button class="active" data-mode="delivery">🛵 Delivery</button>
+        <button data-mode="dine-in">🪑 Dine-in</button>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="menu-tabs">
+        <button class="menu-tab active" data-cat="starters">Starters</button>
+        <button class="menu-tab" data-cat="mains">Main Course</button>
+        <button class="menu-tab" data-cat="sides">Sides</button>
+        <button class="menu-tab" data-cat="desserts">Desserts</button>
+      </div>
+
+      <div class="menu-layout">
+        <!-- Menu Items -->
+        <div id="menuGrid"></div>
+
+        <!-- Order Sidebar -->
+        <div id="orderSidebar" class="order-sidebar">
+          <h3>Your Order</h3>
+          <p style="color:var(--color-text-muted);font-size:14px;text-align:center;padding:24px 0">Your cart is empty</p>
+        </div>
+      </div>
+
+      <!-- Table Reservation (for dine-in) -->
+      <div id="tableSection" style="display:none;margin-top:40px">
+        <h2 style="font-size:20px;margin-bottom:16px">Reserve a Table</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px" id="tableGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="header-logo" style="margin-bottom:12px;display:inline-block;color:var(--color-accent)">Book<span style="color:#fff">It</span></a>
+          <p style="font-size:14px;margin-top:8px">Your one-stop platform for booking local services.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html?cat=spa">Spa & Wellness</a>
+          <a href="services.html?cat=fitness">Fitness</a>
+          <a href="services.html?cat=beauty">Beauty</a>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="restaurant.html">Restaurants</a>
+          <a href="clinic.html">Clinics</a>
+          <a href="provider.html">For Providers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 BookIt. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

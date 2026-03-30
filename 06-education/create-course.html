@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Course — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+        LearnHub
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">My Learning</a>
+        <a href="instructor.html" class="active">Teach</a>
+        <a href="school.html">School</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" aria-label="Search">🔍</button>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <a href="dashboard.html" class="btn-header primary">Get Started</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="dashboard.html">My Learning</a>
+      <a href="instructor.html" class="active">Teach</a>
+      <a href="school.html">School</a>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-modal-input">
+        <span>🔍</span>
+        <input type="text" placeholder="Search courses, topics, instructors...">
+        <button class="close-search">ESC</button>
+      </div>
+      <div class="search-recent">
+        <h4>Recent Searches</h4>
+        <div class="search-recent-tags">
+          <span>React hooks</span>
+          <span>Python basics</span>
+          <span>UI Design</span>
+          <span>Machine Learning</span>
+        </div>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Create Course -->
+  <section class="section">
+    <div class="container">
+      <h1 class="text-center mb-16">Create New <span class="text-accent">Course</span></h1>
+      <p class="text-center text-muted mb-32">Share your knowledge with thousands of students worldwide</p>
+
+      <!-- Stepper -->
+      <div class="create-stepper" id="create-stepper">
+        <div class="stepper-step active" data-step="1">
+          <div class="stepper-circle">1</div>
+          <span>Basic Info</span>
+        </div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step" data-step="2">
+          <div class="stepper-circle">2</div>
+          <span>Curriculum</span>
+        </div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step" data-step="3">
+          <div class="stepper-circle">3</div>
+          <span>Pricing</span>
+        </div>
+        <div class="stepper-connector"></div>
+        <div class="stepper-step" data-step="4">
+          <div class="stepper-circle">4</div>
+          <span>Review</span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="create-form">
+        <!-- Step 1: Basic Info -->
+        <div class="form-panel active" id="panel-1">
+          <h2>Basic Information</h2>
+          <div class="form-group">
+            <label>Course Title</label>
+            <input type="text" id="create-title" placeholder="e.g., The Complete JavaScript Course">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" id="create-subtitle" placeholder="A brief description of your course">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Category</label>
+              <select id="create-category">
+                <option value="">Select category</option>
+                <option value="Development">Development</option>
+                <option value="Design">Design</option>
+                <option value="Business">Business</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Music">Music</option>
+                <option value="Photography">Photography</option>
+                <option value="Health">Health & Fitness</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Level</label>
+              <select id="create-level">
+                <option value="">Select level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="create-description" rows="5" placeholder="Describe what students will learn..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Thumbnail URL</label>
+            <input type="url" id="create-thumbnail" placeholder="https://images.unsplash.com/...">
+            <div class="thumb-preview" id="thumb-preview"></div>
+          </div>
+          <div class="form-actions">
+            <span></span>
+            <button class="btn btn-primary next-step" data-next="2">Next: Curriculum →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Curriculum -->
+        <div class="form-panel" id="panel-2">
+          <h2>Course Curriculum</h2>
+          <p class="text-muted mb-16">Add sections and lessons to your course</p>
+          <div class="lesson-builder" id="lesson-builder">
+            <div class="builder-section" data-section="1">
+              <div class="builder-section-header">
+                <span class="drag-handle">⠿</span>
+                <input type="text" class="section-title-input" placeholder="Section title (e.g., Getting Started)" value="Getting Started">
+                <button class="remove-section-btn">✕</button>
+              </div>
+              <div class="builder-lessons">
+                <div class="builder-lesson">
+                  <span class="drag-handle">⠿</span>
+                  <select class="lesson-type-select">
+                    <option value="video">📹 Video</option>
+                    <option value="article">📄 Article</option>
+                    <option value="quiz">❓ Quiz</option>
+                  </select>
+                  <input type="text" class="lesson-title-input" placeholder="Lesson title" value="Introduction">
+                  <input type="text" class="lesson-duration-input" placeholder="5:00" value="5:00">
+                  <label class="lesson-free-check"><input type="checkbox" checked> Free</label>
+                  <button class="remove-lesson-btn">✕</button>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline add-lesson-btn">+ Add Lesson</button>
+            </div>
+          </div>
+          <button class="btn btn-outline add-section-btn" id="add-section-btn">+ Add Section</button>
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-prev="1">← Back</button>
+            <button class="btn btn-primary next-step" data-next="3">Next: Pricing →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Pricing -->
+        <div class="form-panel" id="panel-3">
+          <h2>Pricing</h2>
+          <p class="text-muted mb-16">Choose a pricing model for your course</p>
+          <div class="pricing-options" id="pricing-options">
+            <div class="pricing-option selected" data-price="free">
+              <div class="pricing-icon">🆓</div>
+              <h3>Free</h3>
+              <p>Make your course accessible to everyone</p>
+              <span class="pricing-tag">$0</span>
+            </div>
+            <div class="pricing-option" data-price="29.99">
+              <div class="pricing-icon">💰</div>
+              <h3>Basic</h3>
+              <p>Great for shorter courses</p>
+              <span class="pricing-tag">$29.99</span>
+            </div>
+            <div class="pricing-option" data-price="49.99">
+              <div class="pricing-icon">💎</div>
+              <h3>Standard</h3>
+              <p>Most popular price point</p>
+              <span class="pricing-tag">$49.99</span>
+            </div>
+            <div class="pricing-option" data-price="99.99">
+              <div class="pricing-icon">🏆</div>
+              <h3>Premium</h3>
+              <p>For comprehensive programs</p>
+              <span class="pricing-tag">$99.99</span>
+            </div>
+          </div>
+          <div class="form-group mt-24">
+            <label>Custom Price ($)</label>
+            <input type="number" id="custom-price" placeholder="Enter custom price" min="0" step="0.01">
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-prev="2">← Back</button>
+            <button class="btn btn-primary next-step" data-next="4">Next: Review →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="form-panel" id="panel-4">
+          <h2>Review & Publish</h2>
+          <p class="text-muted mb-16">Review your course details before publishing</p>
+          <div class="course-preview-card" id="course-preview-card"></div>
+          <div class="review-details" id="review-details"></div>
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-prev="3">← Back</button>
+            <button class="btn btn-primary publish-btn" id="publish-btn">🚀 Publish Course</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 32 32" fill="none" width="28" height="28"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+            LearnHub
+          </a>
+          <p>Learn without limits. Access world-class education from anywhere, at any time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="courses.html">Browse Courses</a>
+          <a href="instructor.html">Become Instructor</a>
+          <a href="dashboard.html">Student Dashboard</a>
+          <a href="school.html">School Mode</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Blog</a>
+          <a href="#">Community</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 LearnHub. All rights reserved.</span>
+        <span>Crafted by Tahsan Ahmed</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

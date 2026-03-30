@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate — LearnHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="certificate-page">
+
+  <!-- Confetti Canvas -->
+  <canvas class="confetti-canvas" id="confetti-canvas"></canvas>
+
+  <!-- Certificate -->
+  <div class="certificate-wrapper">
+    <div class="certificate" id="certificate">
+      <div class="cert-border-outer">
+        <div class="cert-border-inner">
+          <div class="cert-trophy">🏆</div>
+          <h3 class="cert-heading">Certificate of Completion</h3>
+          <p class="cert-sub">This certifies that</p>
+          <h1 class="cert-name" id="cert-name">Student Name</h1>
+          <p class="cert-sub">has successfully completed the course</p>
+          <h2 class="cert-course" id="cert-course">Course Name</h2>
+          <div class="cert-meta">
+            <div class="cert-date">
+              <span class="cert-label">Date</span>
+              <span class="cert-value" id="cert-date"></span>
+            </div>
+            <div class="cert-logo">
+              <svg viewBox="0 0 32 32" fill="none" width="40" height="40"><rect width="32" height="32" rx="8" fill="#7C3AED"/><path d="M8 22V10l8 6-8 6z" fill="#fff"/><path d="M16 22V10l8 6-8 6z" fill="#fff" opacity=".5"/></svg>
+              <span>LearnHub</span>
+            </div>
+            <div class="cert-grade-section">
+              <span class="cert-label">Grade</span>
+              <span class="cert-value" id="cert-grade">A+</span>
+            </div>
+          </div>
+          <div class="cert-signatures">
+            <div class="cert-sig">
+              <div class="cert-sig-line"></div>
+              <span>John Doe</span>
+              <small>Instructor</small>
+            </div>
+            <div class="cert-sig">
+              <div class="cert-sig-line"></div>
+              <span>LearnHub</span>
+              <small>Platform</small>
+            </div>
+          </div>
+          <div class="cert-id" id="cert-id">Certificate ID: LH-000000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="cert-actions-bar">
+    <button class="btn btn-outline" id="cert-download">📥 Download Certificate</button>
+    <button class="btn btn-primary" id="cert-share">📤 Share</button>
+    <a href="dashboard.html" class="btn btn-outline">← Back to Dashboard</a>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

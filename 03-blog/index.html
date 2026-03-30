@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Inkwell — Stories, Ideas & Insights</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      <a href="index.html" class="header-logo">The Ink<span>well</span></a>
+      <nav class="header-nav"><a href="index.html" class="active">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></nav>
+      <div class="header-actions">
+        <button class="search-btn" onclick="Search.open()" title="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+        <button class="theme-btn" onclick="Theme.toggle()" title="Toggle theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">The Ink<span>well</span></span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></nav></aside>
+
+  <!-- Breaking News Ticker -->
+  <div class="ticker"><div class="ticker-inner"><a href="post.html?id=future-of-web-development-2025">🔴 Breaking: <span id="tickerText"></span> — Read Now →</a></div></div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)Search.close()">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search articles..." oninput="Search.query(this.value)">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Newsletter Popup -->
+  <div class="nl-popup-overlay" id="nlPopup" onclick="if(event.target===this)dismissNewsletter()">
+    <div class="nl-popup">
+      <h2>Stay in the Loop</h2>
+      <p>Get our best stories delivered to your inbox every week. No spam, just great writing.</p>
+      <form class="newsletter-inline" onsubmit="event.preventDefault();Toast.show('You\'re subscribed!','success');dismissNewsletter()">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit" class="btn btn--primary">Subscribe</button>
+      </form>
+      <span class="dismiss" onclick="dismissNewsletter()">No thanks</span>
+    </div>
+  </div>
+
+  <main class="container" style="padding-top:32px">
+    <!-- Featured Hero -->
+    <div id="featuredHero"></div>
+
+    <!-- Trending -->
+    <div id="trending"></div>
+
+    <!-- Category Tabs -->
+    <div class="cat-tabs" id="catTabs"></div>
+
+    <!-- Blog Layout (Main + Sidebar) -->
+    <div class="blog-layout">
+      <div class="blog-main">
+        <div class="post-grid" id="postGrid"></div>
+        <button class="btn btn--outline load-more" id="loadMoreBtn" style="display:none" onclick="loadMorePosts()">Load More Articles</button>
+      </div>
+      <aside class="sidebar">
+        <div class="sidebar-widget"><h4>Most Read</h4><div id="mostRead"></div></div>
+        <!-- Newsletter Banner -->
+        <div class="newsletter-banner"><h3>Stay in the loop</h3><p>Get the best stories in your inbox, weekly.</p><form class="newsletter-inline" onsubmit="event.preventDefault();Toast.show('Subscribed!','success');this.reset()"><input type="email" placeholder="your@email.com" required><button type="submit" class="btn btn--primary btn--sm">Go</button></form></div>
+        <div class="sidebar-widget"><h4>Popular Tags</h4><div class="tag-cloud" id="tagCloud"></div></div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="header-logo" style="color:#fff">The Ink<span>well</span></a><p>Thoughtful writing about technology, design, culture, and the human experience.</p></div>
+        <div class="footer-col"><h4>Categories</h4><a href="category.html?cat=technology">Technology</a><a href="category.html?cat=design">Design</a><a href="category.html?cat=culture">Culture</a><a href="category.html?cat=business">Business</a></div>
+        <div class="footer-col"><h4>Pages</h4><a href="magazine.html">Magazine</a><a href="podcast.html">Podcast</a><a href="archive.html">Archive</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">RSS Feed</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 The Inkwell. All rights reserved.</p><p>Made with ☕ and curiosity</p></div>
+    </div>
+  </footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ticker
+      document.getElementById('tickerText').textContent = BLOG.breakingNews;
+
+      // Featured
+      const feat = BLOG.posts.find(p => p.featured);
+      if (feat) {
+        const a = getAuthor(feat.author);
+        document.getElementById('featuredHero').innerHTML = `
+          <a href="post.html?id=${feat.id}" class="featured-hero">
+            <img src="${feat.image}" alt="${feat.title}">
+            <div class="featured-hero-overlay">
+              <span class="cat-badge ${getCatClass(feat.category)}">${getCatName(feat.category)}</span>
+              <h1>${feat.title}</h1>
+              <p>${feat.excerpt}</p>
+              <div class="meta"><img src="${a.avatar}" alt="${a.name}">${a.name} · ${feat.date} · ${feat.readTime}</div>
+            </div>
+          </a>`;
+      }
+
+      // Trending
+      const trending = BLOG.posts.filter(p => p.trending).slice(0, 4);
+      document.getElementById('trending').innerHTML = `<div class="trending">${trending.map((p, i) => {
+        const a = getAuthor(p.author);
+        return `<div class="trending-item"><div class="trending-num">0${i+1}</div><div class="trending-content"><span class="cat-badge ${getCatClass(p.category)}">${getCatName(p.category)}</span><h3><a href="post.html?id=${p.id}">${p.title}</a></h3><div class="trending-meta">${a.name} · ${p.readTime}</div></div></div>`;
+      }).join('')}</div>`;
+
+      // Category Tabs
+      const tabs = document.getElementById('catTabs');
+      tabs.innerHTML = `<button class="cat-tab active" data-cat="all">All</button>` + BLOG.categories.map(c => `<button class="cat-tab" data-cat="${c.slug}">${c.name}</button>`).join('');
+      tabs.querySelectorAll('.cat-tab').forEach(tab => tab.addEventListener('click', () => {
+        tabs.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        filterPosts(tab.dataset.cat);
+      }));
+
+      // Posts
+      window._currentCat = 'all';
+      window._postsShown = 6;
+      renderPosts();
+
+      // Most Read
+      const top5 = BLOG.posts.slice(0, 5);
+      document.getElementById('mostRead').innerHTML = top5.map((p, i) => `
+        <div class="most-read-item"><div class="most-read-num">0${i+1}</div><div class="most-read-content"><h5><a href="post.html?id=${p.id}">${p.title}</a></h5><span>${p.readTime}</span></div></div>
+      `).join('');
+
+      // Tags
+      document.getElementById('tagCloud').innerHTML = BLOG.tags.map(t => `<a href="#" class="tag-pill" onclick="event.preventDefault();Toast.show('Tag filter demo','info')">${t}</a>`).join('');
+
+      initNewsletterPopup();
+    });
+
+    function filterPosts(cat) {
+      window._currentCat = cat;
+      window._postsShown = 6;
+      renderPosts();
+    }
+
+    function renderPosts() {
+      let posts = BLOG.posts.filter(p => !p.featured);
+      if (window._currentCat !== 'all') posts = posts.filter(p => p.category === window._currentCat);
+      const shown = posts.slice(0, window._postsShown);
+      document.getElementById('postGrid').innerHTML = shown.map(p => postCardHTML(p)).join('');
+      document.getElementById('loadMoreBtn').style.display = window._postsShown < posts.length ? 'block' : 'none';
+    }
+
+    function loadMorePosts() {
+      window._postsShown += 4;
+      renderPosts();
+    }
+  </script>
+</body>
+</html>

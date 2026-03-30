@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Tahsan Ahmed</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="cursor-dot"></div><div class="cursor-ring"></div>
+  <header class="header solid"><div class="header-inner">
+    <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    <a href="index.html" class="header-logo">Tahsan.</a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html" class="active">Contact</a></nav>
+    <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  </div></header>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="MobileMenu.close()"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Tahsan.</span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav></aside>
+
+  <div class="page-header">
+    <h1>Let's Build<br>Something Great.</h1>
+    <p>Have a project in mind? Let's talk about it.</p>
+  </div>
+
+  <main class="container" style="padding-bottom:120px">
+    <div class="contact-grid">
+      <div>
+        <form class="contact-form" id="contactForm">
+          <div style="display:none"><input name="honeypot" tabindex="-1" autocomplete="off"></div>
+          <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required><div class="form-error">Please enter your name</div></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" required><div class="form-error">Please enter a valid email</div></div>
+          <div class="form-group"><label>Subject</label>
+            <select required>
+              <option value="" disabled selected>Select a topic</option>
+              <option>Hire Me</option>
+              <option>Project Inquiry</option>
+              <option>Freelance Work</option>
+              <option>Other</option>
+            </select>
+            <div class="form-error">Please select a subject</div>
+          </div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project..." required></textarea><div class="form-error">Please enter a message</div></div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="40" height="40" style="margin:0 auto 12px;display:block;color:var(--color-accent)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <p style="font-size:20px;margin-bottom:4px">Message Sent!</p>
+          <p style="font-size:14px;color:var(--color-text-secondary)">Thanks for reaching out. I'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div>
+          <h3>Get in touch</h3>
+          <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+        </div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span id="contactEmail"></span></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span id="contactPhone"></span></div>
+        <div class="contact-detail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="contactLocation"></span></div>
+        <div class="social-row" id="contactSocials"></div>
+        <div class="availability-badge" id="contactAvail" style="font-size:15px"></div>
+
+        <!-- Calendar Booking -->
+        <div class="calendar">
+          <h4>Schedule a Call</h4>
+          <div class="calendar-header">
+            <button onclick="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="m15 18-6-6 6-6"/></svg></button>
+            <span id="calMonth"></span>
+            <button onclick="return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+          <div class="calendar-days"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+          <div class="calendar-grid" id="calGrid"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><p>&copy; 2025 Tahsan Ahmed · Built with ☕</p></div></footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const P = PORTFOLIO;
+      document.getElementById('contactEmail').textContent = P.email;
+      document.getElementById('contactPhone').textContent = P.phone;
+      document.getElementById('contactLocation').textContent = P.location;
+      document.getElementById('contactAvail').innerHTML = P.available
+        ? '<span class="availability-dot"></span> Available for hire'
+        : '<span class="availability-dot" style="background:var(--color-busy);animation:none"></span> Currently busy';
+
+      const socialIcons = {github:'GH',linkedin:'LI',twitter:'TW',dribbble:'DR',behance:'BE'};
+      document.getElementById('contactSocials').innerHTML = Object.entries(P.socials).map(([k,v])=>`<a href="${v}" class="social-btn" target="_blank">${socialIcons[k]||k}</a>`).join('');
+
+      initContactForm();
+      initCalendar();
+    });
+  </script>
+</body>
+</html>

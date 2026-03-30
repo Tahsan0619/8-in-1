@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tahsan Ahmed — Creative Developer & Designer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <header class="header transparent"><div class="header-inner">
+    <button class="menu-toggle" onclick="MobileMenu.open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+    <a href="index.html" class="header-logo">Tahsan.</a>
+    <nav class="header-nav"><a href="index.html" class="active">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav>
+    <div class="header-actions"><button class="theme-btn" onclick="Theme.toggle()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button></div>
+  </div></header>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="MobileMenu.close()"></div>
+  <aside class="mobile-menu" id="mobileMenu"><div class="mobile-menu-header"><span class="header-logo">Tahsan.</span><button onclick="MobileMenu.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><nav class="mobile-menu-nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="photography.html">Photography</a><a href="contact.html">Contact</a></nav><div class="mobile-socials"><a href="#">GH</a><a href="#">LI</a><a href="#">TW</a><a href="#">DR</a></div></aside>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><div class="hero-noise"></div></div>
+    <div class="hero-content">
+      <p class="hero-greeting">Hey, I'm</p>
+      <h1 class="hero-name">Tahsan Ahmed</h1>
+      <div class="hero-tagline" id="typewriter"></div>
+      <p class="hero-intro" id="heroIntro"></p>
+      <div class="hero-ctas">
+        <a href="work.html" class="btn-primary">View My Work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m9 18 6-6-6-6"/></svg></a>
+        <a href="contact.html" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="availability-badge" id="availBadge"></div>
+    </div>
+    <div class="scroll-indicator">Scroll <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="m6 9 6 6 6-6"/></svg></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" style="background:var(--color-surface-alt)">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo reveal-left"><img id="aboutPhoto" alt="Tahsan Ahmed"></div>
+        <div class="about-text reveal">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title">A little about me</h2>
+          <div id="aboutBio"></div>
+          <div class="about-facts" id="aboutFacts"></div>
+          <a href="#" class="btn-primary" style="margin-top:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:48px">
+        <span class="section-label">Skills & Tools</span>
+        <h2 class="section-title">Technologies I Work With</h2>
+      </div>
+      <div class="skills-categories reveal" id="skillTags"></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" style="background:var(--color-surface-alt)">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:48px">
+        <span class="section-label">Experience</span>
+        <h2 class="section-title">Where I've Worked</h2>
+      </div>
+      <div class="timeline reveal" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:48px">
+        <span class="section-label">Selected Work</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="featured-grid reveal" id="featuredGrid"></div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <a href="work.html" class="btn-ghost">View all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" style="background:var(--color-surface-alt)">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:48px">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What Clients Say</h2>
+      </div>
+      <div class="testimonial-grid reveal" id="testimonialGrid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="section" style="text-align:center">
+    <div class="container reveal">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-title" style="max-width:600px;margin:0 auto 16px">Let's Build Something Great Together.</h2>
+      <p class="section-desc" style="margin:0 auto 32px" id="ctaEmail"></p>
+      <div class="social-row" style="justify-content:center;margin-bottom:24px" id="ctaSocials"></div>
+      <a href="contact.html" class="btn-primary">Schedule a Call</a>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><p>&copy; 2025 Tahsan Ahmed · Built with ☕</p><div class="footer-socials" id="footerSocials"></div></div></footer>
+  <button class="scroll-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="Lightbox.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button class="lightbox-nav lightbox-prev" onclick="Lightbox.prev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <img id="lightboxImg" alt="Lightbox image">
+    <button class="lightbox-nav lightbox-next" onclick="Lightbox.next()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const P = PORTFOLIO;
+
+      // Hero
+      Typewriter.init('#typewriter', P.roles);
+      document.getElementById('heroIntro').textContent = P.intro;
+      document.getElementById('availBadge').innerHTML = P.available
+        ? '<span class="availability-dot"></span> Available for hire'
+        : '<span class="availability-dot" style="background:var(--color-busy);animation:none"></span> Currently busy';
+
+      // About
+      document.getElementById('aboutPhoto').src = P.about.photo;
+      document.getElementById('aboutBio').innerHTML = P.about.bio.map(b => `<p>${b}</p>`).join('');
+      document.getElementById('aboutFacts').innerHTML = `
+        <div class="about-fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${P.location}</div>
+        <div class="about-fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${P.experience} years experience</div>`;
+
+      // Skills
+      document.getElementById('skillTags').innerHTML = Object.entries(P.skills).map(([cat, items]) => `
+        <div class="skill-group"><h4>${cat}</h4><div class="skill-tags">${items.map(s => `<span class="skill-tag ${s.primary?'primary':''}">${s.name}</span>`).join('')}</div></div>
+      `).join('');
+
+      // Timeline
+      document.getElementById('timeline').innerHTML = P.experience.map(e => `
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">${e.date}</div><div class="timeline-role">${e.role}</div><div class="timeline-company">${e.company}</div><p class="timeline-desc">${e.desc}</p></div>
+      `).join('');
+
+      // Featured projects
+      const featured = P.projects.filter(p => p.featured);
+      document.getElementById('featuredGrid').innerHTML = featured.map(p => projectCardHTML(p)).join('');
+
+      // Testimonials
+      document.getElementById('testimonialGrid').innerHTML = P.testimonials.map(t => `
+        <div class="testimonial-card">
+          <div class="testimonial-stars">${'★'.repeat(t.stars)}</div>
+          <p class="testimonial-quote">${t.quote}</p>
+          <div class="testimonial-author"><img src="${t.photo}" alt="${t.name}"><div class="testimonial-author-info"><h4>${t.name}</h4><span>${t.role}, ${t.company}</span></div></div>
+        </div>
+      `).join('');
+
+      // Contact CTA
+      document.getElementById('ctaEmail').textContent = P.email;
+      const socialIcons = {github:'GH',linkedin:'LI',twitter:'TW',dribbble:'DR',behance:'BE'};
+      const socHTML = Object.entries(P.socials).map(([k,v])=>`<a href="${v}" class="social-btn" target="_blank">${socialIcons[k]||k}</a>`).join('');
+      document.getElementById('ctaSocials').innerHTML = socHTML;
+      document.getElementById('footerSocials').innerHTML = Object.entries(P.socials).map(([k,v])=>`<a href="${v}">${socialIcons[k]||k}</a>`).join('');
+
+      initSkillBars();
+    });
+  </script>
+</body>
+</html>

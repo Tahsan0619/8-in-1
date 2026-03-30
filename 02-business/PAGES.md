@@ -1,0 +1,245 @@
+# Business / Corporate — Page Layouts
+
+---
+
+## Homepage
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  HEADER (transparent over hero):  Logo  Nav  CTA  🌓    │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │               HERO (100vh)                       │    │
+│  │          gradient / image background              │    │
+│  │                                                   │    │
+│  │          · DIGITAL AGENCY ·                       │    │
+│  │    We Build Digital Products                      │    │
+│  │      That Drive Growth                            │    │
+│  │                                                   │    │
+│  │    Subtext paragraph here about what              │    │
+│  │    the company does and why                       │    │
+│  │                                                   │    │
+│  │    [Get Started]  [View Our Work]                 │    │
+│  │                                                   │    │
+│  │              ↓ scroll                             │    │
+│  └──────────────────────────────────────────────────┘    │
+│                                                          │
+│  ─── SERVICES ──────────────────────────────────────     │
+│  Overline + Section Heading + Subtext                    │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                 │
+│  │  🎨 icon │ │  📱 icon │ │  📊 icon │                 │
+│  │  Design  │ │ Develop  │ │ Strategy │                 │
+│  │  desc... │ │ desc...  │ │ desc...  │                 │
+│  │ Learn →  │ │ Learn →  │ │ Learn →  │                 │
+│  └──────────┘ └──────────┘ └──────────┘                 │
+│                                                          │
+│  ─── ABOUT ─────────────────────────────────────────     │
+│  ┌─────────────────────┬───────────────────────┐         │
+│  │ Overline             │                       │         │
+│  │ Who We Are           │    [Team Photo]        │         │
+│  │                      │    (offset border)     │         │
+│  │ Paragraph text...    │                       │         │
+│  │ Paragraph text...    │                       │         │
+│  │ About Us →           │                       │         │
+│  └─────────────────────┴───────────────────────┘         │
+│                                                          │
+│  ─── STATS (accent bg) ────────────────────────────      │
+│  ┌───────┐  ┌───────┐  ┌───────┐  ┌───────┐            │
+│  │ 150+  │  │  80+  │  │  12   │  │  15   │            │
+│  │Projects│  │Clients│  │ Years │  │Countries│           │
+│  └───────┘  └───────┘  └───────┘  └───────┘            │
+│                                                          │
+│  ─── CLIENT LOGOS ──────────────────────────────────     │
+│  [logo] [logo] [logo] [logo] [logo] [logo]              │
+│                                                          │
+│  ─── TESTIMONIALS ──────────────────────────────────     │
+│  ┌──────────────────────────────────────────────┐        │
+│  │  "Quote from client about working with us"   │        │
+│  │                                               │        │
+│  │  (avatar) John Doe — CEO, Company Inc         │        │
+│  │              ● ○ ○ ○          ← →              │        │
+│  └──────────────────────────────────────────────┘        │
+│                                                          │
+│  ─── CTA BANNER (gradient bg) ─────────────────────     │
+│  Ready to start your project?                            │
+│  Let's talk about your next big idea.                    │
+│  [Get a Quote]                                           │
+│                                                          │
+│  ─── BLOG PREVIEW ─────────────────────────────────     │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                 │
+│  │  [img]   │ │  [img]   │ │  [img]   │                 │
+│  │ Category │ │ Category │ │ Category │                 │
+│  │  Title   │ │  Title   │ │  Title   │                 │
+│  │ excerpt  │ │ excerpt  │ │ excerpt  │                 │
+│  │ 📅 · 5min│ │ 📅 · 3min│ │ 📅 · 7min│                 │
+│  └──────────┘ └──────────┘ └──────────┘                 │
+│  View all posts →                                        │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  FOOTER: Company | Links | Services | Contact           │
+│  Newsletter: [email] [Subscribe]                         │
+│  Social icons                                            │
+│  © 2026 Company — Privacy — Terms                        │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Service Detail Page
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  HEADER (solid)                                          │
+├──────────────────────────────────────────────────────────┤
+│  Breadcrumb: Home > Services > Web Development           │
+│                                                          │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  🌐  Web Development                              │    │
+│  │  We build fast, scalable web applications         │    │
+│  └──────────────────────────────────────────────────┘    │
+│                                                          │
+│  ┌─────────────────────────┬────────────────────┐        │
+│  │   CONTENT                │  SIDEBAR           │        │
+│  │                          │                    │        │
+│  │   What We Do             │  Key Benefits      │        │
+│  │   Paragraphs...          │  ✓ Benefit 1       │        │
+│  │                          │  ✓ Benefit 2       │        │
+│  │   Our Approach           │  ✓ Benefit 3       │        │
+│  │   Paragraphs...          │  ✓ Benefit 4       │        │
+│  │                          │                    │        │
+│  │   Deliverables           │  [Get a Quote]     │        │
+│  │   • Item 1               │                    │        │
+│  │   • Item 2               │                    │        │
+│  │   • Item 3               │                    │        │
+│  └─────────────────────────┴────────────────────┘        │
+│                                                          │
+│  ─── RELATED CASE STUDIES ──────────────────────         │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                 │
+│  │ Case 1   │ │ Case 2   │ │ Case 3   │                 │
+│  └──────────┘ └──────────┘ └──────────┘                 │
+│                                                          │
+│  ─── FAQ ───────────────────────────────────────         │
+│  [+] Question 1                                          │
+│  [-] Question 2                                          │
+│      Answer text...                                      │
+│  [+] Question 3                                          │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  FOOTER                                                  │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pricing Page
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  HEADER                                                  │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Simple, Transparent Pricing                             │
+│  Choose the plan that's right for you                    │
+│                                                          │
+│  [Monthly] ●───○ [Yearly — Save 20%]                     │
+│                                                          │
+│  ┌──────────┐ ┌────────────────┐ ┌──────────┐           │
+│  │ STARTER  │ │  PROFESSIONAL  │ │ENTERPRISE│           │
+│  │          │ │  ⭐ POPULAR     │ │          │           │
+│  │  $29/mo  │ │    $79/mo      │ │  Custom  │           │
+│  │          │ │                 │ │          │           │
+│  │ ✓ Feat A │ │ ✓ Feat A       │ │ ✓ All    │           │
+│  │ ✓ Feat B │ │ ✓ Feat B       │ │ ✓ Custom │           │
+│  │ ✗ Feat C │ │ ✓ Feat C       │ │ ✓ Support│           │
+│  │ ✗ Feat D │ │ ✓ Feat D       │ │ ✓ SLA    │           │
+│  │          │ │                 │ │          │           │
+│  │[Choose]  │ │ [Choose Plan]  │ │[Contact] │           │
+│  └──────────┘ └────────────────┘ └──────────┘           │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  FOOTER                                                  │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Case Study / Project Detail
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  HEADER                                                  │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │         PROJECT HERO IMAGE (full width)           │    │
+│  └──────────────────────────────────────────────────┘    │
+│                                                          │
+│  Project Title                                           │
+│  Client: Company Name                                    │
+│                                                          │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐                    │
+│  │Industry│ │Timeline│ │Services│ │ Team │                │
+│  │FinTech │ │ 3 mos  │ │Design  │ │  5   │                │
+│  └──────┘ └──────┘ └──────┘ └──────┘                    │
+│                                                          │
+│  ─── THE CHALLENGE ─────────────────────────────         │
+│  Paragraph text about the problem...                     │
+│                                                          │
+│  ─── OUR SOLUTION ──────────────────────────────         │
+│  Paragraph text about the approach...                    │
+│  [Screenshots grid]                                      │
+│                                                          │
+│  ─── THE RESULTS ───────────────────────────────         │
+│  ┌──────┐ ┌──────┐ ┌──────┐                              │
+│  │ +150%│ │ -40% │ │  3x  │                              │
+│  │Traffic│ │Bounce│ │ Conv │                              │
+│  └──────┘ └──────┘ └──────┘                              │
+│                                                          │
+│  ─── CLIENT SAYS ──────────────────────────────          │
+│  "Testimonial quote..."                                  │
+│  — Client Name, Role                                     │
+│                                                          │
+│  ← Previous Project    Next Project →                    │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  FOOTER                                                  │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Contact Page
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  HEADER                                                  │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Get in Touch                                            │
+│  We'd love to hear about your project                    │
+│                                                          │
+│  ┌────────────────────────┬─────────────────────┐        │
+│  │                        │                     │        │
+│  │  [Name          ]      │  📍 123 Business St │        │
+│  │  [Email         ]      │     Dhaka, BD       │        │
+│  │  [Phone (opt)   ]      │                     │        │
+│  │  [Company       ]      │  📞 +880 1234...    │        │
+│  │  [Budget ▼      ]      │  ✉️ hello@co.com    │        │
+│  │  [Service ▼     ]      │                     │        │
+│  │  [                     │  🕐 Mon-Fri 9-6     │        │
+│  │   Message              │                     │        │
+│  │                   ]    │  Social: 🔗🔗🔗🔗    │        │
+│  │  [Send Message]        │                     │        │
+│  │                        │                     │        │
+│  └────────────────────────┴─────────────────────┘        │
+│                                                          │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │              GOOGLE MAP EMBED                     │    │
+│  │                  📍                               │    │
+│  └──────────────────────────────────────────────────┘    │
+│                                                          │
+├──────────────────────────────────────────────────────────┤
+│  FOOTER                                                  │
+└──────────────────────────────────────────────────────────┘
+```

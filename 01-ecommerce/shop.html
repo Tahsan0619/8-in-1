@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — FLAVR</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="menu-toggle" onclick="MobileDrawer.open()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+      <a href="index.html" class="header-logo">FLAV<span>R</span></a>
+      <div class="header-search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <div class="header-actions">
+        <button class="header-action-btn" onclick="Theme.toggle()" title="Toggle theme"><span class="theme-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+        <a href="account.html" class="header-action-btn" title="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <button class="header-action-btn" onclick="Cart.open()" title="Cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="cart-badge"></span></button>
+      </div>
+    </div>
+    <nav class="subnav">
+      <div class="subnav-inner">
+        <a href="shop.html" class="subnav-link" data-cat="all">All</a>
+        <a href="shop.html?cat=men" class="subnav-link" data-cat="men">Men</a>
+        <a href="shop.html?cat=women" class="subnav-link" data-cat="women">Women</a>
+        <a href="shop.html?cat=electronics" class="subnav-link" data-cat="electronics">Electronics</a>
+        <a href="shop.html?cat=home" class="subnav-link" data-cat="home">Home & Living</a>
+        <a href="shop.html?cat=sports" class="subnav-link" data-cat="sports">Sports</a>
+        <a href="shop.html?cat=beauty" class="subnav-link" data-cat="beauty">Beauty</a>
+        <a href="shop.html?sale=true" class="subnav-link" data-cat="sale" style="color:var(--color-accent)">🔥 Sale</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span class="header-logo">FLAV<span>R</span></span>
+      <button class="mobile-drawer-close" onclick="MobileDrawer.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="shop.html" class="mobile-nav-item">All Products</a>
+      <a href="shop.html?cat=men" class="mobile-nav-item">Men</a>
+      <a href="shop.html?cat=women" class="mobile-nav-item">Women</a>
+      <a href="shop.html?cat=electronics" class="mobile-nav-item">Electronics</a>
+      <a href="shop.html?cat=home" class="mobile-nav-item">Home & Living</a>
+      <a href="shop.html?cat=sports" class="mobile-nav-item">Sports</a>
+      <a href="shop.html?cat=beauty" class="mobile-nav-item">Beauty</a>
+      <div class="mobile-nav-divider"></div>
+      <a href="account.html" class="mobile-nav-item">My Account</a>
+      <a href="admin.html" class="mobile-nav-item">Admin Panel</a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <button class="mobile-theme-toggle" onclick="Theme.toggle()"><span class="theme-label">Dark Mode</span><span class="theme-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span></button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <span class="current" id="breadcrumbCurrent">Shop</span>
+      </nav>
+
+      <div class="shop-layout">
+        <!-- FILTER SIDEBAR -->
+        <aside class="filter-sidebar" id="filterSidebar">
+          <div class="filter-section">
+            <h4>Category</h4>
+            <div id="filterCategories"></div>
+          </div>
+          <div class="filter-section">
+            <h4>Price Range</h4>
+            <div class="price-range">
+              <input type="number" id="priceMin" placeholder="Min" min="0">
+              <span>—</span>
+              <input type="number" id="priceMax" placeholder="Max" min="0">
+            </div>
+            <input type="range" class="range-slider" id="priceSlider" min="0" max="25000" value="25000">
+          </div>
+          <div class="filter-section">
+            <h4>Rating</h4>
+            <label class="filter-option"><input type="checkbox" data-rating="4" checked> 4★ & above</label>
+            <label class="filter-option"><input type="checkbox" data-rating="3"> 3★ & above</label>
+            <label class="filter-option"><input type="checkbox" data-rating="2"> 2★ & above</label>
+          </div>
+          <div class="filter-section">
+            <h4>Availability</h4>
+            <label class="filter-option"><input type="checkbox" id="inStockOnly"> In stock only</label>
+          </div>
+          <div class="filter-section" style="padding-top:12px">
+            <button class="btn btn--secondary btn--sm btn--full" onclick="resetFilters()">Clear All Filters</button>
+          </div>
+        </aside>
+
+        <!-- PRODUCT GRID -->
+        <div class="shop-main">
+          <!-- Active Filters -->
+          <div class="active-filters" id="activeFilters"></div>
+
+          <!-- Controls -->
+          <div class="shop-controls">
+            <div class="shop-results" id="shopResults">Showing 0 products</div>
+            <div class="flex gap-3" style="align-items:center">
+              <button class="btn btn--secondary btn--sm mobile-filter-btn" onclick="toggleFilterSidebar()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                Filters
+              </button>
+              <div class="shop-sort">
+                <select id="sortSelect">
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="newest">Newest</option>
+                  <option value="rating">Top Rated</option>
+                  <option value="popular">Most Popular</option>
+                </select>
+              </div>
+              <div class="view-toggle">
+                <button class="active" id="viewGrid" onclick="setView('grid')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+                <button id="viewList" onclick="setView('list')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products -->
+          <div id="productContainer" class="product-grid"></div>
+
+          <!-- Pagination -->
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo">FLAV<span>R</span></a>
+          <p>Curated lifestyle essentials for the modern individual.</p>
+          <div class="footer-payments"><span>bKash</span><span>Nagad</span><span>Visa</span><span>Mastercard</span><span>COD</span></div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><a href="shop.html?cat=men">Men</a><a href="shop.html?cat=women">Women</a><a href="shop.html?cat=electronics">Electronics</a><a href="shop.html?cat=home">Home & Living</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Blog</a><a href="#">Contact</a></div>
+        <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size Guide</a></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 FLAVR. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header"><h3>Shopping Cart</h3><button class="cart-drawer-close" onclick="Cart.close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+    <div class="cart-drawer-body"></div>
+    <div class="cart-coupon"></div>
+    <div class="cart-drawer-footer"></div>
+  </aside>
+
+  <button class="scroll-top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="m18 15-6-6-6 6"/></svg></button>
+
+  <script>
+    // Shop State
+    let shopState = {
+      view: 'grid',
+      sort: 'featured',
+      category: null,
+      saleOnly: false,
+      priceMax: 25000,
+      priceMin: 0,
+      minRating: 0,
+      inStockOnly: false,
+      page: 1,
+      perPage: 12,
+    };
+
+    function getURLParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('cat')) shopState.category = params.get('cat');
+      if (params.get('sale')) shopState.saleOnly = true;
+    }
+
+    function buildCategoryFilters() {
+      const container = document.getElementById('filterCategories');
+      const cats = ['All', ...STORE.categories.map(c => c.name)];
+      container.innerHTML = cats.map(c => `
+        <label class="filter-option">
+          <input type="checkbox" data-cat="${c.toLowerCase()}" ${(shopState.category === c.toLowerCase() || (!shopState.category && c === 'All')) ? 'checked' : ''}>
+          ${c}
+        </label>
+      `).join('');
+
+      container.querySelectorAll('input').forEach(input => {
+        input.addEventListener('change', () => {
+          if (input.dataset.cat === 'all') {
+            container.querySelectorAll('input').forEach(i => i.checked = (i === input));
+            shopState.category = null;
+          } else {
+            container.querySelector('[data-cat="all"]').checked = false;
+            const checked = [...container.querySelectorAll('input:checked')].map(i => i.dataset.cat);
+            shopState.category = checked.length === 0 ? null : checked.length === 1 ? checked[0] : checked;
+          }
+          shopState.page = 1;
+          renderProducts();
+        });
+      });
+    }
+
+    function getFilteredProducts() {
+      let products = [...STORE.products];
+      // Category
+      if (shopState.category) {
+        if (Array.isArray(shopState.category)) {
+          products = products.filter(p => shopState.category.includes(p.category.toLowerCase()));
+        } else {
+          products = products.filter(p => p.category.toLowerCase() === shopState.category);
+        }
+      }
+      // Sale only
+      if (shopState.saleOnly) products = products.filter(p => p.badge === 'sale');
+      // Price
+      products = products.filter(p => p.price >= shopState.priceMin && p.price <= shopState.priceMax);
+      // Rating
+      if (shopState.minRating > 0) products = products.filter(p => p.rating >= shopState.minRating);
+      // Stock
+      if (shopState.inStockOnly) products = products.filter(p => p.stock > 0);
+      // Sort
+      switch (shopState.sort) {
+        case 'price-low': products.sort((a, b) => a.price - b.price); break;
+        case 'price-high': products.sort((a, b) => b.price - a.price); break;
+        case 'newest': products.sort((a, b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0)); break;
+        case 'rating': products.sort((a, b) => b.rating - a.rating); break;
+        case 'popular': products.sort((a, b) => b.sold - a.sold); break;
+      }
+      return products;
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('productContainer');
+      const products = getFilteredProducts();
+      const totalPages = Math.ceil(products.length / shopState.perPage);
+      const start = (shopState.page - 1) * shopState.perPage;
+      const pageProducts = products.slice(start, start + shopState.perPage);
+
+      document.getElementById('shopResults').textContent = `Showing ${pageProducts.length} of ${products.length} products`;
+
+      if (products.length === 0) {
+        container.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="80" height="80"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <h3>No products found</h3>
+          <p>Try adjusting your filters or search criteria.</p>
+          <button class="btn btn--primary btn--md" onclick="resetFilters()">Clear Filters</button>
+        </div>`;
+        document.getElementById('pagination').innerHTML = '';
+        return;
+      }
+
+      if (shopState.view === 'grid') {
+        container.className = 'product-grid';
+        container.innerHTML = pageProducts.map(p => productCardHTML(p)).join('');
+      } else {
+        container.className = 'product-list';
+        container.innerHTML = pageProducts.map(p => `
+          <div class="product-card--list">
+            <div class="product-card-img">
+              ${p.badge ? `<span class="product-badge product-badge--${p.badge}">${p.badge === 'sale' ? `-${Math.round((1-p.price/p.originalPrice)*100)}%` : p.badge}</span>` : ''}
+              <a href="product.html?id=${p.id}"><img src="${p.images[0]}" alt="${p.name}" loading="lazy"></a>
+            </div>
+            <div class="product-card-body">
+              <div class="product-card-category">${p.subcategory}</div>
+              <h3 class="product-card-title"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+              <p class="product-description">${p.description}</p>
+              <div class="product-card-rating">
+                <div class="stars" style="color:#F59E0B">${starsHTML(p.rating)}</div>
+                <span class="rating-count">(${p.reviews})</span>
+              </div>
+              <div class="product-card-footer">
+                <div class="product-price">
+                  <span class="price-current">${STORE.currency}${p.price.toLocaleString()}</span>
+                  ${p.originalPrice ? `<span class="price-original">${STORE.currency}${p.originalPrice.toLocaleString()}</span>` : ''}
+                </div>
+                <button class="btn btn--primary btn--sm" onclick="Cart.add(${p.id})">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+      Wishlist.updateUI();
+      renderPagination(totalPages);
+      renderActiveFilters();
+      updateSubnavActive();
+    }
+
+    function renderPagination(totalPages) {
+      const container = document.getElementById('pagination');
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+      let html = `<button ${shopState.page === 1 ? 'disabled' : ''} onclick="goToPage(${shopState.page - 1})">‹</button>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="${i === shopState.page ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+      html += `<button ${shopState.page === totalPages ? 'disabled' : ''} onclick="goToPage(${shopState.page + 1})">›</button>`;
+      container.innerHTML = html;
+    }
+
+    function goToPage(page) {
+      shopState.page = page;
+      renderProducts();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setView(view) {
+      shopState.view = view;
+      document.getElementById('viewGrid').classList.toggle('active', view === 'grid');
+      document.getElementById('viewList').classList.toggle('active', view === 'list');
+      renderProducts();
+    }
+
+    function renderActiveFilters() {
+      const container = document.getElementById('activeFilters');
+      let pills = [];
+      if (shopState.category) {
+        const cats = Array.isArray(shopState.category) ? shopState.category : [shopState.category];
+        cats.forEach(c => pills.push(`<span class="filter-pill">${c} <button onclick="removeCategory('${c}')">×</button></span>`));
+      }
+      if (shopState.saleOnly) pills.push(`<span class="filter-pill">Sale <button onclick="shopState.saleOnly=false; shopState.page=1; renderProducts();">×</button></span>`);
+      if (shopState.priceMax < 25000) pills.push(`<span class="filter-pill">Under ৳${shopState.priceMax.toLocaleString()} <button onclick="shopState.priceMax=25000; document.getElementById('priceMax').value=''; document.getElementById('priceSlider').value=25000; shopState.page=1; renderProducts();">×</button></span>`);
+      container.innerHTML = pills.join('');
+    }
+
+    function removeCategory(cat) {
+      if (Array.isArray(shopState.category)) {
+        shopState.category = shopState.category.filter(c => c !== cat);
+        if (shopState.category.length === 0) shopState.category = null;
+      } else {
+        shopState.category = null;
+      }
+      buildCategoryFilters();
+      shopState.page = 1;
+      renderProducts();
+    }
+
+    function resetFilters() {
+      shopState = { ...shopState, category: null, saleOnly: false, priceMax: 25000, priceMin: 0, minRating: 0, inStockOnly: false, page: 1 };
+      document.getElementById('priceMin').value = '';
+      document.getElementById('priceMax').value = '';
+      document.getElementById('priceSlider').value = 25000;
+      document.getElementById('inStockOnly').checked = false;
+      document.querySelectorAll('[data-rating]').forEach(i => i.checked = false);
+      buildCategoryFilters();
+      renderProducts();
+    }
+
+    function toggleFilterSidebar() {
+      document.getElementById('filterSidebar').classList.toggle('open');
+    }
+
+    function updateSubnavActive() {
+      document.querySelectorAll('.subnav-link').forEach(link => {
+        const cat = link.dataset.cat;
+        if (cat === 'sale') link.classList.toggle('active', shopState.saleOnly);
+        else if (cat === 'all') link.classList.toggle('active', !shopState.category && !shopState.saleOnly);
+        else link.classList.toggle('active', shopState.category === cat);
+      });
+      // Breadcrumb
+      const bc = document.getElementById('breadcrumbCurrent');
+      if (shopState.category && !Array.isArray(shopState.category)) {
+        const catName = STORE.categories.find(c => c.slug === shopState.category)?.name || shopState.category;
+        bc.textContent = catName;
+      } else if (shopState.saleOnly) {
+        bc.textContent = 'Sale';
+      } else {
+        bc.textContent = 'Shop';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      getURLParams();
+      buildCategoryFilters();
+
+      // Sort
+      document.getElementById('sortSelect').addEventListener('change', (e) => {
+        shopState.sort = e.target.value;
+        shopState.page = 1;
+        renderProducts();
+      });
+
+      // Price inputs
+      document.getElementById('priceMin').addEventListener('change', (e) => {
+        shopState.priceMin = parseInt(e.target.value) || 0;
+        shopState.page = 1;
+        renderProducts();
+      });
+      document.getElementById('priceMax').addEventListener('change', (e) => {
+        shopState.priceMax = parseInt(e.target.value) || 25000;
+        shopState.page = 1;
+        renderProducts();
+      });
+      document.getElementById('priceSlider').addEventListener('input', (e) => {
+        shopState.priceMax = parseInt(e.target.value);
+        document.getElementById('priceMax').value = e.target.value;
+        shopState.page = 1;
+        renderProducts();
+      });
+
+      // Rating
+      document.querySelectorAll('[data-rating]').forEach(input => {
+        input.addEventListener('change', () => {
+          const checked = [...document.querySelectorAll('[data-rating]:checked')].map(i => parseInt(i.dataset.rating));
+          shopState.minRating = checked.length ? Math.min(...checked) : 0;
+          shopState.page = 1;
+          renderProducts();
+        });
+      });
+
+      // Stock
+      document.getElementById('inStockOnly').addEventListener('change', (e) => {
+        shopState.inStockOnly = e.target.checked;
+        shopState.page = 1;
+        renderProducts();
+      });
+
+      // Subnav clicks
+      document.querySelectorAll('.subnav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const cat = link.dataset.cat;
+          if (cat === 'sale') {
+            shopState.saleOnly = !shopState.saleOnly;
+            shopState.category = null;
+          } else if (cat === 'all') {
+            shopState.category = null;
+            shopState.saleOnly = false;
+          } else {
+            shopState.category = cat;
+            shopState.saleOnly = false;
+          }
+          shopState.page = 1;
+          buildCategoryFilters();
+          renderProducts();
+        });
+      });
+
+      renderProducts();
+    });
+  </script>
+</body>
+</html>
