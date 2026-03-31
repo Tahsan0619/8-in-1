@@ -63,7 +63,13 @@ class PageController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $page->update($validator->validated());
+        $data = $validator->validated();
+
+        if (isset($data['title'])) {
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        $page->update($data);
 
         return response()->json(['message' => 'Page updated', 'page' => $page]);
     }
