@@ -277,7 +277,7 @@ XX-name/
 
 ```bash
 # Clone the repo
-git clone https://github.com/Tahsan0619/16-in-1.git
+git clone https://github.com/Tahsan0619/8-in-1.git
 
 # Open any site — no install needed
 # Just open the HTML file in your browser
