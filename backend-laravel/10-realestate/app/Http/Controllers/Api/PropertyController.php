@@ -77,7 +77,11 @@ class PropertyController extends Controller
             'is_featured'  => 'boolean',
         ]);
 
-        $data['agent_id'] = $request->user()->agent->id ?? null;
+        if (!$request->user()->agent) {
+            return response()->json(['message' => 'You must have an agent profile to create listings.'], 403);
+        }
+
+        $data['agent_id'] = $request->user()->agent->id;
 
         return response()->json(Property::create($data), 201);
     }
@@ -139,7 +143,10 @@ class PropertyController extends Controller
 
     public function agentProperties(Request $request)
     {
-        $agentId = $request->user()->agent->id;
+        $agentId = $request->user()->agent?->id;
+        if (!$agentId) {
+            return response()->json(['message' => 'Agent profile not found.'], 403);
+        }
         return response()->json(Property::where('agent_id', $agentId)->latest()->paginate(12));
     }
 }
