@@ -24,11 +24,13 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        // Relationship to Review model (create app/Models/Review.php to enable)
+        return $this->hasMany(\App\Models\Review::class);
     }
 
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class);
+        // Relationship to OrderItem model (create app/Models/OrderItem.php to enable)
+        return $this->hasMany(\App\Models\OrderItem::class);
     }
 }

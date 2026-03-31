@@ -60,7 +60,33 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post): JsonResponse
     {
-        $post->update($request->all());
+        $validator = Validator::make($request->all(), [
+            'title'       => 'sometimes|string|max:255',
+            'content'     => 'sometimes|string',
+            'excerpt'     => 'sometimes|nullable|string|max:500',
+            'status'      => 'sometimes|in:draft,published',
+            'category_id' => 'sometimes|nullable|exists:categories,id',
+            'tags'        => 'sometimes|array',
+            'image'       => 'sometimes|nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $data = $validator->validated();
+
+        if (isset($data['title'])) {
+            $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
+        }
+        if (isset($data['content'])) {
+            $data['reading_time'] = (int) ceil(str_word_count(strip_tags($data['content'])) / 200);
+        }
+        if (isset($data['status']) && $data['status'] === 'published' && !$post->published_at) {
+            $data['published_at'] = now();
+        }
+
+        $post->update($data);
 
         return response()->json(['message' => 'Post updated successfully', 'post' => $post]);
     }

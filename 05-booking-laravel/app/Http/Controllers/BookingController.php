@@ -62,7 +62,7 @@ class BookingController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $booking->update($request->all());
+        $booking->update($validator->validated());
 
         return response()->json(['message' => 'Booking updated successfully', 'booking' => $booking]);
     }

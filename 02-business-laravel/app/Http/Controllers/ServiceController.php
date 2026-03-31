@@ -46,7 +46,21 @@ class ServiceController extends Controller
 
     public function update(Request $request, Service $service): JsonResponse
     {
-        $service->update($request->all());
+        $validator = Validator::make($request->all(), [
+            'title'       => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'category'    => 'sometimes|string|max:100',
+            'price'       => 'sometimes|numeric|min:0',
+            'icon'        => 'sometimes|nullable|string',
+            'features'    => 'sometimes|array',
+            'is_featured' => 'sometimes|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $service->update($validator->validated());
 
         return response()->json(['message' => 'Service updated successfully', 'service' => $service]);
     }

@@ -9,7 +9,9 @@ const register = async (req, res, next) => {
     if (!errors.isEmpty()) {
       return res.status(422).json({ success: false, errors: errors.array() });
     }
-    const { name, email, password } = req.body;
+    const name = String(req.body.name || "");
+    const email = String(req.body.email || "").toLowerCase().trim();
+    const password = req.body.password;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ success: false, message: 'Email already registered' });
@@ -31,7 +33,8 @@ const register = async (req, res, next) => {
 // @route   POST /api/auth/login
 const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const email = String(req.body.email || "").toLowerCase().trim();
+    const password = req.body.password;
     if (!email || !password) {
       return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }

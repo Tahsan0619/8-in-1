@@ -14,7 +14,7 @@ return new class extends Migration
             $table->text('description');
             $table->json('images')->nullable();
             $table->json('technologies')->nullable();
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->string('live_url')->nullable();
             $table->string('github_url')->nullable();
             $table->boolean('is_featured')->default(false);

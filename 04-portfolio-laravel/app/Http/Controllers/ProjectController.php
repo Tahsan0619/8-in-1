@@ -46,7 +46,22 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project): JsonResponse
     {
-        $project->update($request->all());
+        $validator = Validator::make($request->all(), [
+            'title'       => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'category'    => 'sometimes|string|max:100',
+            'live_url'    => 'sometimes|nullable|url',
+            'github_url'  => 'sometimes|nullable|url',
+            'is_featured' => 'sometimes|boolean',
+            'images'      => 'sometimes|array',
+            'technologies'=> 'sometimes|array',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $project->update($validator->validated());
 
         return response()->json(['message' => 'Project updated successfully', 'project' => $project]);
     }

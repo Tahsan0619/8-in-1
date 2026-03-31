@@ -52,15 +52,22 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'price' => 'sometimes|numeric|min:0',
-            'stock' => 'sometimes|integer|min:0',
+            'name'          => 'sometimes|string|max:255',
+            'description'   => 'sometimes|string',
+            'price'         => 'sometimes|numeric|min:0',
+            'discount_price'=> 'sometimes|nullable|numeric|min:0',
+            'category'      => 'sometimes|string|max:100',
+            'brand'         => 'sometimes|string|max:100',
+            'stock'         => 'sometimes|integer|min:0',
+            'images'        => 'sometimes|array',
+            'is_featured'   => 'sometimes|boolean',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $product->update($request->all());
+        $product->update($validator->validated());
 
         return response()->json(['message' => 'Product updated successfully', 'product' => $product]);
     }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->longText('content');
             $table->text('excerpt')->nullable();
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->json('tags')->nullable();
             $table->string('image')->nullable();
             $table->enum('status', ['draft', 'published'])->default('draft');

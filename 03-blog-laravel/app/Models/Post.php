@@ -27,12 +27,14 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        // Relationship to Category model (create app/Models/Category.php to enable)
+        return $this->belongsTo(\App\Models\Category::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // Relationship to Comment model (create app/Models/Comment.php to enable)
+        return $this->hasMany(\App\Models\Comment::class);
     }
 
     public function getRouteKeyName(): string
