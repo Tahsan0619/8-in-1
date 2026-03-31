@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard — MediCare Hospital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">🏥 MediCare</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="departments.html" class="nav-link">Departments</a>
+        <a href="doctors.html" class="nav-link">Find a Doctor</a>
+        <a href="pharmacy.html" class="nav-link">Pharmacy</a>
+        <a href="patient-dashboard.html" class="nav-link active">My Dashboard</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+        <a href="tel:999" class="btn btn-emergency btn-sm"><span class="pulse-dot"></span> 999</a>
+        <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+        <div class="auth-logged" style="display:flex;align-items:center;gap:var(--sp-2)">
+          <span class="auth-user-name" style="font-size:14px;font-weight:500"></span>
+          <button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button>
+        </div>
+        <button class="hamburger" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer">
+    <div class="drawer-header">
+      <span class="logo">🏥 MediCare</span>
+      <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html" class="drawer-link">Home</a>
+      <a href="departments.html" class="drawer-link">Departments</a>
+      <a href="doctors.html" class="drawer-link">Find a Doctor</a>
+      <a href="pharmacy.html" class="drawer-link">Pharmacy</a>
+      <a href="patient-dashboard.html" class="drawer-link active">My Dashboard</a>
+    </nav>
+  </div>
+
+  <!-- Dashboard Layout -->
+  <section class="section" style="padding-top:calc(64px + var(--sp-4))">
+    <div class="container">
+      <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+          <div style="padding:var(--sp-6);border-bottom:1px solid var(--border)">
+            <div style="font-size:24px;margin-bottom:var(--sp-2)">👤</div>
+            <div style="font-weight:600" class="auth-user-name">Patient</div>
+            <div class="text-secondary" style="font-size:13px">Patient ID: #P-2024001</div>
+          </div>
+          <nav style="padding:var(--sp-4)">
+            <a class="sidebar-link active" data-section="overview" href="javascript:void(0)">📊 Overview</a>
+            <a class="sidebar-link" data-section="appointments" href="javascript:void(0)">📅 Appointments</a>
+            <a class="sidebar-link" data-section="prescriptions" href="javascript:void(0)">💊 Prescriptions</a>
+            <a class="sidebar-link" data-section="labs" href="javascript:void(0)">🔬 Lab Results</a>
+            <a class="sidebar-link" data-section="vaccinations" href="javascript:void(0)">💉 Vaccinations</a>
+            <a class="sidebar-link" data-section="profile" href="javascript:void(0)">⚙️ Profile</a>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main" id="dashContent">
+          <p class="text-secondary">Loading...</p>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authOverlay" onclick="if(event.target===this) Auth.closeModal()">
+    <div class="modal auth-modal">
+      <div class="modal-header">
+        <h3>Welcome to MediCare</h3>
+        <button class="btn btn-icon btn-ghost" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button>
+        <button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button>
+      </div>
+      <form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)">
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" name="email" type="email" value="tahsan@medicare.com" required></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" name="password" type="password" value="demo1234" required></div>
+        <button class="btn btn-primary btn-md" style="width:100%">Login</button>
+      </form>
+      <form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)">
+        <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" name="name" required></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" name="email" type="email" required></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" name="password" type="password" required></div>
+        <button class="btn btn-primary btn-md" style="width:100%">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script defer src="js/data.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
+</html>

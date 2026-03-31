@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — HopeBridge</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="donate">
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4z" fill="currentColor" opacity="0.15"/><path d="M16 8c-2.2 0-4 1.8-4 4 0 4 4 8 4 8s4-4 4-8c0-2.2-1.8-4-4-4zm0 5.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" fill="currentColor"/><path d="M10 20c-1.7 1.3-2 3-2 3h16s-.3-1.7-2-3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg> HopeBridge</a>
+      <nav class="header-nav">
+        <a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay"></div>
+  <div class="drawer"><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button><nav class="drawer-nav"><a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a></nav></div>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="donate-layout">
+          <h1 class="page-title" style="text-align:center">Make a Donation</h1>
+          <p class="page-subtitle" style="text-align:center">Your generosity changes lives</p>
+
+          <!-- Step Indicator -->
+          <div class="step-indicator">
+            <div class="step-circle active">1</div>
+            <div class="step-line"></div>
+            <div class="step-circle">2</div>
+            <div class="step-line"></div>
+            <div class="step-circle">3</div>
+          </div>
+
+          <!-- Step 1: Amount -->
+          <div class="donate-step active" data-step="1">
+            <h2>Choose Amount</h2>
+            <div class="form-group">
+              <label>Campaign</label>
+              <select id="campaignSelect"></select>
+            </div>
+            <div id="amountGrid" class="amount-grid"></div>
+            <div class="custom-amount">
+              <span class="prefix">৳</span>
+              <input type="number" id="customAmount" placeholder="Custom amount (min ৳100)" min="100">
+            </div>
+            <div class="frequency-toggle">
+              <label><input type="radio" name="frequency" value="onetime" checked> One-time</label>
+              <label><input type="radio" name="frequency" value="monthly"> Monthly</label>
+            </div>
+            <div style="margin-top:var(--sp-8);text-align:right">
+              <button class="btn btn-primary btn-lg btn-next">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Information -->
+          <div class="donate-step" data-step="2">
+            <h2>Your Information</h2>
+            <div class="form-row">
+              <div class="form-group"><label>Full Name *</label><input type="text" id="donorName" value="Tahsan Islam" required></div>
+              <div class="form-group"><label>Email *</label><input type="email" id="donorEmail" value="tahsan@hopebridge.org" required></div>
+            </div>
+            <div class="form-group"><label>Phone</label><input type="tel" id="donorPhone" value="+880 1712-345678"></div>
+            <div class="form-group"><label>Dedication Message (optional)</label><input type="text" id="donorDedication" placeholder="In honor of..."></div>
+            <div class="form-group" style="margin-top:var(--sp-2)">
+              <label style="display:flex;align-items:center;gap:var(--sp-2);cursor:pointer"><input type="checkbox" id="donorAnon"> Donate anonymously</label>
+            </div>
+            <div style="margin-top:var(--sp-8);display:flex;justify-content:space-between">
+              <button class="btn btn-ghost btn-lg btn-prev">← Back</button>
+              <button class="btn btn-primary btn-lg btn-next">Continue →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment -->
+          <div class="donate-step" data-step="3">
+            <h2>Payment & Confirm</h2>
+            <p style="margin-bottom:var(--sp-4);color:var(--color-text-secondary)">Select payment method:</p>
+            <div class="payment-methods">
+              <div class="payment-method" data-method="bKash">📱 bKash</div>
+              <div class="payment-method" data-method="Nagad">📱 Nagad</div>
+              <div class="payment-method" data-method="Card">💳 Card</div>
+              <div class="payment-method" data-method="Bank">🏦 Bank</div>
+            </div>
+            <div class="donation-summary" id="donationSummary"></div>
+            <div style="display:flex;justify-content:space-between">
+              <button class="btn btn-ghost btn-lg btn-prev">← Back</button>
+              <button class="btn btn-donate btn-lg btn-next" style="font-size:1rem">❤ Complete Donation</button>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div class="donate-success">
+            <div class="success-icon">🎉</div>
+            <h2>Thank You for Your Generous Donation!</h2>
+            <p>Your donation of <strong id="successAmount"></strong> will help</p>
+            <p><strong id="successCampaign"></strong></p>
+            <div class="receipt-id" id="successReceipt"></div>
+            <div class="success-actions">
+              <a href="index.html" class="btn btn-primary">Back to Home</a>
+              <button class="btn btn-outline" onclick="window.print()">Print Receipt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="confetti-container"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 HopeBridge. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

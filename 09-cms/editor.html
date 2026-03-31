@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Editor — SiteCraft CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sidebar-overlay"></div>
+<aside class="sidebar">
+  <div class="sidebar-header"><div class="sidebar-logo"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="var(--color-accent)"/><path d="M10 22V10h4l4 6 4-6h4v12h-4v-7l-4 5-4-5v7z" fill="#fff"/></svg><span>SiteCraft</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+      <a href="index.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+      <a href="builder.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg><span>Page Builder</span></a>
+      <a href="pages.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Pages</span></a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content</div>
+      <a href="posts.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Blog Posts</span></a>
+      <a href="editor.html" class="sidebar-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span>New Post</span></a>
+      <a href="media.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Media Library</span></a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Customize</div>
+      <a href="seo.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>SEO</span></a>
+      <a href="templates.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg><span>Templates</span></a>
+      <a href="theme.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg><span>Theme</span></a>
+      <a href="settings.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Settings</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer"><div class="sidebar-user" onclick="Auth.isLoggedIn() ? Auth.logout() : Auth.openModal()"><div class="avatar user-avatar">TI</div><div><div class="user-name">Tahsan Islam</div><div class="user-email">tahsan@sitecraft.io</div></div></div></div>
+</aside>
+
+<main class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger-btn" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="breadcrumb"><span>SiteCraft</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span>Posts</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span class="active">New Post</span></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-icon" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <button class="btn btn-secondary btn-sm" onclick="Editor.savePost()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Draft</button>
+      <button class="btn btn-primary btn-sm" onclick="Editor.publishPost()">Publish</button>
+    </div>
+  </header>
+
+  <div class="page-content">
+    <div class="editor-layout">
+      <!-- Editor Main -->
+      <div class="editor-main">
+        <input type="text" class="editor-title-input" placeholder="Post title..." value="Getting Started with SiteCraft">
+
+        <!-- Toolbar -->
+        <div class="editor-toolbar">
+          <button data-cmd="bold" title="Bold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg></button>
+          <button data-cmd="italic" title="Italic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg></button>
+          <button data-cmd="underline" title="Underline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg></button>
+          <button data-cmd="strikeThrough" title="Strikethrough"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="4" y1="12" x2="20" y2="12"/><path d="M17.5 7.5C17 5 14.5 4 12 4c-2 0-4 1-4 3.5 0 5 9 3.5 9 8.5 0 2.5-2.5 4-5.5 4-2.5 0-4.5-1-5.5-3"/></svg></button>
+          <span class="toolbar-sep"></span>
+          <button data-cmd="insertUnorderedList" title="Bullet List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+          <button data-cmd="insertOrderedList" title="Numbered List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4"/><path d="M4 10h2"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></button>
+          <span class="toolbar-sep"></span>
+          <button onclick="document.execCommand('createLink',false,prompt('Enter URL:'))" title="Insert Link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+          <button onclick="Toast.show('Image picker would open here','info')" title="Insert Image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></button>
+          <button onclick="document.execCommand('formatBlock',false,'blockquote')" title="Quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"/></svg></button>
+          <button onclick="document.execCommand('formatBlock',false,'pre')" title="Code Block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="editor-body" contenteditable="true">
+          <p>Welcome to the SiteCraft post editor! This is a rich text editor where you can create beautiful blog posts for your website.</p>
+          <h2>Getting Started</h2>
+          <p>SiteCraft makes it easy to build and manage your website. Here are the key features:</p>
+          <ul>
+            <li><strong>Drag & Drop Page Builder</strong> — Build stunning pages without writing a single line of code</li>
+            <li><strong>Visual Theme Editor</strong> — Customize colors, fonts, and spacing in real-time</li>
+            <li><strong>SEO Tools</strong> — Optimize every page for search engines</li>
+            <li><strong>Media Library</strong> — Manage all your images and assets in one place</li>
+          </ul>
+          <h2>Why Choose SiteCraft?</h2>
+          <p>Our platform is designed for creators, businesses, and agencies who want full control over their web presence without the complexity of traditional CMS platforms.</p>
+          <blockquote>"SiteCraft transformed how we build websites for our clients. What used to take weeks now takes days." — Sarah Chen, Web Agency Owner</blockquote>
+          <p>Start building your dream website today!</p>
+        </div>
+      </div>
+
+      <!-- Editor Sidebar -->
+      <div class="editor-sidebar">
+        <div class="card">
+          <div class="card-header"><h3>Post Settings</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option>Draft</option>
+                <option>Published</option>
+                <option>Scheduled</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select">
+                <option>Getting Started</option>
+                <option>Design</option>
+                <option>Development</option>
+                <option>SEO</option>
+                <option>Marketing</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tags</label>
+              <input type="text" class="form-input" placeholder="Add tags, comma separated" value="beginner, tutorial, cms">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Publish Date</label>
+              <input type="date" class="form-input" value="2025-01-15">
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:var(--sp-4)">
+          <div class="card-header"><h3>Featured Image</h3></div>
+          <div class="card-body">
+            <div class="media-drop-zone" style="min-height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="Toast.show('Image picker would open here','info')">
+              <div style="text-align:center;color:var(--color-text-muted)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;margin:0 auto 8px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p style="font-size:13px">Click to select image</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:var(--sp-4)">
+          <div class="card-header"><h3>SEO Preview</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Meta Title</label>
+              <input type="text" class="form-input" value="Getting Started with SiteCraft - SiteCraft Blog">
+              <div class="form-hint">55/60 characters</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Meta Description</label>
+              <textarea class="form-input form-textarea" rows="3">Learn how to get started with SiteCraft CMS and build your first website in minutes.</textarea>
+              <div class="form-hint">87/160 characters</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL Slug</label>
+              <input type="text" class="form-input font-mono" value="getting-started-with-sitecraft" style="font-size:13px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Command Palette -->
+<div class="cmd-palette-overlay" id="cmdPalette"><div class="cmd-palette"><div class="cmd-palette-input-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Type a command or search..." oninput="CommandPalette.render(this.value)"></div><div class="cmd-palette-results"></div><div class="cmd-palette-footer"><kbd>↑↓</kbd> Navigate <kbd>↵</kbd> Select <kbd>Esc</kbd> Close</div></div></div>
+
+<!-- Auth Modal -->
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h2 class="auth-title">Welcome to SiteCraft</h2><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Sign In</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" placeholder="you@example.com" value="tahsan@sitecraft.io"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" placeholder="••••••••" value="password123"></div><button type="submit" class="btn btn-primary" style="width:100%">Sign In</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Full Name</label><input name="name" type="text" class="form-input" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" placeholder="you@example.com"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" placeholder="••••••••"></div><button type="submit" class="btn btn-primary" style="width:100%">Create Account</button></form></div></div>
+
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

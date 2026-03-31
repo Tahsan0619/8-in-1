@@ -79,6 +79,7 @@ body {
   background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   transition: background 0.2s, color 0.2s;
+  overflow-x: hidden;
 }
 
 a { color: inherit; text-decoration: none; }

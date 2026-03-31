@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership — FitZone Gym</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="membership">
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><svg viewBox="0 0 36 36" fill="none" style="width:36px;height:36px"><rect width="36" height="36" rx="8" fill="#7C3AED"/><path d="M10 18h4v-8h8v8h4M10 18v8h4v-4h8v4h4v-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>FitZone</span></a>
+    <nav class="nav"><a href="index.html" class="nav-link">Home</a><a href="classes.html" class="nav-link">Classes</a><a href="trainers.html" class="nav-link">Trainers</a><a href="membership.html" class="nav-link active">Membership</a><a href="bmi.html" class="nav-link">BMI</a></nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <div class="auth-logged" style="display:flex;align-items:center;gap:.5rem"><span class="auth-user-name" style="font-size:14px;font-weight:500"></span><button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button></div>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer"><div class="drawer-header" style="display:flex;justify-content:space-between;align-items:center"><span class="logo">💪 FitZone</span><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><nav class="drawer-nav"><a href="index.html">Home</a><a href="classes.html">Classes</a><a href="trainers.html">Trainers</a><a href="membership.html">Membership</a><a href="bmi.html">BMI Calculator</a><a href="planner.html">Workout Planner</a><a href="dashboard.html">Dashboard</a></nav></div>
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h3 class="auth-title">Welcome to FitZone</h3><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" value="tahsan@fitzone.bd" required></div><div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" value="demo123" required></div><button class="btn btn-primary btn-md w-full">Login</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><input class="form-input" type="text" name="name" placeholder="Full Name" required></div><div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" required></div><div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" required></div><button class="btn btn-primary btn-md w-full">Create Account</button></form></div></div>
+
+<main>
+  <!-- Hero -->
+  <section class="section" style="background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;text-align:center;padding:4rem 0">
+    <div class="container">
+      <h1 class="hero-title" style="color:#fff;font-size:2.5rem">Choose Your Plan</h1>
+      <p class="hero-subtitle" style="color:rgba(255,255,255,.85);margin:.5rem auto 2rem;max-width:500px">Flexible memberships for every fitness level. Start your transformation today.</p>
+      <div class="billing-toggle">
+        <span class="billing-label active" id="monthlyLabel">Monthly</span>
+        <button class="billing-switch" id="billingSwitch" aria-label="Toggle billing"><span class="billing-knob"></span></button>
+        <span class="billing-label" id="yearlyLabel">Yearly <span class="billing-save">Save 20%</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section class="section" style="margin-top:-2rem">
+    <div class="container">
+      <div class="pricing-grid" id="pricingGrid"></div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title text-center mb-8">Feature Comparison</h2>
+      <div class="feature-comparison" id="comparisonTable"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width:720px">
+      <h2 class="section-title text-center mb-8">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item"><button class="faq-question">Can I switch plans anytime?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon" style="width:20px;height:20px"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect from the next billing cycle.</p></div></div>
+        <div class="faq-item"><button class="faq-question">Is there a joining fee?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon" style="width:20px;height:20px"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>No joining fee! Just pick a plan and start training. We believe fitness should be accessible.</p></div></div>
+        <div class="faq-item"><button class="faq-question">Can I freeze my membership?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon" style="width:20px;height:20px"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Pro and Elite members can freeze their membership for up to 30 days per year at no cost.</p></div></div>
+        <div class="faq-item"><button class="faq-question">What's included in personal training?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon" style="width:20px;height:20px"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Personal training includes one-on-one sessions with a certified trainer, a customized workout plan, nutrition guidance, and monthly progress assessments.</p></div></div>
+        <div class="faq-item"><button class="faq-question">Do you offer student discounts?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon" style="width:20px;height:20px"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><p>Yes! Students get 15% off any plan with a valid student ID. Contact reception for details.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg-card);text-align:center;padding:4rem 0">
+    <div class="container">
+      <h2 class="section-title">Ready to Start?</h2>
+      <p style="color:var(--text-secondary);max-width:500px;margin:.5rem auto 1.5rem">Join 1,200+ members who've transformed their lives at FitZone.</p>
+      <a href="#pricingGrid" class="btn btn-primary btn-lg">Get Started Now</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo">💪 FitZone</span><p>Dhaka's premier fitness destination at Jamuna Future Park.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><a href="classes.html">Classes</a><a href="trainers.html">Trainers</a><a href="membership.html">Membership</a></div>
+      <div class="footer-col"><h4>Members</h4><a href="planner.html">Workout Planner</a><a href="dashboard.html">Dashboard</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="#">Jamuna Future Park, Dhaka</a><a href="#">+880 1234-567890</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 FitZone Gym. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script defer src="js/data.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

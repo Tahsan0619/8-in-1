@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Resources — JobConnect BD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="resources">
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="#2563EB"/><path d="M8 19V9h3c2.2 0 3.5 1.2 3.5 3s-1.3 3-3.5 3H10v4H8zm2-6h1c.8 0 1.5-.4 1.5-1s-.7-1-1.5-1h-1v2zm7-4h2v6.5c0 2-1.2 3.5-3.5 3.5S12 17.5 12 15.5h2c0 .9.5 1.5 1.5 1.5s1.5-.6 1.5-1.5V9z" fill="#fff"/></svg> JobConnect BD</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="search.html" class="nav-link">Jobs</a>
+        <a href="companies.html" class="nav-link">Companies</a>
+        <a href="salary.html" class="nav-link">Salaries</a>
+        <a href="resources.html" class="nav-link active">Resources</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn btn-icon theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+        <button class="btn btn-primary btn-sm auth-login-btn">Sign In</button>
+        <button class="btn btn-ghost btn-sm auth-logout-btn" style="display:none" onclick="Auth.logout()">Logout</button>
+        <button class="hamburger" aria-label="Menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer"><button class="drawer-close">✕</button><nav class="drawer-nav"><a href="index.html">Home</a><a href="search.html">Jobs</a><a href="companies.html">Companies</a><a href="salary.html">Salaries</a><a href="resources.html">Resources</a></nav></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Resources</span></div>
+      <div class="section-header"><h1 class="section-title">Career Resources</h1></div>
+
+      <!-- Category Tabs -->
+      <div class="tabs mb-6">
+        <button class="tab-btn resource-tab active" data-category="All">All</button>
+        <button class="tab-btn resource-tab" data-category="Resume Tips">Resume Tips</button>
+        <button class="tab-btn resource-tab" data-category="Interview Prep">Interview Prep</button>
+        <button class="tab-btn resource-tab" data-category="Career Growth">Career Growth</button>
+        <button class="tab-btn resource-tab" data-category="Industry Insights">Industry Insights</button>
+      </div>
+
+      <div class="resource-grid" id="resourceGrid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="logo" style="margin-bottom:.5rem"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="#2563EB"/><path d="M8 19V9h3c2.2 0 3.5 1.2 3.5 3s-1.3 3-3.5 3H10v4H8zm2-6h1c.8 0 1.5-.4 1.5-1s-.7-1-1.5-1h-1v2zm7-4h2v6.5c0 2-1.2 3.5-3.5 3.5S12 17.5 12 15.5h2c0 .9.5 1.5 1.5 1.5s1.5-.6 1.5-1.5V9z" fill="#fff"/></svg> JobConnect BD</div><p>Bangladesh's premier job board connecting talent with opportunity.</p></div>
+        <div class="footer-col"><h4>Job Seekers</h4><a href="search.html">Browse Jobs</a><a href="companies.html">Companies</a><a href="salary.html">Salary Insights</a></div>
+        <div class="footer-col"><h4>Employers</h4><a href="post-job.html">Post a Job</a><a href="employer.html">Dashboard</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Contact</a><a href="#">Privacy</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 JobConnect BD. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close">✕</button><h2 class="auth-title">Welcome to JobConnect BD</h2><div class="auth-tabs"><button class="auth-tab active" data-tab="login">Login</button><button class="auth-tab" data-tab="signup">Sign Up</button></div><form class="auth-form active" id="auth-login"><div class="form-group"><label class="form-label">Email</label><input class="form-input" name="email" type="email" value="tahsan@jobconnect.bd" required></div><div class="form-group"><label class="form-label">Password</label><input class="form-input" name="password" type="password" value="demo1234" required></div><button type="submit" class="btn btn-primary btn-md w-full" id="loginForm">Sign In</button></form><form class="auth-form" id="auth-signup"><div class="form-group"><label class="form-label">Full Name</label><input class="form-input" name="name" required></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" name="email" type="email" required></div><div class="form-group"><label class="form-label">Password</label><input class="form-input" name="password" type="password" required></div><button type="submit" class="btn btn-primary btn-md w-full" id="signupForm">Create Account</button></form></div></div>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

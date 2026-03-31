@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — BazarBD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header-logo"><svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="currentColor" opacity=".15"/><path d="M7 8h14M7 14h14M7 20h10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg> BazarBD</a>
+      <div class="header-search">
+        <select><option>All</option></select>
+        <input type="text" placeholder="Search products...">
+        <button aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      </div>
+      <div class="header-nav"><a href="browse.html">Browse</a><a href="sell.html">Sell</a></div>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="cart-badge" style="display:none">0</span></a>
+        <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay"></div>
+  <div class="drawer"><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button><nav class="drawer-nav"><a href="index.html">Home</a><a href="browse.html">Browse</a><a href="cart.html">Cart</a></nav></div>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1 class="page-title">Checkout</h1>
+        <div class="checkout-layout">
+          <div class="step-indicator">
+            <div class="step-circle active" data-step="1">1</div>
+            <div class="step-line"></div>
+            <div class="step-circle" data-step="2">2</div>
+            <div class="step-line"></div>
+            <div class="step-circle" data-step="3">3</div>
+          </div>
+          <div class="step-labels">
+            <span>Shipping Address</span>
+            <span>Delivery Options</span>
+            <span>Payment &amp; Review</span>
+          </div>
+
+          <!-- Step 1: Address -->
+          <div class="checkout-step active" id="step1">
+            <h2>Shipping Address</h2>
+            <form class="form-grid" id="addressForm">
+              <div class="form-group"><label>Full Name</label><input type="text" id="addrName" required></div>
+              <div class="form-group"><label>Phone</label><input type="tel" id="addrPhone" required></div>
+              <div class="form-group full"><label>Address</label><input type="text" id="addrAddress" required></div>
+              <div class="form-group"><label>Area</label><input type="text" id="addrArea"></div>
+              <div class="form-group"><label>District</label><input type="text" id="addrDistrict" required></div>
+              <div class="form-group"><label>Division</label>
+                <select id="addrDivision" required>
+                  <option value="">Select Division</option>
+                  <option>Dhaka</option><option>Chittagong</option><option>Rajshahi</option><option>Khulna</option>
+                  <option>Barisal</option><option>Sylhet</option><option>Rangpur</option><option>Mymensingh</option>
+                </select>
+              </div>
+              <div class="form-group"><label>ZIP Code</label><input type="text" id="addrZip"></div>
+              <div class="form-group full"><label><input type="checkbox" id="saveAddr"> Save this address</label></div>
+              <div class="form-actions full"><button type="submit" class="btn btn-primary">Continue to Delivery →</button></div>
+            </form>
+          </div>
+
+          <!-- Step 2: Shipping -->
+          <div class="checkout-step" id="step2">
+            <h2>Delivery Options</h2>
+            <div id="shippingOptions"></div>
+            <div class="checkout-nav">
+              <button class="btn btn-outline" data-prev="1">← Back</button>
+              <button class="btn btn-primary" data-next="3">Continue to Payment →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment & Review -->
+          <div class="checkout-step" id="step3">
+            <h2>Payment Method</h2>
+            <div class="payment-methods">
+              <div class="payment-method active" data-method="bkash">
+                <strong>bKash</strong><p>Pay with bKash mobile wallet</p>
+              </div>
+              <div class="payment-method" data-method="nagad">
+                <strong>Nagad</strong><p>Pay with Nagad</p>
+              </div>
+              <div class="payment-method" data-method="card">
+                <strong>Card</strong><p>Credit / Debit card</p>
+              </div>
+              <div class="payment-method" data-method="cod">
+                <strong>COD</strong><p>Cash on delivery</p>
+              </div>
+            </div>
+            <h2>Order Review</h2>
+            <div id="orderReview"></div>
+            <div class="checkout-nav">
+              <button class="btn btn-outline" data-prev="2">← Back</button>
+              <button class="btn btn-primary btn-lg" id="placeOrderBtn">Place Order</button>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div class="checkout-step" id="stepSuccess" style="display:none">
+            <div class="order-success" id="orderSuccess"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>About BazarBD</h4><p>Bangladesh's largest multi-vendor marketplace.</p></div>
+        <div class="footer-col"><h4>Sell</h4><ul class="footer-links"><li><a href="sell.html">Start Selling</a></li></ul></div>
+        <div class="footer-col"><h4>Help</h4><ul class="footer-links"><li><a href="order.html">Track Order</a></li></ul></div>
+        <div class="footer-col"><h4>Payments</h4><div class="footer-payments">💳 bKash · Nagad · Visa · COD</div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 BazarBD</p></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg></button>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

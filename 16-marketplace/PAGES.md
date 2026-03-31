@@ -1,0 +1,347 @@
+# Marketplace — Page Layouts
+
+---
+
+## Homepage Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER: Logo | Categories ▼ | [🔍 Search...] | 🛒 (3) │
+│  Wishlist ♡ | Sell on BazarBD | Account ▼ | 🌓          │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐    │
+│  │           HERO BANNER CAROUSEL (Swiper)          │    │
+│  │                                                  │    │
+│  │   Mega Sale — Up to 60% Off                      │    │
+│  │   [Shop Now]                                     │    │
+│  │   ● ○ ○                                          │    │
+│  └─────────────────────────────────────────────────┘    │
+│                                                         │
+│  ─── CATEGORIES ──────────────────────────              │
+│  [👕Fashion] [📱Electronics] [🏠Home] [📚Books]         │
+│  [🎮Gaming] [💄Beauty] [🥗Grocery] [⚽Sports]           │
+│                                                         │
+│  ─── FLASH DEALS ──────────────────── ⏰ Ends in 05:32  │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐         │
+│  │ 📷   │ │ 📷   │ │ 📷   │ │ 📷   │ │ 📷   │         │
+│  │Watch │ │Bag   │ │Phone │ │Shoes │ │Book  │         │
+│  │৳2,500│ │৳1,800│ │৳15K  │ │৳3,200│ │৳450  │         │
+│  │-40%  │ │-25%  │ │-15%  │ │-30%  │ │-20%  │         │
+│  └──────┘ └──────┘ └──────┘ └──────┘ └──────┘         │
+│                                                         │
+│  ─── TOP SELLERS ──────────────────── View All          │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐   │
+│  │ 📷 Logo  │ │ 📷 Logo  │ │ 📷 Logo  │ │ 📷 Logo  │   │
+│  │ TechBD   │ │ FashionX │ │ HomeNest │ │ BookWorm │   │
+│  │ ★4.8     │ │ ★4.7     │ │ ★4.9     │ │ ★4.6     │   │
+│  │ ✓Verified│ │ ✓Verified│ │ 🏆 Top   │ │ ✓Verified│   │
+│  │ [Visit]  │ │ [Visit]  │ │ [Visit]  │ │ [Visit]  │   │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘   │
+│                                                         │
+│  ─── RECOMMENDED FOR YOU ────────────── View All        │
+│  [ProductCard] [ProductCard] [ProductCard] [ProductCard] │
+│                                                         │
+│  ─── RECENTLY VIEWED ───────────────── Clear            │
+│  [ProductCard] [ProductCard] [ProductCard]               │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER: About | Sell | Help | Returns | Privacy | ©    │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Browse / Search Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Search Results for "wireless headphones" (42 results)  │
+│                                                         │
+│  ┌────────────┬────────────────────────────────────┐    │
+│  │  FILTERS   │  Sort: [Relevance ▼]  View: ▦ ☰   │    │
+│  │            │                                    │    │
+│  │ Category   │  ┌────────┐ ┌────────┐ ┌────────┐ │    │
+│  │ ☐ Audio    │  │ 📷     │ │ 📷     │ │ 📷     │ │    │
+│  │ ☐ Gaming   │  │ Wire-  │ │ BT     │ │ Pro    │ │    │
+│  │            │  │ less   │ │ Earbuds│ │ Headph │ │    │
+│  │ Price      │  │ ★★★★☆  │ │ ★★★★★  │ │ ★★★★☆  │ │    │
+│  │ ৳[__]-[__] │  │ ৳2,500 │ │ ৳1,800 │ │ ৳5,200 │ │    │
+│  │ [Apply]    │  │ TechBD │ │ SoundX │ │ AudioP │ │    │
+│  │            │  │ ♡ 🛒   │ │ ♡ 🛒   │ │ ♡ 🛒   │ │    │
+│  │ Rating     │  └────────┘ └────────┘ └────────┘ │    │
+│  │ ☐ ★★★★★   │                                    │    │
+│  │ ☐ ★★★★ +  │  ┌────────┐ ┌────────┐ ┌────────┐ │    │
+│  │ ☐ ★★★ +   │  │  ...   │ │  ...   │ │  ...   │ │    │
+│  │            │  └────────┘ └────────┘ └────────┘ │    │
+│  │ Seller     │                                    │    │
+│  │ ☐ Verified │  Page: [1] 2 3 4 ... 7 →          │    │
+│  │ ☐ Top Rated│                                    │    │
+│  └────────────┴────────────────────────────────────┘    │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Product Detail Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Electronics > Audio > Wireless Headphones              │
+│                                                         │
+│  ┌────────────────────┬────────────────────────────┐    │
+│  │                    │ ProSound Wireless X50       │    │
+│  │  [Main Image]      │ by TechBD ✓ Verified       │    │
+│  │  (Swiper Gallery)  │ ★★★★☆ 4.3 (128 reviews)   │    │
+│  │                    │                            │    │
+│  │  [□][□][□][□]      │ ৳3,500  ̶৳̶5̶,̶0̶0̶0̶ -30%     │    │
+│  │  (thumbnails)      │                            │    │
+│  │                    │ Color: ● Black ○ White ○ Blue│   │
+│  │                    │ Variant: [Standard ▼]      │    │
+│  │                    │                            │    │
+│  │                    │ Qty: [-] 1 [+]             │    │
+│  │                    │ In Stock (12 left)         │    │
+│  │                    │                            │    │
+│  │                    │ [Add to Cart 🛒] [Buy Now] │    │
+│  │                    │ [♡ Wishlist] [↗ Compare]   │    │
+│  └────────────────────┴────────────────────────────┘    │
+│                                                         │
+│  ── SELLER INFO ──                                      │
+│  📦 TechBD ✓ │ ★4.8 │ 1,200 products │ [Visit Store]   │
+│  Ships from: Dhaka │ Delivery: 3-5 days │ Returns: 7d   │
+│                                                         │
+│  ── TABS: [Description] [Specifications] [Reviews] ──  │
+│  Description: Lorem ipsum...                            │
+│  Specifications: Brand, Model, Battery, Connectivity... │
+│                                                         │
+│  ── REVIEWS (128) ──                                    │
+│  ★★★★★ (45%) ████████████░░░░                           │
+│  ★★★★☆ (30%) ████████░░░░░░░                            │
+│  ...                                                    │
+│  [ReviewCard with photo] [ReviewCard] [ReviewCard]      │
+│  [Load More Reviews]                                    │
+│                                                         │
+│  ── YOU MAY ALSO LIKE ──                                │
+│  [ProductCard] [ProductCard] [ProductCard] [ProductCard] │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Seller Storefront Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────┐    │
+│  │  STORE BANNER (custom image)                    │    │
+│  │  ┌──────┐  TechBD ✓ Verified                   │    │
+│  │  │ LOGO │  "Quality electronics at best prices" │    │
+│  │  └──────┘  ★4.8 │ 1,200 products │ Since 2023  │    │
+│  │            [Follow] [Chat]                      │    │
+│  └─────────────────────────────────────────────────┘    │
+│                                                         │
+│  [All] [Best Sellers] [New Arrivals] [On Sale]          │
+│                                                         │
+│  Sort: [Popular ▼]  Search in store: [_________ 🔍]    │
+│                                                         │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐           │
+│  │Product │ │Product │ │Product │ │Product │           │
+│  │Card    │ │Card    │ │Card    │ │Card    │           │
+│  └────────┘ └────────┘ └────────┘ └────────┘           │
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐           │
+│  │Product │ │Product │ │Product │ │Product │           │
+│  │Card    │ │Card    │ │Card    │ │Card    │           │
+│  └────────┘ └────────┘ └────────┘ └────────┘           │
+│                                                         │
+│  ── STORE REVIEWS ──                                    │
+│  [SellerReview] [SellerReview] [SellerReview]           │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Cart Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Shopping Cart (5 items from 3 sellers)                  │
+│                                                         │
+│  ┌─────────────────────────────────────┬───────────┐    │
+│  │  📦 Sold by: TechBD ✓              │            │    │
+│  │  ┌───┬─────────────────────────┐   │  ORDER     │    │
+│  │  │ 📷│ ProSound X50 - Black    │   │  SUMMARY   │    │
+│  │  │   │ ৳3,500 × 1  = ৳3,500   │   │            │    │
+│  │  │   │ [-] 1 [+]  [🗑] [♡]    │   │  Items (5) │    │
+│  │  └───┴─────────────────────────┘   │  ৳12,200   │    │
+│  │  ┌───┬─────────────────────────┐   │            │    │
+│  │  │ 📷│ USB-C Cable             │   │  Shipping  │    │
+│  │  │   │ ৳350 × 2   = ৳700      │   │  ৳250      │    │
+│  │  │   │ [-] 2 [+]  [🗑] [♡]    │   │  (3 vendors│    │
+│  │  └───┴─────────────────────────┘   │            │    │
+│  │  Subtotal (TechBD): ৳4,200        │  Discount  │    │
+│  │  Shipping: ৳80                     │  -৳500     │    │
+│  ├─────────────────────────────────────┤            │    │
+│  │  📦 Sold by: FashionX ✓           │  ──────────│    │
+│  │  ┌───┬─────────────────────────┐   │  Total     │    │
+│  │  │ 📷│ Leather Watch - Brown   │   │  ৳11,950   │    │
+│  │  │   │ ৳5,000 × 1  = ৳5,000   │   │            │    │
+│  │  └───┴─────────────────────────┘   │  Promo:    │    │
+│  │  Subtotal (FashionX): ৳5,000      │  [______]  │    │
+│  │  Shipping: ৳100                    │  [Apply]   │    │
+│  ├─────────────────────────────────────┤            │    │
+│  │  📦 Sold by: BookWorm             │  [Proceed  │    │
+│  │  ...                              │   to        │    │
+│  └─────────────────────────────────────┤  Checkout] │    │
+│                                        └───────────┘    │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Checkout Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Checkout                                               │
+│  ───── Step 1 ●─── Step 2 ○─── Step 3 ○                │
+│                                                         │
+│  STEP 1 — Shipping Address                              │
+│  Name, Phone, Address, Area/District, Division, Zip     │
+│  ☐ Save this address for future orders                  │
+│                                                         │
+│  STEP 2 — Shipping & Delivery                           │
+│  ┌──────────────────────────────────────────────┐       │
+│  │ 📦 TechBD — 2 items                          │       │
+│  │ (●) Standard Delivery ৳80 (3-5 days)         │       │
+│  │ (○) Express Delivery ৳150 (1-2 days)         │       │
+│  ├──────────────────────────────────────────────┤       │
+│  │ 📦 FashionX — 1 item                         │       │
+│  │ (●) Standard Delivery ৳100 (3-5 days)        │       │
+│  │ (○) Express Delivery ৳200 (1-2 days)         │       │
+│  └──────────────────────────────────────────────┘       │
+│                                                         │
+│  STEP 3 — Payment & Confirm                             │
+│  Payment: bKash / Nagad / Card / COD                    │
+│  Order Summary: items, shipping per vendor, total       │
+│  [Place Order ৳11,950]                                   │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Order Tracking Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Order #ORD-2026-0042                                   │
+│  Placed: Jan 15, 2026 │ Total: ৳11,950                 │
+│                                                         │
+│  ── SHIPMENT 1 of 2: TechBD ──                          │
+│  Status: [Confirmed]──[Shipped ●]──[Delivered ○]        │
+│  Items: ProSound X50 × 1, USB-C Cable × 2              │
+│  Tracking: #TRK-BD-12345                               │
+│  Estimated: Jan 18-20, 2026                             │
+│                                                         │
+│  ── SHIPMENT 2 of 2: FashionX ──                        │
+│  Status: [Confirmed]──[Processing ●]──[Shipped ○]──    │
+│  Items: Leather Watch × 1                               │
+│  Estimated: Jan 19-21, 2026                             │
+│                                                         │
+│  ── ORDER ITEMS ──                                      │
+│  │ Product         │ Seller   │ Qty │ Price   │ Status │ │
+│  │ ProSound X50    │ TechBD   │ 1   │ ৳3,500 │ Shipped│ │
+│  │ USB-C Cable     │ TechBD   │ 2   │ ৳700   │ Shipped│ │
+│  │ Leather Watch   │ FashionX │ 1   │ ৳5,000 │ Process│ │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Seller Dashboard Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  SIDEBAR │  Seller Dashboard — TechBD                   │
+├──────────┤──────────────────────────────────────────────│
+│          │  ┌──────────┐ ┌──────────┐ ┌──────────┐     │
+│ 📊 Dash  │  │ Revenue  │ │ Orders   │ │ Products │     │
+│ 📦 Orders│  │ ৳485K    │ │ 342      │ │ 1,200    │     │
+│ 🏷 Products│ │ ↑12%    │ │ ↑8%     │ │ ↑24 new  │     │
+│ ⭐ Reviews│ └──────────┘ └──────────┘ └──────────┘     │
+│ 📈 Analytics│                                           │
+│ 💰 Earnings│ ── REVENUE CHART (Line, 30 days) ──       │
+│ ⚙ Store  │  [Chart.js line chart]                      │
+│ Settings │                                              │
+│          │  ── RECENT ORDERS ──                         │
+│          │  │ #0042 │ Tahsan │ ৳4,200 │ Shipped │ 2h  ││
+│          │  │ #0041 │ Nadia  │ ৳1,500 │ Pending │ 5h  ││
+│          │                                              │
+│          │  ── TOP PRODUCTS ──                           │
+│          │  │ ProSound X50   │ 84 sold │ ★4.3 │ ৳3,500││
+│          │  │ USB-C Cable    │ 210 sold│ ★4.7 │ ৳350  ││
+│          │                                              │
+│          │  ── LOW STOCK ALERTS ──                       │
+│          │  ⚠ BT Earbuds (3 left) │ ⚠ Phone Case (5)  │
+│          │                                              │
+└──────────┴──────────────────────────────────────────────┘
+```
+
+---
+
+## Become a Seller Layout
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  HEADER                                                 │
+├─────────────────────────────────────────────────────────┤
+│  Start Selling on BazarBD                               │
+│                                                         │
+│  ── WHY SELL WITH US ──                                  │
+│  [📈 Growing Market] [💰 Low Fees] [🚀 Easy Setup]      │
+│                                                         │
+│  ── HOW IT WORKS ──                                      │
+│  Step 1: Register → Step 2: Set Up Store → Step 3: List │
+│                                                         │
+│  ── SELLER REGISTRATION ──                               │
+│  Store Name, Owner Name, Email, Phone, NID Number       │
+│  Category: [Select primary category ▼]                  │
+│  Description: [About your store...]                     │
+│  □ I agree to seller terms & conditions                 │
+│  [Create My Store]                                       │
+│                                                         │
+│  ── SELLER SUCCESS STORIES ──                            │
+│  [Testimonial Card] [Testimonial Card]                  │
+│                                                         │
+├─────────────────────────────────────────────────────────┤
+│  FOOTER                                                 │
+└─────────────────────────────────────────────────────────┘
+```

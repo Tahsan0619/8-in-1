@@ -765,6 +765,119 @@
         btn.textContent = '👍 Helpful (' + count + ')';
         btn.style.color = 'var(--accent)';
       }
+    },
+
+    /* ── Modal Form Functions ── */
+    _openModal(title, bodyHTML) {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px)';
+      overlay.innerHTML = '<div style="background:var(--bg-primary,#fff);border:1px solid var(--border,#e5e7eb);border-radius:16px;width:90%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);animation:slideUp .2s ease"><div style="display:flex;justify-content:space-between;align-items:center;padding:20px 20px 0"><h3 style="margin:0;font-size:1.15rem">' + title + '</h3><button class="modal-x" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-secondary,#666);padding:4px 8px;border-radius:6px">&times;</button></div><div style="padding:20px">' + bodyHTML + '</div></div>';
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+      overlay.querySelector('.modal-x').addEventListener('click', () => overlay.remove());
+      return overlay;
+    },
+
+    _inputStyle: 'width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border,#e5e7eb);background:var(--bg-secondary,#f9fafb);color:var(--text-primary,#111);font-size:.9rem;box-sizing:border-box;',
+
+    askQuestion() {
+      const s = App._inputStyle;
+      const body = '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Title</label><input type="text" id="aq-title" style="' + s + '" placeholder="What\'s your question?"></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Details</label><textarea id="aq-body" rows="5" style="' + s + 'resize:vertical" placeholder="Provide more context..."></textarea></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Tags</label><input type="text" id="aq-tags" style="' + s + '" placeholder="javascript, react, performance"></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" id="aq-cancel">Cancel</button><button class="btn btn-primary" id="aq-submit">Post Question</button></div>';
+      const m = App._openModal('Ask a Question', body);
+      m.querySelector('#aq-cancel').onclick = () => m.remove();
+      m.querySelector('#aq-submit').onclick = () => {
+        const title = m.querySelector('#aq-title').value.trim();
+        if (!title) { showToast('Please enter a title', 'warning'); return; }
+        m.remove();
+        showToast('Question posted successfully!', 'success');
+      };
+    },
+
+    postJob() {
+      const s = App._inputStyle;
+      const body = '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Job Title</label><input type="text" id="pj-title" style="' + s + '" placeholder="e.g. Senior Frontend Developer"></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Company</label><input type="text" id="pj-company" style="' + s + '"></div><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Location</label><input type="text" id="pj-location" style="' + s + '" placeholder="Remote / City"></div></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Type</label><select id="pj-type" style="' + s + '"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Freelance</option></select></div><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Salary Range</label><input type="text" id="pj-salary" style="' + s + '" placeholder="e.g. $80K - $120K"></div></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Description</label><textarea id="pj-desc" rows="4" style="' + s + 'resize:vertical"></textarea></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" id="pj-cancel">Cancel</button><button class="btn btn-primary" id="pj-submit">Post Job</button></div>';
+      const m = App._openModal('Post a Job', body);
+      m.querySelector('#pj-cancel').onclick = () => m.remove();
+      m.querySelector('#pj-submit').onclick = () => {
+        const title = m.querySelector('#pj-title').value.trim();
+        const company = m.querySelector('#pj-company').value.trim();
+        if (!title || !company) { showToast('Title and company are required', 'warning'); return; }
+        m.remove();
+        showToast('Job posted successfully!', 'success');
+      };
+    },
+
+    addListing() {
+      const s = App._inputStyle;
+      const body = '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Business Name</label><input type="text" id="al-name" style="' + s + '"></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Category</label><select id="al-cat" style="' + s + '"><option>Tech</option><option>Food</option><option>Education</option><option>Health</option><option>Services</option></select></div><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Location</label><input type="text" id="al-loc" style="' + s + '"></div></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Description</label><textarea id="al-desc" rows="3" style="' + s + 'resize:vertical"></textarea></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Website</label><input type="url" id="al-web" style="' + s + '" placeholder="https://"></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" id="al-cancel">Cancel</button><button class="btn btn-primary" id="al-submit">Add Listing</button></div>';
+      const m = App._openModal('Add a Listing', body);
+      m.querySelector('#al-cancel').onclick = () => m.remove();
+      m.querySelector('#al-submit').onclick = () => {
+        const name = m.querySelector('#al-name').value.trim();
+        if (!name) { showToast('Business name is required', 'warning'); return; }
+        m.remove();
+        showToast('Listing added successfully!', 'success');
+      };
+    },
+
+    createEvent() {
+      const s = App._inputStyle;
+      const body = '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Event Name</label><input type="text" id="ce-name" style="' + s + '"></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Date</label><input type="date" id="ce-date" style="' + s + '"></div><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Time</label><input type="time" id="ce-time" style="' + s + '"></div></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Location</label><input type="text" id="ce-loc" style="' + s + '" placeholder="Venue or Online"></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Description</label><textarea id="ce-desc" rows="3" style="' + s + 'resize:vertical"></textarea></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Category</label><select id="ce-cat" style="' + s + '"><option>Meetup</option><option>Workshop</option><option>Conference</option><option>Hackathon</option><option>Webinar</option></select></div><div style="flex:1;margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Max Attendees</label><input type="number" id="ce-max" value="100" min="1" style="' + s + '"></div></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" id="ce-cancel">Cancel</button><button class="btn btn-primary" id="ce-submit">Create Event</button></div>';
+      const m = App._openModal('Create Event', body);
+      m.querySelector('#ce-cancel').onclick = () => m.remove();
+      m.querySelector('#ce-submit').onclick = () => {
+        const name = m.querySelector('#ce-name').value.trim();
+        if (!name) { showToast('Event name is required', 'warning'); return; }
+        m.remove();
+        showToast('Event created successfully! 🎉', 'success');
+      };
+    },
+
+    writeReview() {
+      const s = App._inputStyle;
+      const listings = CommunityData.listings || [];
+      const opts = listings.map(l => '<option value="' + l.id + '">' + l.name + '</option>').join('');
+      const body = '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Business</label><select id="wr-listing" style="' + s + '">' + opts + '</select></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Rating</label><div id="wr-stars" style="display:flex;gap:4px;font-size:1.5rem;cursor:pointer">★★★★★</div><input type="hidden" id="wr-rating" value="5"></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Title</label><input type="text" id="wr-title" style="' + s + '" placeholder="Summary of your experience"></div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">Review</label><textarea id="wr-body" rows="4" style="' + s + 'resize:vertical" placeholder="Share your experience..."></textarea></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-outline" id="wr-cancel">Cancel</button><button class="btn btn-primary" id="wr-submit">Submit Review</button></div>';
+      const m = App._openModal('Write a Review', body);
+      // Star rating interaction
+      const starsEl = m.querySelector('#wr-stars');
+      let rating = 5;
+      starsEl.innerHTML = '★★★★★'.split('').map((s, i) => '<span data-star="' + (i + 1) + '" style="color:var(--accent,#6366f1)">' + s + '</span>').join('');
+      starsEl.addEventListener('click', e => {
+        const star = e.target.closest('[data-star]');
+        if (!star) return;
+        rating = parseInt(star.dataset.star);
+        m.querySelector('#wr-rating').value = rating;
+        starsEl.querySelectorAll('span').forEach((s, i) => s.style.color = i < rating ? 'var(--accent,#6366f1)' : 'var(--text-muted,#999)');
+      });
+      m.querySelector('#wr-cancel').onclick = () => m.remove();
+      m.querySelector('#wr-submit').onclick = () => {
+        const title = m.querySelector('#wr-title').value.trim();
+        const body = m.querySelector('#wr-body').value.trim();
+        if (!title || !body) { showToast('Title and review are required', 'warning'); return; }
+        m.remove();
+        showToast('Review submitted! Thank you 🎉', 'success');
+      };
     }
   };
 })();

@@ -62,7 +62,7 @@
     <main class="content">
       <div class="page-header">
         <h1>Invoices</h1>
-        <button class="btn btn-primary" onclick="App.showToast('Invoice builder coming soon','info')">+ New Invoice</button>
+        <button class="btn btn-primary" onclick="App.newInvoice()">+ New Invoice</button>
       </div>
 
       <!-- FILTER TABS -->
@@ -108,15 +108,5 @@
 <div class="cmd-overlay"><div class="cmd-modal"><div class="cmd-input"><span>🔍</span><input type="text" placeholder="Type a command or search..."><kbd>ESC</kbd></div><div class="cmd-results"></div></div></div>
 
 <script src="js/data.js"></script><script src="js/app.js"></script>
-<style>
-.notif-mini-dropdown.active{display:block!important}
-.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}
-.notif-mini-item.unread{background:var(--accent-muted)}
-.notif-mini-item .n-title{font-weight:500}
-.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}
-.invoice-filter-btn{padding:6px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:13px;transition:all .15s}
-.invoice-filter-btn:hover{border-color:var(--accent);color:var(--text-primary)}
-.invoice-filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-</style>
 </body>
 </html>

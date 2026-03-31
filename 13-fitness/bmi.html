@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator — FitZone Gym</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="bmi">
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><svg viewBox="0 0 36 36" fill="none" style="width:36px;height:36px"><rect width="36" height="36" rx="8" fill="#7C3AED"/><path d="M10 18h4v-8h8v8h4M10 18v8h4v-4h8v4h4v-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>FitZone</span></a>
+    <nav class="nav"><a href="index.html" class="nav-link">Home</a><a href="classes.html" class="nav-link">Classes</a><a href="trainers.html" class="nav-link">Trainers</a><a href="membership.html" class="nav-link">Membership</a><a href="bmi.html" class="nav-link active">BMI</a></nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <div class="auth-logged" style="display:flex;align-items:center;gap:.5rem"><span class="auth-user-name" style="font-size:14px;font-weight:500"></span><button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button></div>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer"><div class="drawer-header" style="display:flex;justify-content:space-between;align-items:center"><span class="logo">💪 FitZone</span><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><nav class="drawer-nav"><a href="index.html">Home</a><a href="classes.html">Classes</a><a href="trainers.html">Trainers</a><a href="membership.html">Membership</a><a href="bmi.html">BMI Calculator</a><a href="planner.html">Workout Planner</a><a href="dashboard.html">Dashboard</a></nav></div>
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h3 class="auth-title">Welcome to FitZone</h3><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" value="tahsan@fitzone.bd" required></div><div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" value="demo123" required></div><button class="btn btn-primary btn-md w-full">Login</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><input class="form-input" type="text" name="name" placeholder="Full Name" required></div><div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" required></div><div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" required></div><button class="btn btn-primary btn-md w-full">Create Account</button></form></div></div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title text-center">BMI Calculator</h1>
+      <p class="text-center mb-8" style="color:var(--text-secondary);max-width:550px;margin-left:auto;margin-right:auto">Calculate your Body Mass Index and get personalized health insights to guide your fitness journey.</p>
+
+      <div class="bmi-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+        <!-- Calculator Form -->
+        <div class="card p-6">
+          <h2 style="font-size:1.25rem;margin-bottom:1.5rem">Enter Your Details</h2>
+          <form id="bmiForm">
+            <div class="form-group">
+              <label class="form-label">Weight (kg)</label>
+              <input class="form-input" type="number" id="bmiWeight" placeholder="e.g. 75" min="20" max="300" step="0.1" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Height (cm)</label>
+              <input class="form-input" type="number" id="bmiHeight" placeholder="e.g. 175" min="100" max="250" step="0.1" required>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group">
+                <label class="form-label">Age</label>
+                <input class="form-input" type="number" id="bmiAge" placeholder="e.g. 28" min="10" max="100" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select class="form-select" id="bmiGender"><option value="male">Male</option><option value="female">Female</option></select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-md w-full">Calculate BMI</button>
+          </form>
+        </div>
+
+        <!-- Results -->
+        <div id="bmiResults" style="display:none">
+          <div class="card p-6 mb-4">
+            <h3 style="margin-bottom:1rem">Your BMI</h3>
+            <div class="bmi-gauge">
+              <div class="bmi-gauge-bar">
+                <div class="bmi-gauge-fill"></div>
+                <div class="bmi-gauge-marker" id="bmiMarker"></div>
+              </div>
+              <div class="bmi-gauge-labels">
+                <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <div id="bmiValue" style="font-size:3rem;font-weight:700;color:var(--primary)"></div>
+              <div id="bmiCategory" style="font-size:1.1rem;font-weight:600"></div>
+            </div>
+          </div>
+
+          <!-- Body Stats -->
+          <div class="card p-6 mb-4">
+            <h3 style="margin-bottom:1rem">Body Statistics</h3>
+            <div class="stats-grid" id="bodyStats" style="grid-template-columns:1fr 1fr"></div>
+          </div>
+
+          <!-- Calorie Table -->
+          <div class="card p-6 mb-4">
+            <h3 style="margin-bottom:1rem">Daily Calorie Needs</h3>
+            <table class="table" id="calorieTable">
+              <thead><tr><th>Activity Level</th><th>Calories/Day</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BMI History -->
+      <div class="card p-6 mt-8">
+        <h3 style="margin-bottom:1rem">BMI History</h3>
+        <canvas id="bmiHistoryChart" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><span class="logo">💪 FitZone</span><p>Dhaka's premier fitness destination at Jamuna Future Park.</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><a href="classes.html">Classes</a><a href="trainers.html">Trainers</a><a href="membership.html">Membership</a></div>
+      <div class="footer-col"><h4>Members</h4><a href="planner.html">Workout Planner</a><a href="dashboard.html">Dashboard</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="#">Jamuna Future Park, Dhaka</a><a href="#">+880 1234-567890</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 FitZone Gym. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script defer src="js/data.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

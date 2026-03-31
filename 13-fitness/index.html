@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone Gym — Transform Your Body, Elevate Your Life</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><svg viewBox="0 0 36 36" fill="none" style="width:36px;height:36px"><rect width="36" height="36" rx="8" fill="#7C3AED"/><path d="M10 18h4v-8h8v8h4M10 18v8h4v-4h8v4h4v-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>FitZone</span></a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="classes.html" class="nav-link">Classes</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="membership.html" class="nav-link">Membership</a>
+      <a href="bmi.html" class="nav-link">BMI</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <div class="auth-logged" style="display:flex;align-items:center;gap:.5rem">
+        <span class="auth-user-name" style="font-size:14px;font-weight:500"></span>
+        <button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button>
+      </div>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer">
+  <div class="drawer-header" style="display:flex;justify-content:space-between;align-items:center">
+    <span class="logo">💪 FitZone</span>
+    <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="classes.html">Classes</a>
+    <a href="trainers.html">Trainers</a>
+    <a href="membership.html">Membership</a>
+    <a href="bmi.html">BMI Calculator</a>
+    <a href="planner.html">Workout Planner</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+</div>
+
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <h3 class="auth-title">Welcome to FitZone</h3>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button>
+      <button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button>
+    </div>
+    <form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)">
+      <div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" value="tahsan@fitzone.bd" required></div>
+      <div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" value="demo123" required></div>
+      <button class="btn btn-primary btn-md w-full">Login</button>
+    </form>
+    <form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)">
+      <div class="form-group"><input class="form-input" type="text" name="name" placeholder="Full Name" required></div>
+      <div class="form-group"><input class="form-input" type="email" name="email" placeholder="Email" required></div>
+      <div class="form-group"><input class="form-input" type="password" name="password" placeholder="Password" required></div>
+      <button class="btn btn-primary btn-md w-full">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400')"></div>
+    <div class="hero-content">
+      <h1>Transform Your Body, Elevate Your Life</h1>
+      <p>Join Dhaka's premier fitness community. Expert trainers, 50+ weekly classes, and 24/7 access — all at Jamuna Future Park.</p>
+      <div class="hero-actions">
+        <a href="membership.html" class="btn btn-primary btn-xl">Start Your Journey</a>
+        <a href="classes.html" class="btn btn-secondary btn-xl">Browse Classes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section" style="background:var(--bg-surface)">
+    <div class="container">
+      <div class="stat-counter-grid" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title section-title-center">Why Choose FitZone?</h2>
+      <p class="section-subtitle section-subtitle-center">Everything you need for your fitness journey under one roof.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">🏋️</div><h3>50+ Classes Weekly</h3><p>From HIIT to yoga, spinning to boxing — we have something for every fitness level.</p></div>
+        <div class="feature-card"><div class="feature-icon">👨‍🏫</div><h3>Expert Trainers</h3><p>Nationally certified coaches with years of competitive and coaching experience.</p></div>
+        <div class="feature-card"><div class="feature-icon">🕐</div><h3>24/7 Access</h3><p>Train on your schedule. Our gym never closes for Pro and Elite members.</p></div>
+        <div class="feature-card"><div class="feature-icon">📊</div><h3>Progress Tracking</h3><p>BMI calculator, workout planner, and goal tracking built right into your dashboard.</p></div>
+        <div class="feature-card"><div class="feature-icon">🧖</div><h3>Recovery Zone</h3><p>Sauna, steam room, and massage chairs to help you recover faster.</p></div>
+        <div class="feature-card"><div class="feature-icon">🤝</div><h3>Community</h3><p>Join 800+ members who motivate each other to push beyond limits every day.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Classes -->
+  <section class="section" style="background:var(--bg-surface)">
+    <div class="container">
+      <div class="section-header">
+        <div><h2 class="section-title">Popular Classes</h2><p class="section-subtitle">Our most-loved classes, chosen by the community.</p></div>
+        <a href="classes.html" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="class-grid" id="popularClasses"></div>
+    </div>
+  </section>
+
+  <!-- Trainers -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div><h2 class="section-title">Meet Our Trainers</h2><p class="section-subtitle">World-class coaches dedicated to your success.</p></div>
+        <a href="trainers.html" class="section-link">View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </div>
+      <div class="trainer-grid" id="topTrainers"></div>
+    </div>
+  </section>
+
+  <!-- Membership Plans -->
+  <section class="section" style="background:var(--bg-surface)">
+    <div class="container">
+      <h2 class="section-title section-title-center">Membership Plans</h2>
+      <p class="section-subtitle section-subtitle-center">Choose the plan that fits your fitness goals and budget.</p>
+      <div class="pricing-grid" id="membershipPlans"></div>
+    </div>
+  </section>
+
+  <!-- Transformations -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title section-title-center">Real Transformations</h2>
+      <p class="section-subtitle section-subtitle-center">Our members' incredible before-and-after journeys.</p>
+      <div class="before-after-grid" id="transformations"></div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section">
+    <div class="container">
+      <div class="offer-banner">
+        <div>
+          <span class="offer-badge">🔥 Limited Offer</span>
+          <h2>Start Your Fitness Journey Today</h2>
+          <p>Get your first month at 50% off when you sign up for a yearly plan. No joining fees, no hidden costs.</p>
+          <a href="membership.html" class="btn btn-lg" style="background:#fff;color:var(--primary)">Claim Offer →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">💪 FitZone</span>
+        <p>Dhaka's premier fitness and wellness destination. Transform your body, elevate your life at Jamuna Future Park.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="classes.html">Classes</a>
+        <a href="trainers.html">Trainers</a>
+        <a href="membership.html">Membership</a>
+        <a href="bmi.html">BMI Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Members</h4>
+        <a href="planner.html">Workout Planner</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="admin.html">Admin</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="#">Jamuna Future Park, Dhaka</a>
+        <a href="#">+880 1234-567890</a>
+        <a href="#">info@fitzone.bd</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 FitZone Gym. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.56v14.91c0 2.52-2.04 4.56-4.56 4.56H4.56C2.04 24.03 0 21.99 0 19.47V4.56C0 2.04 2.04 0 4.56 0h14.88C21.96 0 24 2.04 24 4.56zm-7.16 2.37h-1.68c-1.32 0-1.57.63-1.57 1.55V10h3.14l-.41 3.17h-2.73V22h-3.28v-8.83H7.9V10h2.61V8.12c0-2.59 1.58-4 3.89-4 1.1 0 2.06.08 2.33.12v2.69h.01z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.63-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.41-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 00.5 6.19 31.67 31.67 0 000 12a31.67 31.67 0 00.5 5.81 3.02 3.02 0 002.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.67 31.67 0 0024 12a31.67 31.67 0 00-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/data.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

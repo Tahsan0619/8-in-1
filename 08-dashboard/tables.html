@@ -65,7 +65,7 @@
         <div class="page-header-actions">
           <button class="btn btn-secondary" onclick="App.tableExport('csv')">📥 Export CSV</button>
           <button class="btn btn-secondary" onclick="App.tableExport('json')">📥 Export JSON</button>
-          <button class="btn btn-primary" onclick="App.showToast('Add record coming soon','info')">+ Add Record</button>
+          <button class="btn btn-primary" onclick="App.addRecord()">+ Add Record</button>
         </div>
       </div>
 
@@ -113,6 +113,5 @@
 <div class="cmd-overlay"><div class="cmd-modal"><div class="cmd-input"><span>🔍</span><input type="text" placeholder="Type a command or search..."><kbd>ESC</kbd></div><div class="cmd-results"></div></div></div>
 
 <script src="js/data.js"></script><script src="js/app.js"></script>
-<style>.notif-mini-dropdown.active{display:block!important}.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}.notif-mini-item.unread{background:var(--accent-muted)}.notif-mini-item .n-title{font-weight:500}.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}</style>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — HopeBridge</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="events">
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4z" fill="currentColor" opacity="0.15"/><path d="M16 8c-2.2 0-4 1.8-4 4 0 4 4 8 4 8s4-4 4-8c0-2.2-1.8-4-4-4zm0 5.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" fill="currentColor"/><path d="M10 20c-1.7 1.3-2 3-2 3h16s-.3-1.7-2-3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg> HopeBridge</a>
+      <nav class="header-nav">
+        <a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html" class="active">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <a href="donate.html" class="btn-donate"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Donate</a>
+        <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay"></div>
+  <div class="drawer"><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button><nav class="drawer-nav"><a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a><a href="donate.html" class="btn-donate" style="justify-content:center;margin-top:var(--sp-4)">❤ Donate Now</a></nav></div>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1 class="page-title">Fundraising Events</h1>
+        <p class="page-subtitle">Join our events and be part of the change</p>
+
+        <div class="volunteer-filters" style="margin-bottom:var(--sp-8)">
+          <button class="filter-btn active" data-tab="upcoming">Upcoming</button>
+          <button class="filter-btn" data-tab="past">Past</button>
+        </div>
+
+        <div class="event-list" id="eventsList"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Registration Modal -->
+  <div class="modal-overlay">
+    <div class="modal-content reg-modal">
+      <button class="modal-close">&times;</button>
+      <h3>Event Registration</h3>
+      <form id="regForm">
+        <div class="form-group"><label>Full Name *</label><input type="text" required></div>
+        <div class="form-group"><label>Email *</label><input type="email" required></div>
+        <div class="form-group"><label>Phone</label><input type="tel"></div>
+        <div class="form-group"><label>Number of Guests</label><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--sp-4)">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col"><h4>About HopeBridge</h4><p>Connecting donors, volunteers, and communities for lasting impact.</p></div>
+        <div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="causes.html">Our Causes</a></li><li><a href="impact.html">Impact Report</a></li><li><a href="about.html">About Us</a></li></ul></div>
+        <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li>📧 info@hopebridge.org</li><li>📞 +880 1711-223344</li></ul></div>
+        <div class="footer-col"><h4>Newsletter</h4><form class="newsletter-form"><input type="email" placeholder="Your email" required><button class="btn btn-primary">Subscribe</button></form></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 HopeBridge. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg></button>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

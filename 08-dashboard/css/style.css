@@ -156,7 +156,7 @@ table{width:100%;border-collapse:collapse}
 .filter-chip button{color:var(--accent);opacity:.7;font-size:14px}
 .filter-chip button:hover{opacity:1}
 
-.data-table-wrap{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+.data-table-wrap{background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius-md);overflow-x:auto}
 .data-table{width:100%}
 .data-table thead{background:var(--bg-tertiary)}
 .data-table th{padding:10px 16px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text-secondary);text-align:left;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}
@@ -419,6 +419,92 @@ table{width:100%;border-collapse:collapse}
 .flex-1{flex:1;min-width:0}
 .avatar{border-radius:var(--radius-full);object-fit:cover}
 
+/* ── NOTIFICATION MINI DROPDOWN ── */
+.notif-mini-dropdown.active{display:block!important}
+.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}
+.notif-mini-item.unread{background:var(--accent-muted)}
+.notif-mini-item .n-title{font-weight:500}
+.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}
+
+/* ── NOTIFICATION PAGE FULL ── */
+.notif-list{display:flex;flex-direction:column;gap:4px}
+.notif-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.notif-icon.billing{background:rgba(34,197,94,.15)}
+.notif-icon.team{background:rgba(59,130,246,.15)}
+.notif-icon.security{background:rgba(239,68,68,.15)}
+.notif-icon.system{background:rgba(168,85,247,.15)}
+.notif-icon.integration{background:rgba(245,158,11,.15)}
+.notif-body{flex:1;min-width:0}
+.notif-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.notif-desc{font-size:12px;color:var(--text-secondary);margin-bottom:6px}
+.notif-time{font-size:11px;color:var(--text-tertiary)}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px}
+
+/* ── TEAM PAGE ── */
+.team-member-cell{display:flex;align-items:center;gap:12px}
+.team-av{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;flex-shrink:0}
+.team-info .team-name{font-weight:500;font-size:13px}
+.team-info .team-email{font-size:12px;color:var(--text-tertiary)}
+.action-btn{padding:4px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:12px;transition:all .15s}
+.action-btn:hover{background:var(--bg-tertiary);color:var(--text-primary)}
+.action-btn.danger:hover{color:var(--error);border-color:var(--error)}
+
+/* ── SETTINGS PAGE EXTENDED ── */
+.settings-nav-btn{display:flex;align-items:center;gap:8px;padding:10px 14px;border:none;background:none;color:var(--text-secondary);cursor:pointer;border-radius:var(--radius-sm);font-size:13px;text-align:left;transition:all .15s}
+.settings-nav-btn:hover{background:var(--bg-tertiary);color:var(--text-primary)}
+.settings-nav-btn.active{background:var(--accent-muted);color:var(--accent);font-weight:500}
+.settings-section h2{font-size:18px;margin-bottom:20px}
+.settings-section h3{font-size:14px;margin:20px 0 12px;color:var(--text-secondary)}
+.settings-form{display:flex;flex-direction:column;gap:16px}
+.form-row.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
+.form-group input:disabled{opacity:.5;cursor:not-allowed}
+.settings-divider{height:1px;background:var(--border);margin:24px 0}
+
+/* ── TOGGLE (label-based) ── */
+.toggle{position:relative;display:inline-block;width:44px;height:24px}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;border-radius:12px;background:var(--bg-tertiary);border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.toggle-slider::before{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--text-tertiary);transition:all .2s}
+.toggle input:checked+.toggle-slider{background:var(--accent);border-color:var(--accent)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(20px);background:#fff}
+
+/* ── PROFILE ── */
+.profile-avatar-wrap{display:flex;align-items:center;gap:16px}
+.profile-avatar-lg{width:64px;height:64px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
+
+/* ── PLAN CARDS EXTENDED ── */
+.plan-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan-card.recommended{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:2px 12px;border-radius:10px;font-size:11px;font-weight:600}
+
+/* ── USAGE EXTENDED ── */
+.usage-meters{display:flex;flex-direction:column;gap:16px}
+.usage-item{display:flex;flex-direction:column;gap:6px}
+.usage-fill{height:100%;background:var(--accent);border-radius:4px;transition:width .5s}
+
+/* ── API KEYS ── */
+.api-key-row{display:flex;gap:16px;align-items:flex-end}
+.api-key-display{display:flex;gap:8px;align-items:center}
+.api-key-display code{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-tertiary);font-family:var(--font-mono);font-size:13px;flex:1}
+
+/* ── THEME PICKER ── */
+.theme-options{display:flex;gap:16px}
+.theme-radio{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;font-size:13px}
+.theme-radio input{display:none}
+.theme-preview{width:80px;height:56px;border-radius:var(--radius-sm);border:2px solid var(--border)}
+.theme-radio input:checked~.theme-preview{border-color:var(--accent)}
+.dark-preview{background:#09090B}
+.light-preview{background:#FFFFFF}
+
+/* ── INVOICE FILTERS ── */
+.invoice-filter-btn{padding:6px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:13px;transition:all .15s}
+.invoice-filter-btn:hover{border-color:var(--accent);color:var(--text-primary)}
+.invoice-filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* ── THREE-COL UTILITY ── */
+.three-col{grid-template-columns:repeat(3,1fr)!important}
+
 /* ── SKELETON ── */
 .skeleton{background:linear-gradient(90deg,var(--bg-tertiary) 25%,var(--bg-elevated) 50%,var(--bg-tertiary) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--radius-sm)}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -436,9 +522,12 @@ table{width:100%;border-collapse:collapse}
   .kpi-grid{grid-template-columns:repeat(2,1fr)}
   .settings-grid{grid-template-columns:1fr}
   .settings-nav{flex-direction:row;overflow-x:auto;gap:4px;margin-bottom:16px}
+  .settings-nav-btn{white-space:nowrap}
   .plan-grid{grid-template-columns:1fr}
+  .plan-cards{grid-template-columns:1fr}
   .kanban{flex-direction:column}.kanban-col{min-width:100%;max-width:100%}
   .slide-panel{width:100%}
+  .three-col{grid-template-columns:1fr!important}
 }
 @media(max-width:640px){
   .content{padding:16px}
@@ -447,6 +536,7 @@ table{width:100%;border-collapse:collapse}
   .table-toolbar{flex-direction:column;align-items:stretch}
   .table-search{max-width:100%}
   .form-row{grid-template-columns:1fr}
+  .form-row.two-col{grid-template-columns:1fr}
   .invoice-doc{padding:20px}
   .invoice-doc .inv-header{flex-direction:column}
   .invoice-doc .inv-meta{text-align:left}

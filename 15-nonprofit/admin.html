@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — HopeBridge</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" defer></script>
+</head>
+<body data-page="admin">
+  <a href="#main" class="skip-nav">Skip to main content</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header-logo"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4C9.4 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4z" fill="currentColor" opacity="0.15"/><path d="M16 8c-2.2 0-4 1.8-4 4 0 4 4 8 4 8s4-4 4-8c0-2.2-1.8-4-4-4zm0 5.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z" fill="currentColor"/><path d="M10 20c-1.7 1.3-2 3-2 3h16s-.3-1.7-2-3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg> HopeBridge</a>
+      <nav class="header-nav">
+        <a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a>
+      </nav>
+      <div class="header-actions">
+        <a href="donate.html" class="btn-donate"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Donate</a>
+        <button class="theme-toggle" aria-label="Toggle theme"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-overlay"></div>
+  <div class="drawer"><button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button><nav class="drawer-nav"><a href="causes.html">Causes</a><a href="impact.html">Impact</a><a href="volunteer.html">Volunteer</a><a href="events.html">Events</a><a href="stories.html">Stories</a><a href="about.html">About</a><a href="donate.html" class="btn-donate" style="justify-content:center;margin-top:var(--sp-4)">❤ Donate Now</a></nav></div>
+
+  <main id="main" class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-user">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">T</div>
+        <div><strong>Tahsan Islam</strong><small style="display:block;color:var(--text-muted);font-size:0.8rem">Administrator</small></div>
+      </div>
+      <nav class="admin-nav">
+        <a href="#" class="admin-nav-item active" data-section="admin-overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg> Dashboard</a>
+        <a href="#" class="admin-nav-item" data-section="admin-campaigns"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Campaigns</a>
+        <a href="#" class="admin-nav-item" data-section="admin-donations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Donations</a>
+        <a href="#" class="admin-nav-item" data-section="admin-volunteers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> Volunteers</a>
+        <a href="#" class="admin-nav-item" data-section="admin-events"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Events</a>
+        <a href="#" class="admin-nav-item" data-section="admin-reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> Reports</a>
+        <a href="#" class="admin-nav-item" data-section="admin-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg> Settings</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <!-- Overview -->
+      <section class="admin-section active" id="admin-overview">
+        <h2 class="admin-section-title">Dashboard Overview</h2>
+        <div id="adminStats" class="admin-stats"></div>
+        <div class="admin-grid-2">
+          <div class="admin-card"><h3>Donation Trend (14 Days)</h3><canvas id="adminTrendChart"></canvas></div>
+          <div class="admin-card"><h3>Recent Donations</h3><div id="recentDonationsTable"></div></div>
+        </div>
+        <div class="admin-card" style="margin-top:var(--sp-4)"><h3>Campaign Status</h3><div id="campaignStatusTable"></div></div>
+      </section>
+
+      <!-- Campaigns -->
+      <section class="admin-section" id="admin-campaigns">
+        <h2 class="admin-section-title">Manage Campaigns</h2>
+        <div id="adminCampaignsList"></div>
+      </section>
+
+      <!-- Donations -->
+      <section class="admin-section" id="admin-donations">
+        <h2 class="admin-section-title">Manage Donations</h2>
+        <div id="adminDonationsList"></div>
+      </section>
+
+      <!-- Volunteers -->
+      <section class="admin-section" id="admin-volunteers">
+        <h2 class="admin-section-title">Volunteer Applications</h2>
+        <div class="empty-state"><p>Volunteer management coming soon</p></div>
+      </section>
+
+      <!-- Events -->
+      <section class="admin-section" id="admin-events">
+        <h2 class="admin-section-title">Event Management</h2>
+        <div class="empty-state"><p>Event management coming soon</p></div>
+      </section>
+
+      <!-- Reports -->
+      <section class="admin-section" id="admin-reports">
+        <h2 class="admin-section-title">Reports</h2>
+        <div class="empty-state"><p>Detailed reports coming soon</p></div>
+      </section>
+
+      <!-- Settings -->
+      <section class="admin-section" id="admin-settings">
+        <h2 class="admin-section-title">Settings</h2>
+        <div class="empty-state"><p>Settings panel coming soon</p></div>
+      </section>
+    </div>
+  </main>
+
+  <button class="back-to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg></button>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

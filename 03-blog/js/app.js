@@ -117,20 +117,43 @@ function renderComments(postId) {
   const comments = BLOG.comments.filter(c => c.postId === postId);
   document.getElementById('commentCount').textContent = comments.length;
   section.innerHTML = comments.map(c => commentHTML(c)).join('');
+  section.addEventListener('click', e => {
+    const replyBtn = e.target.closest('.reply-btn');
+    if (!replyBtn) return;
+    const commentEl = replyBtn.closest('.comment');
+    if (commentEl.querySelector('.reply-form')) return;
+    const form = document.createElement('div');
+    form.className = 'reply-form';
+    form.style.cssText = 'margin-top:10px;display:flex;gap:8px;align-items:flex-start';
+    form.innerHTML = `<textarea placeholder="Write a reply..." style="flex:1;padding:8px 12px;border:1px solid var(--clr-border,#ddd);border-radius:8px;font-size:.9rem;resize:vertical;min-height:60px;background:var(--clr-surface,#fff);color:var(--clr-text,#222)"></textarea><button class="submit-reply" style="padding:8px 16px;border:none;background:var(--clr-accent,#6366f1);color:#fff;border-radius:8px;font-size:.85rem;cursor:pointer;white-space:nowrap">Post</button>`;
+    commentEl.appendChild(form);
+    const textarea = form.querySelector('textarea');
+    textarea.focus();
+    form.querySelector('.submit-reply').addEventListener('click', () => {
+      const text = textarea.value.trim();
+      if (!text) { Toast.show('Please write a reply','error'); return; }
+      const replyHTML = `<div class="comment"><div class="comment-head"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=you" alt="You" width="32" height="32"><strong>You</strong><time>Just now</time></div><div class="comment-text">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div><div class="comment-actions"><button class="reply-btn">Reply</button></div></div>`;
+      let repliesContainer = commentEl.querySelector('.comment-replies');
+      if (!repliesContainer) { repliesContainer = document.createElement('div'); repliesContainer.className = 'comment-replies'; commentEl.appendChild(repliesContainer); }
+      repliesContainer.insertAdjacentHTML('beforeend', replyHTML);
+      form.remove();
+      Toast.show('Reply posted!','success');
+    });
+  });
 }
 function commentHTML(c) {
   const replies = (c.replies || []).map(r => `
     <div class="comment">
       <div class="comment-head"><img src="${r.avatar}" alt="${r.name}" width="32" height="32"><strong>${r.name}</strong><time>${r.time}</time></div>
       <div class="comment-text">${r.text}</div>
-      <div class="comment-actions"><button onclick="Toast.show('Reply feature demo','info')">Reply</button></div>
+      <div class="comment-actions"><button class="reply-btn">Reply</button></div>
     </div>
   `).join('');
   return `
     <div class="comment">
       <div class="comment-head"><img src="${c.avatar}" alt="${c.name}" width="32" height="32"><strong>${c.name}</strong><time>${c.time}</time></div>
       <div class="comment-text">${c.text}</div>
-      <div class="comment-actions"><button>♡ ${c.likes}</button><button onclick="Toast.show('Reply feature demo','info')">Reply</button></div>
+      <div class="comment-actions"><button>♡ ${c.likes}</button><button class="reply-btn">Reply</button></div>
       ${replies ? `<div class="comment-replies">${replies}</div>` : ''}
     </div>`;
 }

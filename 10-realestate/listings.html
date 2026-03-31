@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeScout — Listings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0F766E"/><path d="M8 22V14l8-6 8 6v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2z" fill="#fff" fill-opacity=".9"/><rect x="13" y="16" width="6" height="6" rx="1" fill="#0F766E"/></svg><span>HomeScout</span></a>
+    <nav class="nav">
+      <a href="listings.html" class="nav-link active">Buy</a>
+      <a href="listings.html" class="nav-link">Rent</a>
+      <a href="agents.html" class="nav-link">Agents</a>
+      <a href="mortgage.html" class="nav-link">Mortgage</a>
+      <a href="neighborhood.html" class="nav-link">Neighborhoods</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <a href="favorites.html" class="btn btn-icon btn-ghost" aria-label="Favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <button class="btn btn-ghost btn-sm auth-logout-btn" style="display:none" onclick="Auth.logout()">Logout</button>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer">
+  <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="listings.html" class="nav-link active">Buy / Rent</a>
+  <a href="agents.html" class="nav-link">Agents</a>
+  <a href="mortgage.html" class="nav-link">Mortgage</a>
+  <a href="neighborhood.html" class="nav-link">Neighborhoods</a>
+  <a href="favorites.html" class="nav-link">Favorites</a>
+  <a href="compare.html" class="nav-link">Compare</a>
+  <a href="dashboard.html" class="nav-link">Agent Dashboard</a>
+</div>
+
+<!-- Filter Bar -->
+<div class="listings-toolbar">
+  <div class="container" style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
+    <div class="filter-group">
+      <select id="filterType" onchange="Listings.setFilter('type',this.value)">
+        <option value="">All Types</option>
+        <option value="apartment">Apartment</option>
+        <option value="house">House</option>
+        <option value="studio">Studio</option>
+        <option value="commercial">Commercial</option>
+        <option value="land">Land</option>
+      </select>
+      <select id="filterStatus" onchange="Listings.setFilter('status',this.value)">
+        <option value="">Buy & Rent</option>
+        <option value="sale">For Sale</option>
+        <option value="rent">For Rent</option>
+      </select>
+      <select id="filterBeds" onchange="Listings.setFilter('beds',this.value)">
+        <option value="">Any Beds</option>
+        <option value="1">1+</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+      </select>
+      <select id="filterPrice" onchange="Listings.setFilter('price',this.value)">
+        <option value="">Any Price</option>
+        <option value="0-5000000">Under ৳50L</option>
+        <option value="5000000-10000000">৳50L – 1Cr</option>
+        <option value="10000000-25000000">৳1Cr – 2.5Cr</option>
+        <option value="25000000-100000000">৳2.5Cr+</option>
+      </select>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:var(--sp-3)">
+      <span id="resultsCount" class="text-secondary" style="font-size:14px"></span>
+      <select id="sortSelect" onchange="Listings.setSort(this.value)" style="min-width:140px">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="newest">Newest</option>
+        <option value="area-desc">Area: Largest</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn active" data-view="grid" onclick="Listings.setView('grid')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+        <button class="view-btn" data-view="list" onclick="Listings.setView('list')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Listings Content -->
+<div class="listings-layout">
+  <div class="listings-results">
+    <div id="listingsContainer"></div>
+    <div id="pagination" class="pagination"></div>
+  </div>
+  <div class="listings-map">
+    <div class="map-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:48px;height:48px;color:var(--text-muted)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <p style="color:var(--text-muted);margin-top:var(--sp-3)">Map view — click a location to explore</p>
+      <div class="map-pins">
+        <div class="map-pin" style="top:20%;left:35%"><span>৳75L</span></div>
+        <div class="map-pin" style="top:35%;left:55%"><span>৳1.2Cr</span></div>
+        <div class="map-pin" style="top:55%;left:30%"><span>৳45L</span></div>
+        <div class="map-pin" style="top:40%;left:70%"><span>৳92L</span></div>
+        <div class="map-pin" style="top:65%;left:60%"><span>৳28K/mo</span></div>
+        <div class="map-pin" style="top:25%;left:75%"><span>৳55L</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Buy Property</h4><a href="listings.html">Apartments in Gulshan</a><a href="listings.html">Houses in Dhanmondi</a><a href="listings.html">Land in Purbachal</a></div>
+      <div class="footer-col"><h4>Rent Property</h4><a href="listings.html">Rentals in Uttara</a><a href="listings.html">Studios in Banani</a><a href="listings.html">Offices in Gulshan</a></div>
+      <div class="footer-col"><h4>Resources</h4><a href="mortgage.html">Mortgage Calculator</a><a href="neighborhood.html">Neighborhood Guides</a><a href="agents.html">Find an Agent</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Contact</a><a href="#">Privacy Policy</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 HomeScout. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h2 class="auth-title">Welcome to HomeScout</h2><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Sign In</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" value="tahsan@homescout.bd"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" value="password123"></div><button type="submit" class="btn btn-primary btn-md w-full">Sign In</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Full Name</label><input name="name" type="text" class="form-input"></div><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input"></div><button type="submit" class="btn btn-primary btn-md w-full">Create Account</button></form></div></div>
+
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

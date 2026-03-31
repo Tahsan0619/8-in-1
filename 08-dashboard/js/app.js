@@ -425,7 +425,7 @@
     panel.querySelector('.slide-panel-body').innerHTML =
       '<div style="text-align:center;margin-bottom:24px"><div class="av" style="width:56px;height:56px;border-radius:50%;background:var(--accent-muted);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin-bottom:12px">' + c.avatar + '</div><h3>' + escapeHTML(c.name) + '</h3><p class="text-muted text-sm">' + escapeHTML(c.role) + ' at ' + escapeHTML(c.company) + '</p></div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px"><div class="card" style="padding:12px"><div class="text-muted text-sm">Email</div><div style="font-size:13px">' + escapeHTML(c.email) + '</div></div><div class="card" style="padding:12px"><div class="text-muted text-sm">Phone</div><div style="font-size:13px">' + c.phone + '</div></div></div>' +
-      '<div style="display:flex;gap:8px;margin-bottom:24px"><button class="btn btn-primary btn-sm" onclick="App.showToast(\'Edit contact coming soon\',\'info\')">Edit</button><button class="btn btn-danger btn-sm" onclick="App.showToast(\'Delete not available in demo\',\'warning\')">Delete</button></div>' +
+      '<div style="display:flex;gap:8px;margin-bottom:24px"><button class="btn btn-primary btn-sm" onclick="App.editContact(\'' + c.id + '\')">Edit</button><button class="btn btn-danger btn-sm" onclick="App.deleteContact(\'' + c.id + '\')">Delete</button></div>' +
       '<div class="slide-panel-section"><h4>Activity Timeline</h4>' + c.activity.map(a => '<div class="timeline-item"><div class="t-icon">' + ({ email: '✉️', call: '📞', meeting: '🤝', note: '📝' }[a.type] || '📌') + '</div><div class="t-text"><div>' + escapeHTML(a.desc) + '</div><div class="t-time">' + a.time + '</div></div></div>').join('') + '</div>' +
       '<div class="slide-panel-section"><h4>Deal Value</h4><div style="font-family:var(--font-mono);font-size:20px;font-weight:700;color:var(--accent)">' + formatCurrency(c.value) + '</div></div>';
 
@@ -788,11 +788,319 @@
 
   document.addEventListener('DOMContentLoaded', init);
 
+  /* ── MODAL HELPER ── */
+  function openModal(title, bodyHTML, onClose) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px);animation:fadeIn .15s';
+    overlay.innerHTML = '<div class="modal-panel" style="background:var(--bg-primary);border:1px solid var(--border);border-radius:12px;width:90%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:slideUp .2s ease"><div style="display:flex;justify-content:space-between;align-items:center;padding:20px 20px 0"><h3 style="margin:0;font-size:1.1rem">' + escapeHTML(title) + '</h3><button class="modal-close-btn" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-secondary);padding:4px 8px;border-radius:6px">&times;</button></div><div class="modal-body" style="padding:20px">' + bodyHTML + '</div></div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) { overlay.remove(); if (onClose) onClose(); } });
+    overlay.querySelector('.modal-close-btn').addEventListener('click', () => { overlay.remove(); if (onClose) onClose(); });
+    return overlay;
+  }
+
+  function formGroupHTML(label, inputHTML) {
+    return '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px;color:var(--text-secondary)">' + label + '</label>' + inputHTML + '</div>';
+  }
+
+  function inputStyle() { return 'width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--bg-secondary);color:var(--text-primary);font-size:.9rem;box-sizing:border-box;'; }
+
+  /* ── Add Record Modal ── */
+  function addRecordModal() {
+    const body =
+      formGroupHTML('Name', '<input type="text" id="mr-name" style="' + inputStyle() + '" required>') +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Email', '<input type="email" id="mr-email" style="' + inputStyle() + '" required>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Company', '<input type="text" id="mr-company" style="' + inputStyle() + '" required>') + '</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Category', '<select id="mr-category" style="' + inputStyle() + '"><option>Enterprise</option><option>Pro</option><option>Team</option><option>Starter</option></select>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Status', '<select id="mr-status" style="' + inputStyle() + '"><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option></select>') + '</div>' +
+      '</div>' +
+      formGroupHTML('Revenue ($)', '<input type="number" id="mr-revenue" value="0" min="0" style="' + inputStyle() + '">') +
+      '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn btn-secondary" id="mr-cancel">Cancel</button><button class="btn btn-primary" id="mr-save">Add Record</button></div>';
+
+    const m = openModal('Add New Record', body);
+    m.querySelector('#mr-cancel').onclick = () => m.remove();
+    m.querySelector('#mr-save').onclick = () => {
+      const name = m.querySelector('#mr-name').value.trim();
+      const email = m.querySelector('#mr-email').value.trim();
+      if (!name || !email) { showToast('Name and email are required', 'error'); return; }
+      const id = 'REC-' + String(DashboardData.records.length + 1).padStart(3, '0');
+      DashboardData.records.unshift({ id, name, email, company: m.querySelector('#mr-company').value.trim() || '—', status: m.querySelector('#mr-status').value, category: m.querySelector('#mr-category').value, revenue: parseInt(m.querySelector('#mr-revenue').value) || 0, joined: new Date().toISOString().slice(0, 10), lastActive: 'Just now' });
+      m.remove();
+      showToast('Record ' + id + ' created', 'success');
+      if (window._tableRender) window._tableRender();
+    };
+  }
+
+  /* ── Add Deal Modal ── */
+  function addDealModal(stage) {
+    stage = stage || 'lead';
+    const body =
+      formGroupHTML('Deal Name', '<input type="text" id="md-name" style="' + inputStyle() + '" required>') +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Company', '<input type="text" id="md-company" style="' + inputStyle() + '" required>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Value ($)', '<input type="number" id="md-value" value="10000" min="0" style="' + inputStyle() + '">') + '</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Stage', '<select id="md-stage" style="' + inputStyle() + '"><option value="lead"' + (stage === 'lead' ? ' selected' : '') + '>Lead</option><option value="qualified"' + (stage === 'qualified' ? ' selected' : '') + '>Qualified</option><option value="proposal"' + (stage === 'proposal' ? ' selected' : '') + '>Proposal</option><option value="negotiation"' + (stage === 'negotiation' ? ' selected' : '') + '>Negotiation</option></select>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Priority', '<select id="md-priority" style="' + inputStyle() + '"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option><option value="critical">Critical</option></select>') + '</div>' +
+      '</div>' +
+      formGroupHTML('Expected Close Date', '<input type="date" id="md-close" style="' + inputStyle() + '">') +
+      '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn btn-secondary" id="md-cancel">Cancel</button><button class="btn btn-primary" id="md-save">Add Deal</button></div>';
+
+    const m = openModal('New Deal', body);
+    m.querySelector('#md-cancel').onclick = () => m.remove();
+    m.querySelector('#md-save').onclick = () => {
+      const name = m.querySelector('#md-name').value.trim();
+      const company = m.querySelector('#md-company').value.trim();
+      if (!name || !company) { showToast('Name and company are required', 'error'); return; }
+      const id = 'd' + (DashboardData.deals.length + 1);
+      DashboardData.deals.push({ id, name, company, value: parseInt(m.querySelector('#md-value').value) || 0, stage: m.querySelector('#md-stage').value, probability: 20, ownerName: 'You', ownerAv: 'TA', daysInStage: 0, priority: m.querySelector('#md-priority').value, closeDate: m.querySelector('#md-close').value || '' });
+      m.remove();
+      showToast('Deal "' + name + '" created', 'success');
+      initPipeline();
+    };
+  }
+
+  /* ── Add Contact Modal ── */
+  function addContactModal() {
+    const body =
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Full Name', '<input type="text" id="mc-name" style="' + inputStyle() + '" required>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Email', '<input type="email" id="mc-email" style="' + inputStyle() + '" required>') + '</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Phone', '<input type="tel" id="mc-phone" style="' + inputStyle() + '">') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Company', '<input type="text" id="mc-company" style="' + inputStyle() + '">') + '</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Role', '<input type="text" id="mc-role" style="' + inputStyle() + '">') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Status', '<select id="mc-status" style="' + inputStyle() + '"><option value="active">Active</option><option value="pending">Pending</option><option value="inactive">Inactive</option></select>') + '</div>' +
+      '</div>' +
+      formGroupHTML('Deal Value ($)', '<input type="number" id="mc-value" value="0" min="0" style="' + inputStyle() + '">') +
+      '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn btn-secondary" id="mc-cancel">Cancel</button><button class="btn btn-primary" id="mc-save">Add Contact</button></div>';
+
+    const m = openModal('Add Contact', body);
+    m.querySelector('#mc-cancel').onclick = () => m.remove();
+    m.querySelector('#mc-save').onclick = () => {
+      const name = m.querySelector('#mc-name').value.trim();
+      const email = m.querySelector('#mc-email').value.trim();
+      if (!name || !email) { showToast('Name and email are required', 'error'); return; }
+      const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      DashboardData.contacts.push({ id: 'c' + (DashboardData.contacts.length + 1), name, email, phone: m.querySelector('#mc-phone').value || '', company: m.querySelector('#mc-company').value || '', role: m.querySelector('#mc-role').value || '', status: m.querySelector('#mc-status').value, value: parseInt(m.querySelector('#mc-value').value) || 0, tags: [], lastContact: 'Just now', avatar: initials, activity: [] });
+      m.remove();
+      showToast('Contact added', 'success');
+      initContacts();
+    };
+  }
+
+  /* ── Import CSV Modal ── */
+  function importCSVModal() {
+    const body =
+      '<div style="border:2px dashed var(--border);border-radius:12px;padding:40px 20px;text-align:center;margin-bottom:16px" id="csv-drop">' +
+        '<div style="font-size:2rem;margin-bottom:8px">📂</div>' +
+        '<p style="margin:0 0 8px;font-weight:600">Drop CSV file here or click to browse</p>' +
+        '<p style="font-size:.85rem;color:var(--text-secondary);margin:0">Supports .csv files up to 5MB</p>' +
+        '<input type="file" accept=".csv" style="display:none" id="csv-file">' +
+      '</div>' +
+      '<div id="csv-preview" style="display:none;margin-bottom:16px"><div style="font-weight:600;margin-bottom:8px">Preview</div><div id="csv-preview-content" style="max-height:200px;overflow:auto;border:1px solid var(--border);border-radius:8px;font-size:.8rem"></div></div>' +
+      '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-secondary" id="csv-cancel">Cancel</button><button class="btn btn-primary" id="csv-import" disabled>Import</button></div>';
+
+    const m = openModal('Import Contacts from CSV', body);
+    const dropZone = m.querySelector('#csv-drop');
+    const fileInput = m.querySelector('#csv-file');
+    const importBtn = m.querySelector('#csv-import');
+    let parsedRows = [];
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'var(--accent)'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = ''; });
+    dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = ''; if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+    fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+    function handleFile(file) {
+      if (!file.name.endsWith('.csv')) { showToast('Please select a CSV file', 'error'); return; }
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const lines = ev.target.result.split('\n').filter(l => l.trim());
+        if (lines.length < 2) { showToast('CSV must have a header row and data', 'error'); return; }
+        const headers = lines[0].split(',').map(h => h.trim());
+        parsedRows = lines.slice(1).map(line => { const vals = line.split(','); const obj = {}; headers.forEach((h, i) => obj[h.toLowerCase()] = (vals[i] || '').trim()); return obj; });
+        dropZone.innerHTML = '<div style="color:var(--accent);font-weight:600">✅ ' + file.name + ' (' + parsedRows.length + ' rows)</div>';
+        const preview = m.querySelector('#csv-preview');
+        preview.style.display = 'block';
+        m.querySelector('#csv-preview-content').innerHTML = '<table style="width:100%;border-collapse:collapse"><thead><tr>' + headers.map(h => '<th style="padding:4px 8px;border-bottom:1px solid var(--border);text-align:left">' + h + '</th>').join('') + '</tr></thead><tbody>' + parsedRows.slice(0, 5).map(r => '<tr>' + headers.map(h => '<td style="padding:4px 8px;border-bottom:1px solid var(--border)">' + (r[h.toLowerCase()] || '') + '</td>').join('') + '</tr>').join('') + '</tbody></table>';
+        importBtn.disabled = false;
+      };
+      reader.readAsText(file);
+    }
+
+    m.querySelector('#csv-cancel').onclick = () => m.remove();
+    importBtn.onclick = () => {
+      let count = 0;
+      parsedRows.forEach(r => {
+        if (r.name && r.email) {
+          const initials = r.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+          DashboardData.contacts.push({ id: 'c' + (DashboardData.contacts.length + 1), name: r.name, email: r.email, phone: r.phone || '', company: r.company || '', role: r.role || '', status: 'active', value: parseInt(r.value) || 0, tags: [], lastContact: 'Imported', avatar: initials, activity: [] });
+          count++;
+        }
+      });
+      m.remove();
+      showToast(count + ' contacts imported', 'success');
+      initContacts();
+    };
+  }
+
+  /* ── New Invoice Modal ── */
+  function newInvoiceModal() {
+    let items = [{ desc: '', qty: 1, rate: 0 }];
+    function renderItems() {
+      return items.map((item, i) =>
+        '<div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">' +
+          '<input type="text" placeholder="Description" value="' + (item.desc || '') + '" data-idx="' + i + '" data-field="desc" style="flex:2;' + inputStyle() + '">' +
+          '<input type="number" placeholder="Qty" value="' + item.qty + '" min="1" data-idx="' + i + '" data-field="qty" style="width:70px;' + inputStyle() + '">' +
+          '<input type="number" placeholder="Rate" value="' + item.rate + '" min="0" data-idx="' + i + '" data-field="rate" style="width:100px;' + inputStyle() + '">' +
+          '<span style="width:80px;text-align:right;font-weight:600">$' + (item.qty * item.rate).toLocaleString() + '</span>' +
+          (items.length > 1 ? '<button style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--text-secondary)" data-remove="' + i + '">&times;</button>' : '<span style="width:24px"></span>') +
+        '</div>'
+      ).join('');
+    }
+
+    function getTotal() { return items.reduce((s, i) => s + i.qty * i.rate, 0); }
+
+    function renderBody() {
+      return formGroupHTML('Client Name', '<input type="text" id="mi-client" style="' + inputStyle() + '" required>') +
+        '<div style="display:flex;gap:12px">' +
+          '<div style="flex:1">' + formGroupHTML('Issue Date', '<input type="date" id="mi-issued" value="' + new Date().toISOString().slice(0, 10) + '" style="' + inputStyle() + '">') + '</div>' +
+          '<div style="flex:1">' + formGroupHTML('Due Date', '<input type="date" id="mi-due" style="' + inputStyle() + '">') + '</div>' +
+        '</div>' +
+        '<div style="margin-bottom:14px"><label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:8px;color:var(--text-secondary)">Line Items</label>' +
+        '<div id="mi-items">' + renderItems() + '</div>' +
+        '<button class="btn btn-secondary btn-sm" id="mi-add-item" style="margin-top:4px">+ Add Item</button></div>' +
+        '<div style="text-align:right;font-size:1.05rem;font-weight:700;margin-bottom:16px">Total: $<span id="mi-total">' + getTotal().toLocaleString() + '</span></div>' +
+        '<div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-secondary" id="mi-cancel">Cancel</button><button class="btn btn-primary" id="mi-save">Create Invoice</button></div>';
+    }
+
+    const m = openModal('New Invoice', renderBody());
+
+    function bindItemEvents() {
+      m.querySelectorAll('#mi-items input').forEach(inp => {
+        inp.addEventListener('input', () => {
+          const idx = parseInt(inp.dataset.idx);
+          const field = inp.dataset.field;
+          if (field === 'desc') items[idx].desc = inp.value;
+          else if (field === 'qty') items[idx].qty = parseInt(inp.value) || 0;
+          else if (field === 'rate') items[idx].rate = parseInt(inp.value) || 0;
+          m.querySelector('#mi-total').textContent = getTotal().toLocaleString();
+          m.querySelectorAll('#mi-items > div').forEach((row, ri) => {
+            const spans = row.querySelectorAll('span');
+            if (spans.length) spans[spans.length - 1].textContent = '$' + (items[ri].qty * items[ri].rate).toLocaleString();
+          });
+        });
+      });
+      m.querySelectorAll('[data-remove]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          items.splice(parseInt(btn.dataset.remove), 1);
+          m.querySelector('#mi-items').innerHTML = renderItems();
+          m.querySelector('#mi-total').textContent = getTotal().toLocaleString();
+          bindItemEvents();
+        });
+      });
+    }
+    bindItemEvents();
+
+    m.querySelector('#mi-add-item').addEventListener('click', () => {
+      items.push({ desc: '', qty: 1, rate: 0 });
+      m.querySelector('#mi-items').innerHTML = renderItems();
+      bindItemEvents();
+    });
+
+    m.querySelector('#mi-cancel').onclick = () => m.remove();
+    m.querySelector('#mi-save').onclick = () => {
+      const client = m.querySelector('#mi-client').value.trim();
+      if (!client) { showToast('Client name is required', 'error'); return; }
+      if (!items.some(i => i.desc.trim())) { showToast('Add at least one line item', 'error'); return; }
+      const id = 'INV-' + String(DashboardData.invoices.length + 1).padStart(4, '0');
+      const total = getTotal();
+      DashboardData.invoices.push({ id, client, clientContact: client, clientAddr: '', amount: total, status: 'draft', issued: m.querySelector('#mi-issued').value, due: m.querySelector('#mi-due').value || '', items: items.filter(i => i.desc.trim()), tax: 0, discount: 0, notes: '', payments: [] });
+      m.remove();
+      showToast('Invoice ' + id + ' created', 'success');
+      initInvoices();
+    };
+  }
+
+  /* ── Invite Member Modal ── */
+  function inviteMemberModal() {
+    const body =
+      formGroupHTML('Email Address', '<input type="email" id="mm-email" style="' + inputStyle() + '" placeholder="colleague@company.com" required>') +
+      '<div style="display:flex;gap:12px">' +
+        '<div style="flex:1">' + formGroupHTML('Full Name', '<input type="text" id="mm-name" style="' + inputStyle() + '" required>') + '</div>' +
+        '<div style="flex:1">' + formGroupHTML('Role', '<select id="mm-role" style="' + inputStyle() + '"><option value="member">Member</option><option value="editor">Editor</option><option value="admin">Admin</option></select>') + '</div>' +
+      '</div>' +
+      formGroupHTML('Department', '<input type="text" id="mm-dept" style="' + inputStyle() + '" placeholder="e.g. Engineering">') +
+      '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn btn-secondary" id="mm-cancel">Cancel</button><button class="btn btn-primary" id="mm-save">Send Invite</button></div>';
+
+    const m = openModal('Invite Team Member', body);
+    m.querySelector('#mm-cancel').onclick = () => m.remove();
+    m.querySelector('#mm-save').onclick = () => {
+      const email = m.querySelector('#mm-email').value.trim();
+      const name = m.querySelector('#mm-name').value.trim();
+      if (!email || !name) { showToast('Name and email are required', 'error'); return; }
+      const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      DashboardData.team.push({ id: 'm' + (DashboardData.team.length + 1), name, email, role: m.querySelector('#mm-role').value, department: m.querySelector('#mm-dept').value || 'General', status: 'active', lastActive: 'Invited', avatar: initials });
+      m.remove();
+      showToast('Invite sent to ' + email, 'success');
+      if (window._teamRender) window._teamRender();
+    };
+  }
+
   /* ── PUBLIC API ── */
   window.App = {
     toggleTheme, showToast,
     openContact: openContactPanel, closePanel,
     viewInvoice, markPaid,
+    addRecord: addRecordModal,
+    addDeal: addDealModal,
+    addContact: addContactModal,
+    editContact: id => {
+      const c = DashboardData.contacts.find(x => x.id === id);
+      if (!c) return;
+      const body =
+        '<div style="display:flex;gap:12px"><div style="flex:1">' + formGroupHTML('Name', '<input type="text" id="ec-name" value="' + escapeHTML(c.name) + '" style="' + inputStyle() + '">') + '</div><div style="flex:1">' + formGroupHTML('Email', '<input type="email" id="ec-email" value="' + escapeHTML(c.email) + '" style="' + inputStyle() + '">') + '</div></div>' +
+        '<div style="display:flex;gap:12px"><div style="flex:1">' + formGroupHTML('Phone', '<input type="tel" id="ec-phone" value="' + (c.phone || '') + '" style="' + inputStyle() + '">') + '</div><div style="flex:1">' + formGroupHTML('Company', '<input type="text" id="ec-company" value="' + escapeHTML(c.company) + '" style="' + inputStyle() + '">') + '</div></div>' +
+        formGroupHTML('Role', '<input type="text" id="ec-role" value="' + escapeHTML(c.role) + '" style="' + inputStyle() + '">') +
+        '<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class="btn btn-secondary" id="ec-cancel">Cancel</button><button class="btn btn-primary" id="ec-save">Save</button></div>';
+      const m = openModal('Edit Contact', body);
+      m.querySelector('#ec-cancel').onclick = () => m.remove();
+      m.querySelector('#ec-save').onclick = () => {
+        c.name = m.querySelector('#ec-name').value.trim() || c.name;
+        c.email = m.querySelector('#ec-email').value.trim() || c.email;
+        c.phone = m.querySelector('#ec-phone').value;
+        c.company = m.querySelector('#ec-company').value;
+        c.role = m.querySelector('#ec-role').value;
+        c.avatar = c.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+        m.remove();
+        closePanel();
+        showToast('Contact updated', 'success');
+        initContacts();
+      };
+    },
+    deleteContact: id => {
+      if (!confirm('Delete this contact?')) return;
+      const i = DashboardData.contacts.findIndex(c => c.id === id);
+      if (i > -1) {
+        DashboardData.contacts.splice(i, 1);
+        closePanel();
+        showToast('Contact deleted', 'success');
+        initContacts();
+      }
+    },
+    importCSV: importCSVModal,
+    newInvoice: newInvoiceModal,
+    inviteMember: inviteMemberModal,
     editRecord: id => showToast('Editing ' + id, 'info'),
     deleteRecord: id => { if (confirm('Delete ' + id + '?')) { const i = DashboardData.records.findIndex(r => r.id === id); if (i > -1) { DashboardData.records.splice(i, 1); if (window._tableRender) window._tableRender(); showToast(id + ' deleted', 'success'); } } },
     tableSetPage: p => { if (window._tableState) window._tableState.setPage(p); },

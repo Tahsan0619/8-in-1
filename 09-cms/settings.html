@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — SiteCraft CMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sidebar-overlay"></div>
+<aside class="sidebar">
+  <div class="sidebar-header"><div class="sidebar-logo"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="var(--color-accent)"/><path d="M10 22V10h4l4 6 4-6h4v12h-4v-7l-4 5-4-5v7z" fill="#fff"/></svg><span>SiteCraft</span></div></div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+      <a href="index.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+      <a href="builder.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg><span>Page Builder</span></a>
+      <a href="pages.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Pages</span></a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content</div>
+      <a href="posts.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Blog Posts</span></a>
+      <a href="editor.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg><span>New Post</span></a>
+      <a href="media.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Media Library</span></a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Customize</div>
+      <a href="seo.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>SEO</span></a>
+      <a href="templates.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg><span>Templates</span></a>
+      <a href="theme.html" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg><span>Theme</span></a>
+      <a href="settings.html" class="sidebar-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Settings</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer"><div class="sidebar-user" onclick="Auth.isLoggedIn() ? Auth.logout() : Auth.openModal()"><div class="avatar user-avatar">TI</div><div><div class="user-name">Tahsan Islam</div><div class="user-email">tahsan@sitecraft.io</div></div></div></div>
+</aside>
+
+<main class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger-btn" aria-label="Toggle sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <div class="breadcrumb"><span>SiteCraft</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg><span class="active">Settings</span></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-icon" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+    </div>
+  </header>
+
+  <div class="page-content">
+    <div class="page-header"><h1>Site Settings</h1><p class="text-muted">Manage your website configuration and deployment</p></div>
+
+    <!-- Settings Tabs -->
+    <div class="tabs" style="margin-bottom:var(--sp-6)">
+      <button class="tab active" onclick="switchSettingsTab(this,'general')">General</button>
+      <button class="tab" onclick="switchSettingsTab(this,'domain')">Domain</button>
+      <button class="tab" onclick="switchSettingsTab(this,'analytics')">Analytics</button>
+      <button class="tab" onclick="switchSettingsTab(this,'code')">Custom Code</button>
+      <button class="tab" onclick="switchSettingsTab(this,'publish')">Publish</button>
+    </div>
+
+    <!-- General Tab -->
+    <div class="settings-tab active" id="tab-general">
+      <div class="card" style="max-width:700px">
+        <div class="card-header"><h3>General Settings</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Site Name</label>
+            <input type="text" class="form-input" id="settingSiteName" value="My Awesome Website" placeholder="Your site name">
+            <span class="text-muted" style="font-size:12px">Appears in the browser tab and search results</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tagline</label>
+            <input type="text" class="form-input" id="settingTagline" value="Building the future, one page at a time" placeholder="Site slogan or description">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Site Description</label>
+            <textarea class="form-textarea" id="settingDescription" rows="3" placeholder="Brief description for SEO">A modern website built with SiteCraft CMS — the most powerful content management system for creators and businesses.</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Logo</label>
+            <div class="upload-zone" style="padding:var(--sp-4);text-align:center;cursor:pointer" onclick="Toast.show('Logo uploader would open here','info')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;margin:0 auto var(--sp-2);display:block;color:var(--color-accent)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="text-muted" style="font-size:13px">Click to upload site logo (SVG, PNG)</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Favicon</label>
+            <div class="upload-zone" style="padding:var(--sp-4);text-align:center;cursor:pointer" onclick="Toast.show('Favicon uploader would open here','info')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;margin:0 auto var(--sp-2);display:block;color:var(--color-accent)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span class="text-muted" style="font-size:13px">32×32 or 16×16 (ICO, PNG)</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Language</label>
+            <select class="form-select" id="settingLanguage">
+              <option value="en" selected>English</option>
+              <option value="bn">Bengali (বাংলা)</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ar">Arabic</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Timezone</label>
+            <select class="form-select" id="settingTimezone">
+              <option value="Asia/Dhaka" selected>Asia/Dhaka (GMT+6)</option>
+              <option value="America/New_York">America/New York (GMT-5)</option>
+              <option value="Europe/London">Europe/London (GMT+0)</option>
+              <option value="Asia/Tokyo">Asia/Tokyo (GMT+9)</option>
+              <option value="Australia/Sydney">Australia/Sydney (GMT+11)</option>
+            </select>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;padding-top:var(--sp-4);border-top:1px solid var(--border-primary)">
+            <button class="btn btn-secondary" onclick="SiteSettings.saveGeneral()">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain Tab -->
+    <div class="settings-tab" id="tab-domain" style="display:none">
+      <div class="card" style="max-width:700px;margin-bottom:var(--sp-4)">
+        <div class="card-header"><h3>Custom Domain</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Primary Domain</label>
+            <div class="flex gap-2" style="align-items:center">
+              <input type="text" class="form-input" id="settingDomain" value="www.mywebsite.com" placeholder="www.yourdomain.com">
+              <button class="btn btn-primary btn-sm" onclick="Toast.show('Domain verified!','success')">Verify</button>
+            </div>
+            <span class="text-muted" style="font-size:12px">Point your domain's CNAME record to <code class="font-mono">sites.sitecraft.io</code></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">SiteCraft Subdomain</label>
+            <div class="flex gap-2" style="align-items:center">
+              <input type="text" class="form-input" id="settingSubdomain" value="my-website" placeholder="your-site" style="max-width:200px">
+              <span class="text-muted" style="font-size:13px">.sitecraft.io</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width:700px">
+        <div class="card-header"><h3>SSL Certificate</h3></div>
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3);background:var(--bg-secondary);border-radius:var(--br-lg)">
+            <div style="width:40px;height:40px;border-radius:50%;background:#22C55E20;display:flex;align-items:center;justify-content:center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" style="width:20px;height:20px"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;margin-bottom:2px">SSL Active</div>
+              <div class="text-muted" style="font-size:13px">Auto-renewing Let's Encrypt certificate • Expires Aug 15, 2025</div>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:var(--sp-4)">
+            <label style="display:flex;gap:var(--sp-2);align-items:center;cursor:pointer"><input type="checkbox" checked> Force HTTPS redirect</label>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;padding-top:var(--sp-4);border-top:1px solid var(--border-primary)">
+            <button class="btn btn-secondary" onclick="SiteSettings.saveDomain()">Save Domain Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Tab -->
+    <div class="settings-tab" id="tab-analytics" style="display:none">
+      <div class="card" style="max-width:700px;margin-bottom:var(--sp-4)">
+        <div class="card-header"><h3>Google Analytics</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Measurement ID</label>
+            <input type="text" class="form-input" id="settingAnalyticsId" value="G-XXXXXXXXXX" placeholder="G-XXXXXXXXXX">
+            <span class="text-muted" style="font-size:12px">Found in your Google Analytics dashboard under Admin &gt; Data Streams</span>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;gap:var(--sp-2);align-items:center;cursor:pointer"><input type="checkbox" checked> Enable tracking</label>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width:700px;margin-bottom:var(--sp-4)">
+        <div class="card-header"><h3>Facebook Pixel</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Pixel ID</label>
+            <input type="text" class="form-input" id="settingFbPixel" value="" placeholder="Enter Facebook Pixel ID">
+          </div>
+        </div>
+      </div>
+      <div class="card" style="max-width:700px">
+        <div class="card-header"><h3>Search Console</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Verification Meta Tag</label>
+            <input type="text" class="form-input font-mono" id="settingSearchConsole" value="" placeholder="<meta name=&quot;google-site-verification&quot; content=&quot;...&quot; />">
+            <span class="text-muted" style="font-size:12px">Paste your verification meta tag from Google Search Console</span>
+          </div>
+          <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;padding-top:var(--sp-4);border-top:1px solid var(--border-primary)">
+            <button class="btn btn-secondary" onclick="SiteSettings.saveAnalytics()">Save Analytics</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Code Tab -->
+    <div class="settings-tab" id="tab-code" style="display:none">
+      <div class="card" style="max-width:700px;margin-bottom:var(--sp-4)">
+        <div class="card-header"><h3>Head Code</h3><span class="text-muted" style="font-size:12px">Injected before &lt;/head&gt;</span></div>
+        <div class="card-body">
+          <textarea class="form-textarea font-mono" id="settingHeadCode" rows="8" placeholder="<!-- Custom CSS, meta tags, fonts, etc. -->" style="font-size:13px;tab-size:2"><!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Custom Styles -->
+<style>
+  :root { --brand-color: #6366F1; }
+</style></textarea>
+        </div>
+      </div>
+      <div class="card" style="max-width:700px">
+        <div class="card-header"><h3>Body Code</h3><span class="text-muted" style="font-size:12px">Injected before &lt;/body&gt;</span></div>
+        <div class="card-body">
+          <textarea class="form-textarea font-mono" id="settingBodyCode" rows="8" placeholder="<!-- Analytics scripts, chat widgets, etc. -->" style="font-size:13px;tab-size:2"><!-- Chat Widget -->
+<script>
+  // Placeholder for chat widget initialization
+</script></textarea>
+          <div style="display:flex;gap:var(--sp-3);justify-content:flex-end;padding-top:var(--sp-4);border-top:1px solid var(--border-primary)">
+            <button class="btn btn-secondary" onclick="SiteSettings.saveCode()">Save Code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publish Tab -->
+    <div class="settings-tab" id="tab-publish" style="display:none">
+      <div class="card" style="max-width:700px;margin-bottom:var(--sp-4)">
+        <div class="card-header"><h3>Publish Site</h3></div>
+        <div class="card-body">
+          <div style="text-align:center;padding:var(--sp-8) var(--sp-4)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:48px;height:48px;margin:0 auto var(--sp-4);display:block;color:var(--color-accent)"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <h2 style="margin-bottom:var(--sp-2)">Deploy Your Site</h2>
+            <p class="text-muted" style="margin-bottom:var(--sp-6);max-width:400px;margin-left:auto;margin-right:auto">Push all your latest changes live. Your site will be rebuilt and deployed to the CDN in under 60 seconds.</p>
+            <button class="btn btn-primary btn-lg" onclick="SiteSettings.publishSite()" style="min-width:200px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/></svg>
+              Publish Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Deployments -->
+      <div class="card" style="max-width:700px">
+        <div class="card-header"><h3>Recent Deployments</h3></div>
+        <div class="card-body" style="padding:0">
+          <table class="table" style="margin:0">
+            <thead><tr><th>Version</th><th>Status</th><th>Date</th><th>Duration</th></tr></thead>
+            <tbody>
+              <tr><td class="font-mono">v2.4.1</td><td><span class="badge badge-success">Live</span></td><td>Jan 15, 2025 14:30</td><td>32s</td></tr>
+              <tr><td class="font-mono">v2.4.0</td><td><span class="badge badge-secondary">Superseded</span></td><td>Jan 14, 2025 10:15</td><td>28s</td></tr>
+              <tr><td class="font-mono">v2.3.2</td><td><span class="badge badge-secondary">Superseded</span></td><td>Jan 10, 2025 09:45</td><td>35s</td></tr>
+              <tr><td class="font-mono">v2.3.1</td><td><span class="badge badge-secondary">Superseded</span></td><td>Jan 8, 2025 16:20</td><td>30s</td></tr>
+              <tr><td class="font-mono">v2.3.0</td><td><span class="badge badge-error">Failed</span></td><td>Jan 8, 2025 15:55</td><td>12s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Command Palette -->
+<div class="cmd-palette-overlay" id="cmdPalette"><div class="cmd-palette"><div class="cmd-palette-input-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Type a command or search..." oninput="CommandPalette.render(this.value)"></div><div class="cmd-palette-results"></div><div class="cmd-palette-footer"><kbd>↑↓</kbd> Navigate <kbd>↵</kbd> Select <kbd>Esc</kbd> Close</div></div></div>
+
+<!-- Auth Modal -->
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h2 class="auth-title">Welcome to SiteCraft</h2><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Sign In</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" placeholder="you@example.com" value="tahsan@sitecraft.io"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" placeholder="••••••••" value="password123"></div><button type="submit" class="btn btn-primary" style="width:100%">Sign In</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Full Name</label><input name="name" type="text" class="form-input" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" placeholder="you@example.com"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" placeholder="••••••••"></div><button type="submit" class="btn btn-primary" style="width:100%">Create Account</button></form></div></div>
+
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+<script>
+function switchSettingsTab(btn, tab) {
+  document.querySelectorAll('.tabs .tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.settings-tab').forEach(t => t.style.display = 'none');
+  const el = document.getElementById('tab-' + tab);
+  if (el) { el.style.display = 'block'; el.classList.add('active'); }
+}
+</script>
+</body>
+</html>

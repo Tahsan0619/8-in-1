@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khadok Kitchen — Authentic Flavors, Modern Dining</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">🍽️ Khadok</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="reservation.html" class="nav-link">Reservations</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="reviews.html" class="nav-link">Reviews</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <a href="cart.html" class="btn btn-icon btn-ghost cart-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-badge">0</span></a>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <div class="auth-logged" style="display:flex;align-items:center;gap:.5rem">
+        <span class="auth-user-name" style="font-size:14px;font-weight:500"></span>
+        <button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button>
+      </div>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer">
+  <div class="drawer-header">
+    <span class="logo">🍽️ Khadok</span>
+    <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="index.html" class="drawer-link">Home</a>
+    <a href="menu.html" class="drawer-link">Menu</a>
+    <a href="reservation.html" class="drawer-link">Reservations</a>
+    <a href="gallery.html" class="drawer-link">Gallery</a>
+    <a href="reviews.html" class="drawer-link">Reviews</a>
+    <a href="cart.html" class="drawer-link">Cart</a>
+    <a href="admin.html" class="drawer-link">Admin</a>
+  </nav>
+</div>
+
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="Auth.closeModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button>
+      <button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button>
+    </div>
+    <form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)">
+      <input class="form-input" type="email" name="email" placeholder="Email" value="tahsan@khadok.bd" required>
+      <input class="form-input" type="password" name="password" placeholder="Password" value="demo123" required>
+      <button class="btn btn-primary btn-md" style="width:100%">Login</button>
+    </form>
+    <form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)">
+      <input class="form-input" type="text" name="name" placeholder="Full Name" required>
+      <input class="form-input" type="email" name="email" placeholder="Email" required>
+      <input class="form-input" type="password" name="password" placeholder="Password" required>
+      <button class="btn btn-primary btn-md" style="width:100%">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1 class="hero-title">Authentic Flavors, Modern Dining</h1>
+      <p class="hero-subtitle">Experience the best of Bengali cuisine with our time-honored recipes and contemporary presentation</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-primary btn-lg">Order Now →</a>
+        <a href="reservation.html" class="btn btn-outline btn-lg">Reserve a Table →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Popular Dishes</h2>
+        <a href="menu.html" class="section-link">View Menu →</a>
+      </div>
+      <div id="popularDishes" class="dishes-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-image">
+          <div class="image-placeholder">Restaurant Interior</div>
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">Our Story</h2>
+          <p>Since 2015, Khadok Kitchen has been serving the finest Bangladeshi cuisine in the heart of Dhanmondi. Our mission is to preserve traditional flavors while embracing modern culinary techniques and presentation.</p>
+          <p>Every dish is crafted with locally sourced ingredients and the passion of our experienced chefs who bring generations of culinary expertise to your table.</p>
+          <a href="gallery.html" class="btn btn-outline btn-md">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title text-center">Why Choose Us</h2>
+      <div class="features-grid">
+        <article class="feature-card">
+          <span class="feature-icon">🍳</span>
+          <h3>Fresh Ingredients</h3>
+          <p>Locally sourced, premium quality ingredients in every dish we prepare.</p>
+          <div class="feature-stat"><strong>500+</strong> Dishes</div>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">👨‍🍳</span>
+          <h3>Expert Chefs</h3>
+          <p>Our culinary team brings decades of experience and passion to the kitchen.</p>
+          <div class="feature-stat"><strong>15</strong> Chefs</div>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon">🚚</span>
+          <h3>Fast Delivery</h3>
+          <p>Hot and fresh delivery right to your doorstep across Dhaka city.</p>
+          <div class="feature-stat"><strong>30 min</strong> avg</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What Our Guests Say</h2>
+        <a href="reviews.html" class="section-link">View All →</a>
+      </div>
+      <div id="homeReviews" class="reviews-carousel"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title text-center">Quick Reservation</h2>
+      <form class="reservation-quick" onsubmit="event.preventDefault();Reservation.quickCheck(this)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-input" name="date" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time</label>
+            <select class="form-input" name="time" required>
+              <option value="">Select time</option>
+              <option>12:00 PM</option>
+              <option>1:00 PM</option>
+              <option>2:00 PM</option>
+              <option>6:00 PM</option>
+              <option>7:00 PM</option>
+              <option>8:00 PM</option>
+              <option>9:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-input" name="guests" required>
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5 Guests</option>
+              <option value="6">6 Guests</option>
+              <option value="8">8 Guests</option>
+              <option value="10">10+ Guests</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Occasion</label>
+            <select class="form-input" name="occasion">
+              <option value="">Select occasion</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Business Dinner</option>
+              <option>Date Night</option>
+              <option>Family Gathering</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group form-group-btn">
+            <button type="submit" class="btn btn-primary btn-md">Check Availability</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>🍽️ Khadok Kitchen</h4>
+      <p>Authentic Bangladeshi cuisine with modern dining experience. Est. 2015.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <p>Daily: 11:00 AM – 11:00 PM</p>
+      <p>Friday Brunch: 12:00 – 3:00 PM</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📍 House 15, Road 7, Dhanmondi 27, Dhaka</p>
+      <p>📞 09666-456789</p>
+      <p>✉️ hello@khadok.bd</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 Khadok Kitchen. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/data.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

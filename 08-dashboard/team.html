@@ -62,7 +62,7 @@
     <main class="content">
       <div class="page-header">
         <h1>Team</h1>
-        <button class="btn btn-primary" onclick="App.showToast('Invite sent (frontend-only)','success')">+ Invite Member</button>
+        <button class="btn btn-primary" onclick="App.inviteMember()">+ Invite Member</button>
       </div>
 
       <div class="table-wrap">
@@ -87,27 +87,5 @@
 <div class="cmd-overlay"><div class="cmd-modal"><div class="cmd-input"><span>🔍</span><input type="text" placeholder="Type a command or search..."><kbd>ESC</kbd></div><div class="cmd-results"></div></div></div>
 
 <script src="js/data.js"></script><script src="js/app.js"></script>
-<style>
-.notif-mini-dropdown.active{display:block!important}
-.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}
-.notif-mini-item.unread{background:var(--accent-muted)}
-.notif-mini-item .n-title{font-weight:500}
-.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}
-.btn{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;font-size:13px;font-weight:500;transition:all .15s}
-.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.btn-primary:hover{opacity:.9}
-.team-member-cell{display:flex;align-items:center;gap:12px}
-.team-av{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;flex-shrink:0}
-.team-info .team-name{font-weight:500;font-size:13px}
-.team-info .team-email{font-size:12px;color:var(--text-tertiary)}
-.role-badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
-.role-badge.owner{background:rgba(168,85,247,.15);color:#A855F7}
-.role-badge.admin{background:rgba(59,130,246,.15);color:#3B82F6}
-.role-badge.member{background:rgba(34,197,94,.15);color:#22C55E}
-.role-badge.viewer{background:rgba(156,163,175,.15);color:#9CA3AF}
-.action-btn{padding:4px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;font-size:12px;transition:all .15s}
-.action-btn:hover{background:var(--bg-tertiary);color:var(--text-primary)}
-.action-btn.danger:hover{color:var(--error);border-color:var(--error)}
-</style>
 </body>
 </html>

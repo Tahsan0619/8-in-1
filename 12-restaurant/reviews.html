@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews — Khadok Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">🍽️ Khadok</a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="reservation.html" class="nav-link">Reservations</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="reviews.html" class="nav-link active">Reviews</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost theme-toggle" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <a href="cart.html" class="btn btn-icon btn-ghost cart-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-badge">0</span></a>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <div class="auth-logged" style="display:flex;align-items:center;gap:.5rem">
+        <span class="auth-user-name" style="font-size:14px;font-weight:500"></span>
+        <button class="btn btn-ghost btn-sm auth-logout-btn" onclick="Auth.logout()">Logout</button>
+      </div>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer">
+  <div class="drawer-header">
+    <span class="logo">🍽️ Khadok</span>
+    <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="index.html" class="drawer-link">Home</a>
+    <a href="menu.html" class="drawer-link">Menu</a>
+    <a href="reservation.html" class="drawer-link">Reservations</a>
+    <a href="gallery.html" class="drawer-link">Gallery</a>
+    <a href="reviews.html" class="drawer-link">Reviews</a>
+    <a href="cart.html" class="drawer-link">Cart</a>
+    <a href="admin.html" class="drawer-link">Admin</a>
+  </nav>
+</div>
+
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="Auth.closeModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Login</button>
+      <button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button>
+    </div>
+    <form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)">
+      <input class="form-input" type="email" name="email" placeholder="Email" value="tahsan@khadok.bd" required>
+      <input class="form-input" type="password" name="password" placeholder="Password" value="demo123" required>
+      <button class="btn btn-primary btn-md" style="width:100%">Login</button>
+    </form>
+    <form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)">
+      <input class="form-input" type="text" name="name" placeholder="Full Name" required>
+      <input class="form-input" type="email" name="email" placeholder="Email" required>
+      <input class="form-input" type="password" name="password" placeholder="Password" required>
+      <button class="btn btn-primary btn-md" style="width:100%">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Customer Reviews</h1>
+
+      <div id="reviewStats" class="review-stats"></div>
+
+      <div class="review-filters">
+        <span>Show:</span>
+        <button type="button" class="filter-btn active" onclick="Reviews.filter('all')">All</button>
+        <button type="button" class="filter-btn" onclick="Reviews.filter(5)">5★</button>
+        <button type="button" class="filter-btn" onclick="Reviews.filter(4)">4★</button>
+        <button type="button" class="filter-btn" onclick="Reviews.filter(3)">3★</button>
+      </div>
+
+      <div id="reviewsList" class="reviews-list"></div>
+
+      <div class="write-review">
+        <h3>Write a Review</h3>
+        <form class="review-form" onsubmit="event.preventDefault();Reviews.submit(this)">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" name="name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="star-input" id="starInput">
+              <span class="star" data-rating="1">★</span>
+              <span class="star" data-rating="2">★</span>
+              <span class="star" data-rating="3">★</span>
+              <span class="star" data-rating="4">★</span>
+              <span class="star" data-rating="5">★</span>
+            </div>
+            <input type="hidden" name="rating" id="ratingInput" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Review</label>
+            <textarea class="form-input" name="review" rows="4" placeholder="Share your dining experience..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dish (optional)</label>
+            <select class="form-input" name="dish" id="reviewDishSelect">
+              <option value="">Select a dish</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-md">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>🍽️ Khadok Kitchen</h4>
+      <p>Authentic Bangladeshi cuisine with modern dining experience. Est. 2015.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <p>Daily: 11:00 AM – 11:00 PM</p>
+      <p>Friday Brunch: 12:00 – 3:00 PM</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📍 House 15, Road 7, Dhanmondi 27, Dhaka</p>
+      <p>📞 09666-456789</p>
+      <p>✉️ hello@khadok.bd</p>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2026 Khadok Kitchen. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/data.js"></script>
+<script defer src="js/app.js"></script>
+</body>
+</html>

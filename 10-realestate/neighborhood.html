@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeScout — Neighborhood Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0F766E"/><path d="M8 22V14l8-6 8 6v8a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2z" fill="#fff" fill-opacity=".9"/><rect x="13" y="16" width="6" height="6" rx="1" fill="#0F766E"/></svg><span>HomeScout</span></a>
+    <nav class="nav">
+      <a href="listings.html" class="nav-link">Buy</a>
+      <a href="listings.html" class="nav-link">Rent</a>
+      <a href="agents.html" class="nav-link">Agents</a>
+      <a href="mortgage.html" class="nav-link">Mortgage</a>
+      <a href="neighborhood.html" class="nav-link active">Neighborhoods</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon btn-ghost" onclick="Theme.toggle()"><span class="theme-icon"></span></button>
+      <a href="favorites.html" class="btn btn-icon btn-ghost" aria-label="Favorites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+      <button class="btn btn-primary btn-sm auth-login-btn" onclick="Auth.openModal()">Sign In</button>
+      <button class="btn btn-ghost btn-sm auth-logout-btn" style="display:none" onclick="Auth.logout()">Logout</button>
+      <button class="hamburger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer-overlay"></div>
+<div class="mobile-drawer">
+  <button class="drawer-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="listings.html" class="nav-link">Buy / Rent</a>
+  <a href="agents.html" class="nav-link">Agents</a>
+  <a href="mortgage.html" class="nav-link">Mortgage</a>
+  <a href="neighborhood.html" class="nav-link active">Neighborhoods</a>
+  <a href="favorites.html" class="nav-link">Favorites</a>
+  <a href="compare.html" class="nav-link">Compare</a>
+  <a href="dashboard.html" class="nav-link">Agent Dashboard</a>
+</div>
+
+<main>
+  <!-- Area Selector (when no ?id) -->
+  <div id="neighborhoodSelector" class="container" style="padding-top:var(--sp-8);padding-bottom:var(--sp-10)">
+    <div class="section-header">
+      <div>
+        <h1 style="font-size:28px">Neighborhood Guides</h1>
+        <p class="text-secondary" style="margin-top:var(--sp-2)">Explore popular neighborhoods across Dhaka to find the perfect area for you</p>
+      </div>
+    </div>
+    <div class="area-grid" id="neighborhoodGrid"></div>
+  </div>
+
+  <!-- Single Neighborhood Detail (when ?id=nX) -->
+  <div id="neighborhoodDetail" style="display:none"></div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Buy Property</h4><a href="listings.html">Apartments in Gulshan</a><a href="listings.html">Houses in Dhanmondi</a></div>
+      <div class="footer-col"><h4>Rent Property</h4><a href="listings.html">Rentals in Uttara</a><a href="listings.html">Studios in Banani</a></div>
+      <div class="footer-col"><h4>Resources</h4><a href="mortgage.html">Mortgage Calculator</a><a href="agents.html">Find an Agent</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Privacy Policy</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 HomeScout. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="auth-overlay" id="authOverlay"><div class="auth-modal"><button class="auth-close" onclick="Auth.closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h2 class="auth-title">Welcome to HomeScout</h2><div class="auth-tabs"><button class="auth-tab active" data-tab="login" onclick="Auth.switchTab('login')">Sign In</button><button class="auth-tab" data-tab="signup" onclick="Auth.switchTab('signup')">Sign Up</button></div><form class="auth-form active" id="auth-login" onsubmit="event.preventDefault();Auth.login(this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input" value="tahsan@homescout.bd"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input" value="password123"></div><button type="submit" class="btn btn-primary btn-md w-full">Sign In</button></form><form class="auth-form" id="auth-signup" onsubmit="event.preventDefault();Auth.signup(this.name.value,this.email.value,this.password.value)"><div class="form-group"><label class="form-label">Full Name</label><input name="name" type="text" class="form-input"></div><div class="form-group"><label class="form-label">Email</label><input name="email" type="email" class="form-input"></div><div class="form-group"><label class="form-label">Password</label><input name="password" type="password" class="form-input"></div><button type="submit" class="btn btn-primary btn-md w-full">Create Account</button></form></div></div>
+
+<script src="js/data.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

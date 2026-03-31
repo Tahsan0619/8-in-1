@@ -64,7 +64,8 @@
                 <label>Profile Photo</label>
                 <div style="display:flex;align-items:center;gap:16px">
                   <img class="avatar avatar-lg" src="https://api.dicebear.com/7.x/avataaars/svg?seed=tahsan" alt="">
-                  <button type="button" class="btn btn-outline btn-sm" onclick="App.showToast('Photo upload not available in demo','info')">Change Photo</button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('photo-upload').click()">Change Photo</button>
+                  <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="if(this.files[0]){var r=new FileReader();r.onload=function(e){document.querySelector('.avatar-lg').src=e.target.result;App.showToast('Photo updated!','success')};r.readAsDataURL(this.files[0])}">
                 </div>
               </div>
               <div class="form-row">
@@ -93,7 +94,7 @@
             <div style="margin-top:40px;padding-top:20px;border-top:1px solid var(--border)">
               <h3 style="color:var(--danger)">Danger Zone</h3>
               <p class="text-muted" style="font-size:14px;margin:8px 0">Once you delete your account, there is no going back.</p>
-              <button class="btn btn-danger btn-sm" onclick="App.showToast('Account deletion not available in demo','warning')">Delete Account</button>
+              <button class="btn btn-danger btn-sm" onclick="if(confirm('Are you sure you want to delete your account? This action cannot be undone.')){App.showToast('Account deleted. Redirecting...','success');setTimeout(function(){location.href='index.html'},2000)}">Delete Account</button>
             </div>
           </div>
 

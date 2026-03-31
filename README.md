@@ -1,6 +1,6 @@
-# 8-in-1 — Frontend Portfolio Collection
+# 16-in-1 — Frontend Portfolio Collection
 
-Eight production-grade, fully interactive websites built with **vanilla HTML, CSS, and JavaScript** — no frameworks, no build tools, no dependencies beyond a few CDN libraries. Each site is self-contained, frontend-only, and designed to showcase a different domain of web development.
+Sixteen production-grade, fully interactive websites built with **vanilla HTML, CSS, and JavaScript** — no frameworks, no build tools, no dependencies beyond a few CDN libraries. Each site is self-contained, frontend-only, and designed to showcase a different domain of web development.
 
 > **Author:** Tahsan Islam  
 > **Stack:** HTML5 · CSS3 · Vanilla JS (ES6+)  
@@ -125,6 +125,119 @@ Eight production-grade, fully interactive websites built with **vanilla HTML, CS
 
 ---
 
+### 09 · SiteCraft — CMS / Website Builder
+
+> Powerful drag-and-drop CMS combining Webflow's builder, WordPress content management, and Framer's design polish.
+
+- WYSIWYG drag-and-drop page builder with live preview and device switching
+- Rich text post editor with media embeds
+- Media library with drag-drop upload, organize, and search
+- SEO tools (meta tags, OG tags, sitemap, robots) with score checker
+- Template library with pre-built sections
+- Theme customizer (typography, colors, spacing) with live preview
+- **Pages:** index · builder · pages · posts · editor · media · seo · templates · theme · settings
+
+---
+
+### 10 · HomeScout — Real Estate Platform
+
+> Location-first property platform combining Zillow's map search, Realtor.com's details, and Compass UI.
+
+- Split map + listing view with synchronized property markers
+- Advanced filters (price, beds, type, area), mortgage calculator
+- Virtual tour modals, property comparison (up to 3)
+- Agent directory with profiles, reviews, and transaction history
+- Neighborhood intelligence (schools, transit, safety scores)
+- **Pages:** index · listings · property · agents · agent · calculator · saved · compare · neighborhood · dashboard
+- **Libs:** Leaflet.js, Chart.js
+
+---
+
+### 11 · MediCare — Healthcare Platform
+
+> Comprehensive healthcare platform combining ZocDoc's booking, MyChart's portal, and Practo's management.
+
+- Doctor booking with calendar-based slot picker and appointment management
+- Patient portal with prescriptions, records, lab results, vaccination history
+- Department browsing, doctor directory with specialization filters
+- Online pharmacy with dosage info and ordering
+- Admin analytics dashboard with Chart.js
+- **Pages:** index · departments · doctors · doctor · booking · dashboard · appointment · pharmacy · records · admin
+- **Libs:** Chart.js
+
+---
+
+### 12 · Khadok Kitchen — Restaurant Platform
+
+> Full-featured single-restaurant website with digital menu, online ordering, and table reservations.
+
+- Digital menu with categories, search, and dish customization (sizes, add-ons, spice)
+- Shopping cart with promo codes, multi-step checkout
+- Visual table reservation with interactive floor plan
+- Real-time order tracking with animated timeline
+- Customer reviews and gallery with lightbox
+- Admin panel with menu editor and order management
+- **Pages:** index · menu · dish · cart · checkout · tracking · reservations · gallery · reviews · admin
+
+---
+
+### 13 · FitZone — Fitness & Gym Platform
+
+> Comprehensive gym management with class schedules, trainer profiles, workout planner, and progress tracking.
+
+- Interactive class schedule with calendar and weekly views
+- Workout planner with exercise library and interval timers
+- BMI & body composition calculator with visual charts
+- Progress tracking with Chart.js visualizations
+- Membership comparison and signup flow
+- Trainer profiles with certifications and booking
+- **Pages:** index · classes · class · trainers · trainer · membership · bmi · planner · dashboard · admin
+- **Libs:** Chart.js
+
+---
+
+### 14 · JobConnect BD — Job Board
+
+> Comprehensive job board with dual dashboards, applicant tracking, and career resources.
+
+- Dual dashboards (candidate and employer views)
+- Powerful job search with filters (location, type, salary, experience)
+- Application tracking system with Kanban pipeline
+- Company profiles with culture, benefits, and open positions
+- Salary insights with Chart.js visualizations, career resources
+- **Pages:** index · search · job · companies · company · post-job · candidate-dashboard · employer-dashboard · salary · resources
+- **Libs:** Chart.js
+
+---
+
+### 15 · HopeBridge — Nonprofit & Charity
+
+> Compelling charity platform with donation flow, fundraising progress, volunteer management, and impact transparency.
+
+- Streamlined 3-step donation flow with payment method selection
+- Real-time fundraising progress bars and campaign updates
+- Impact tracker with financial transparency dashboard
+- Volunteer management with hour tracking
+- Events calendar, beneficiary stories
+- **Pages:** index · causes · campaign · donate · impact · volunteer · events · stories · about · admin
+- **Libs:** Chart.js
+
+---
+
+### 16 · BazarBD — Multi-Vendor Marketplace
+
+> Bangladesh-focused multi-vendor marketplace combining Daraz, Etsy, and Amazon features.
+
+- Multi-vendor cart with items grouped by seller
+- Seller storefronts with custom branding and analytics dashboard
+- Product variants (size, color, material with separate stock)
+- Review system with verified purchase badges and photo reviews
+- Product comparison (up to 3), BDT-native pricing
+- **Pages:** index · browse · product · seller · cart · checkout · tracking · seller-dashboard · become-seller · admin
+- **Libs:** Chart.js
+
+---
+
 ## Project Structure
 
 Every site follows the same clean pattern:
@@ -155,15 +268,16 @@ XX-name/
 
 | Library | CDN | Used In |
 |---|---|---|
-| **Chart.js 4.4** | jsdelivr | 01, 06, 07, 08 |
-| **Leaflet.js** | unpkg | 05, 07 |
-| **Google Fonts** | fonts.googleapis.com | 01, 05, 06 |
+| **Chart.js 4.4** | jsdelivr | 01, 06, 07, 08, 10, 11, 13, 14, 15, 16 |
+| **Leaflet.js** | unpkg | 05, 07, 10 |
+| **Google Fonts** | fonts.googleapis.com | 01, 05, 06, 09, 12, 13, 14, 15 |
+| **Swiper.js** | cdn | 16 |
 
 ## Quick Start
 
 ```bash
 # Clone the repo
-git clone https://github.com/Tahsan0619/8-in-1.git
+git clone https://github.com/Tahsan0619/16-in-1.git
 
 # Open any site — no install needed
 # Just open the HTML file in your browser

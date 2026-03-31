@@ -82,7 +82,8 @@
               <div class="form-row">
                 <div class="profile-avatar-wrap">
                   <div class="profile-avatar-lg">TA</div>
-                  <button type="button" class="btn btn-secondary" onclick="App.showToast('Upload feature is frontend-only','info')">Change Photo</button>
+                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('avatar-upload').click()">Change Photo</button>
+                  <input type="file" id="avatar-upload" accept="image/*" style="display:none" onchange="if(this.files[0]){var r=new FileReader();r.onload=function(e){document.querySelector('.profile-avatar-lg').style.cssText='background-image:url('+e.target.result+');background-size:cover;color:transparent';App.showToast('Photo updated','success')};r.readAsDataURL(this.files[0])}">
                 </div>
               </div>
               <div class="form-row two-col">
@@ -130,8 +131,8 @@
             <h2>Billing & Plans</h2>
             <div class="plan-cards">
               <div class="plan-card"><div class="plan-name">Starter</div><div class="plan-price">$0<span>/mo</span></div><ul class="plan-features"><li>5 team members</li><li>10K records</li><li>Basic analytics</li><li>Email support</li></ul><button class="btn btn-secondary" disabled>Current Plan</button></div>
-              <div class="plan-card recommended"><div class="plan-badge">Recommended</div><div class="plan-name">Pro</div><div class="plan-price">$49<span>/mo</span></div><ul class="plan-features"><li>25 team members</li><li>100K records</li><li>Advanced analytics</li><li>Priority support</li><li>API access</li></ul><button class="btn btn-primary" onclick="App.showToast('Upgrade is frontend-only','info')">Upgrade</button></div>
-              <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price">$199<span>/mo</span></div><ul class="plan-features"><li>Unlimited members</li><li>Unlimited records</li><li>Custom analytics</li><li>Dedicated support</li><li>SSO & SAML</li><li>Custom contracts</li></ul><button class="btn btn-secondary" onclick="App.showToast('Contact sales is frontend-only','info')">Contact Sales</button></div>
+              <div class="plan-card recommended"><div class="plan-badge">Recommended</div><div class="plan-name">Pro</div><div class="plan-price">$49<span>/mo</span></div><ul class="plan-features"><li>25 team members</li><li>100K records</li><li>Advanced analytics</li><li>Priority support</li><li>API access</li></ul><button class="btn btn-primary" onclick="this.textContent='\u2713 Current Plan';this.disabled=true;this.style.opacity='.6';App.showToast('Upgraded to Pro plan!','success')">Upgrade</button></div>
+              <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price">$199<span>/mo</span></div><ul class="plan-features"><li>Unlimited members</li><li>Unlimited records</li><li>Custom analytics</li><li>Dedicated support</li><li>SSO & SAML</li><li>Custom contracts</li></ul><button class="btn btn-secondary" onclick="App.showToast('Our sales team will reach out within 24 hours','success');this.textContent='\u2713 Request Sent';this.disabled=true">Contact Sales</button></div>
             </div>
 
             <div class="settings-divider"></div>
@@ -221,69 +222,5 @@
 <div class="cmd-overlay"><div class="cmd-modal"><div class="cmd-input"><span>🔍</span><input type="text" placeholder="Type a command or search..."><kbd>ESC</kbd></div><div class="cmd-results"></div></div></div>
 
 <script src="js/data.js"></script><script src="js/app.js"></script>
-<style>
-.notif-mini-dropdown.active{display:block!important}
-.notif-mini-item{display:flex;gap:10px;padding:10px 16px;font-size:12px;border-bottom:1px solid var(--border)}
-.notif-mini-item.unread{background:var(--accent-muted)}
-.notif-mini-item .n-title{font-weight:500}
-.notif-mini-item .n-time{color:var(--text-tertiary);font-size:11px}
-.settings-grid{display:grid;grid-template-columns:220px 1fr;gap:24px}
-.settings-nav{display:flex;flex-direction:column;gap:4px}
-.settings-nav-btn{display:flex;align-items:center;gap:8px;padding:10px 14px;border:none;background:none;color:var(--text-secondary);cursor:pointer;border-radius:var(--radius-sm);font-size:13px;text-align:left;transition:all .15s}
-.settings-nav-btn:hover{background:var(--bg-tertiary);color:var(--text-primary)}
-.settings-nav-btn.active{background:var(--accent-muted);color:var(--accent);font-weight:500}
-.settings-section{display:none}
-.settings-section.active{display:block}
-.settings-section h2{font-size:18px;margin-bottom:20px}
-.settings-section h3{font-size:14px;margin:20px 0 12px;color:var(--text-secondary)}
-.settings-form{display:flex;flex-direction:column;gap:16px}
-.form-row{display:flex;gap:16px;align-items:flex-start}
-.form-row.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group label{font-size:12px;font-weight:500;color:var(--text-secondary)}
-.form-group input,.form-group select{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-primary);color:var(--text-primary);font-size:13px}
-.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-muted)}
-.form-group input:disabled{opacity:.5;cursor:not-allowed}
-.settings-divider{height:1px;background:var(--border);margin:24px 0}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
-.toggle{position:relative;display:inline-block;width:44px;height:24px}
-.toggle input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;border-radius:12px;background:var(--bg-tertiary);border:1px solid var(--border);cursor:pointer;transition:all .2s}
-.toggle-slider::before{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--text-tertiary);transition:all .2s}
-.toggle input:checked+.toggle-slider{background:var(--accent);border-color:var(--accent)}
-.toggle input:checked+.toggle-slider::before{transform:translateX(20px);background:#fff}
-.profile-avatar-wrap{display:flex;align-items:center;gap:16px}
-.profile-avatar-lg{width:64px;height:64px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
-.plan-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.plan-card{padding:24px;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--bg-secondary);position:relative}
-.plan-card.recommended{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:2px 12px;border-radius:10px;font-size:11px;font-weight:600}
-.plan-name{font-size:16px;font-weight:600;margin-bottom:8px}
-.plan-price{font-size:28px;font-weight:700;margin-bottom:16px}.plan-price span{font-size:14px;color:var(--text-tertiary);font-weight:400}
-.plan-features{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-secondary)}
-.plan-features li::before{content:'✓ ';color:var(--success)}
-.usage-meters{display:flex;flex-direction:column;gap:16px}
-.usage-item{display:flex;flex-direction:column;gap:6px}
-.usage-label{display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary)}
-.usage-bar{height:8px;background:var(--bg-tertiary);border-radius:4px;overflow:hidden}
-.usage-fill{height:100%;background:var(--accent);border-radius:4px;transition:width .5s}
-.integrations-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.api-key-row{display:flex;gap:16px;align-items:flex-end}
-.api-key-display{display:flex;gap:8px;align-items:center}
-.api-key-display code{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-tertiary);font-family:var(--font-mono);font-size:13px;flex:1}
-.theme-options{display:flex;gap:16px}
-.theme-radio{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;font-size:13px}
-.theme-radio input{display:none}
-.theme-preview{width:80px;height:56px;border-radius:var(--radius-sm);border:2px solid var(--border)}
-.theme-radio input:checked~.theme-preview{border-color:var(--accent)}
-.dark-preview{background:#09090B}
-.light-preview{background:#FFFFFF}
-.btn{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;font-size:13px;font-weight:500;transition:all .15s}
-.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.btn-primary:hover{opacity:.9}
-.btn-secondary{background:var(--bg-secondary);color:var(--text-primary)}
-.btn-secondary:hover{background:var(--bg-tertiary)}
-@media(max-width:768px){.settings-grid{grid-template-columns:1fr}.settings-nav{flex-direction:row;overflow-x:auto;gap:0}.settings-nav-btn{white-space:nowrap}.plan-cards{grid-template-columns:1fr}.form-row.two-col{grid-template-columns:1fr}}
-</style>
 </body>
 </html>

@@ -517,7 +517,39 @@ function initDashboard(){
       if(bk){bk.status='cancelled';showToast('Booking cancelled');renderBookings()}
     }
     if(e.target.closest('.reschedule-btn')){
-      showToast('Reschedule feature — contact the provider to reschedule.');
+      const id=e.target.closest('.reschedule-btn').dataset.id;
+      const bk=all.find(b=>b.id===id);
+      if(!bk)return;
+      const overlay=document.createElement('div');
+      overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(4px)';
+      const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
+      const minDate=tomorrow.toISOString().split('T')[0];
+      overlay.innerHTML=`<div style="background:var(--color-surface);border-radius:16px;padding:24px;width:90%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.25)">
+        <h3 style="margin:0 0 16px">Reschedule Booking</h3>
+        <p style="font-size:.9rem;color:var(--color-text-secondary);margin-bottom:16px">Current: ${bk.date} at ${bk.time}</p>
+        <label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">New Date</label>
+        <input type="date" id="rescheduleDate" min="${minDate}" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--color-border);background:var(--color-surface);font-size:.9rem;margin-bottom:12px">
+        <label style="display:block;font-size:.85rem;font-weight:600;margin-bottom:4px">New Time</label>
+        <select id="rescheduleTime" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--color-border);background:var(--color-surface);font-size:.9rem;margin-bottom:16px">
+          <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option>
+        </select>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn-ghost" id="rescheduleCancel">Cancel</button>
+          <button class="btn-primary" id="rescheduleConfirm">Reschedule</button>
+        </div>
+      </div>`;
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click',ev=>{if(ev.target===overlay)overlay.remove()});
+      overlay.querySelector('#rescheduleCancel').addEventListener('click',()=>overlay.remove());
+      overlay.querySelector('#rescheduleConfirm').addEventListener('click',()=>{
+        const newDate=overlay.querySelector('#rescheduleDate').value;
+        const newTime=overlay.querySelector('#rescheduleTime').value;
+        if(!newDate){showToast('Please select a date','error');return}
+        bk.date=newDate;bk.time=newTime;
+        overlay.remove();
+        showToast('Booking rescheduled to '+newDate+' at '+newTime,'success');
+        renderBookings();
+      });
     }
   });
 
